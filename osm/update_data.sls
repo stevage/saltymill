@@ -6,14 +6,14 @@ update_data:
       #wget -q http://download.geofabrik.de/openstreetmap/australia-oceania/australia-latest.osm.pbf
       wget -q http://gis.researchmaps.net/australia-latest.osm.pbf
 
-{{tm_dir}}/import.sh:
+{{grains['tm_dir']}}/import.sh:
   cmd.run:
     - cwd: {{grains['tm_dir']}}
     - user: ubuntu
     - group: ubuntu
     - require: [ cmd: install_postgis ]
 
-{{tm_dir}}/process.sh:
+{{grains['tm_dir']}}/process.sh:
   cmd.run:
     - cwd: {{grains['tm_dir']}}
     - user: ubuntu
