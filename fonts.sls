@@ -9,5 +9,5 @@ cartogothic:
     - cwd: /usr/share/fonts/truetype
     - name: |
         wget 'http://www.freefontspro.com/d/12524/cartogothic_std.zip' 
-        unzip -o *.zip
-    - unless: test -d /usr/share/fonts/truetype/cartogothic_std
+        unzip -d CartoGothic -o *.zip
+    - unless: test -d /usr/share/fonts/truetype/CartoGothic
