@@ -20,7 +20,13 @@ postgresql:
 {{grains['tm_dir']}}/import.sh:
   file.managed:
     - source: salt://osm/import.sh
+    - user: ubuntu
+    - group: ubuntu
+    - mode: 744
 
 {{grains['tm_dir']}}/process.sh:
   file.managed:
     - source: salt://osm/process.sh
+    - user: ubuntu
+    - group: ubuntu
+    - mode: 744
