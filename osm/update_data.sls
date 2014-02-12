@@ -1,5 +1,6 @@
 update_data:
   cmd.run:
+    - cwd: {{ grains['tm_dir'] }}
     - name: |
       rm -f australia-latest.osm.pbf
       echo --- Downloading data.
