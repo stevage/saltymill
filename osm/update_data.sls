@@ -9,15 +9,9 @@ update_data:
 
 do_import:
   cmd.run:
-    - name: {{grains['tm_dir']}}/import.sh
-    - cwd: {{grains['tm_dir']}}
-    - user: ubuntu
-    - group: ubuntu
-    - require: [ cmd: install_postgis ]
-
-do_process:
-  cmd.run:
-    - name: {{grains['tm_dir']}}/process.sh
+    - name: | 
+        {{grains['tm_dir']}}/import.sh
+        {{grains['tm_dir']}}/process.sh
     - cwd: {{grains['tm_dir']}}
     - user: ubuntu
     - group: ubuntu
