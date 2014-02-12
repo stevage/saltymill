@@ -12,7 +12,6 @@ nginx:
   cmd.run:
     - name: |
           printf "{{grains['tm_username']}}:$(openssl passwd -crypt ""{{grains['tm_password']}}"")\n" >> /etc/nginx/htpasswd
-          echo Boop!
     - unless: test -f /etc/nginx/htpasswd
   file.managed:
     - group: www-data
