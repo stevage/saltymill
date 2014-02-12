@@ -10,3 +10,11 @@ postgresql:
     - require: [ cmd: install_postgis ]
     - reload: True
 
+
+{{tm_dir}}/import.sh:
+  file.managed:
+    - source: salt://osm/import.sh:
+
+{{tm_dir}}/process.sh:
+  file.managed:
+    - source: salt://osm/process.sh:
