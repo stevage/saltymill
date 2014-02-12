@@ -6,7 +6,7 @@ waterpoly:
     - user: mapbox
     - group: mapbox
     - name: |
-        #wget -q http://gis.researchmaps.net/water-polygons-split-3857.zip  && sleep 5 && 
+        wget -q http://gis.researchmaps.net/water-polygons-split-3857.zip  && sleep 5 && 
         unzip -o water-polygons-split-3857.zip
     - require:
         - pkg: unzip
