@@ -1,0 +1,43 @@
+server {
+   listen 80;
+   server_name localhost;
+   # This configuration allows TileMill to coexist with the tile server (/datasource, /tile) on external port 80.
+   location /tile/ {
+        proxy_set_header Host $http_host;
+        proxy_pass http://127.0.0.1:20008;
+   
+        
+        #proxy_cache my-cache;
+        #proxy_cache_valid  200 302  60m;
+        #proxy_cache_valid  404      1m;
+    }
+    location /datasource/ {
+        proxy_set_header Host $http_host;
+        proxy_pass http://127.0.0.1:20008;
+    }
+    #location /maps {
+    # alias   /usr/share/nginx/www/Project-OSRM-Web/WebContent/;
+    #}
+   location /tilemill {
+       rewrite     ^(.*)$ http://{{grains['fqdn']}}:5002 permanent;
+   }
+
+   location / {
+        proxy_set_header Host $http_host;
+        proxy_pass http://127.0.0.1:20009;
+        auth_basic "Restricted";
+        auth_basic_user_file htpasswd;
+    }
+}
+
+server {
+   #listen $ip:20008;
+   listen 5002;
+   server_name localhost;
+   location / {
+        proxy_set_header Host $http_host;
+        proxy_pass http://127.0.0.1:20009;
+        auth_basic "Restricted";
+        auth_basic_user_file htpasswd;
+    }
+}
