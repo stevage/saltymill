@@ -1,6 +1,8 @@
 waterpoly:
   pkg.installed:
-    - names: [ unzip wget ] 
+    - names: 
+       - unzip 
+       - wget
   cmd.run:
     - cwd: /usr/share/mapbox
     - user: mapbox
