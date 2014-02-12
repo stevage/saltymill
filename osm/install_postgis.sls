@@ -19,8 +19,8 @@ postgresql:
 
 {{grains['tm_dir']}}/import.sh:
   file.managed:
-    - source: salt://osm/import.sh:
+    - source: salt://osm/import.sh
 
 {{grains['tm_dir']}}/process.sh:
   file.managed:
-    - source: salt://osm/process.sh:
+    - source: salt://osm/process.sh
