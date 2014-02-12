@@ -10,6 +10,12 @@ postgresql:
     - require: [ cmd: install_postgis ]
     - reload: True
 
+{{tm_dir}}:
+  file.directory:
+    - group: ubuntu
+    - user: ubuntu
+    - makedirs: True
+
 
 {{tm_dir}}/import.sh:
   file.managed:
