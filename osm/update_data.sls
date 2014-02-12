@@ -8,14 +8,14 @@ update_data:
 
 {{tm_dir}}/import.sh:
   cmd.run:
-    - cwd: {{tm_dir}}
+    - cwd: {{grains['tm_dir']}}
     - user: ubuntu
     - group: ubuntu
     - require: [ cmd: install_postgis ]
 
 {{tm_dir}}/process.sh:
   cmd.run:
-    - cwd: {{tm_dir}}
+    - cwd: {{grains['tm_dir']}}
     - user: ubuntu
     - group: ubuntu
     - require: [ cmd: install_postgis ]

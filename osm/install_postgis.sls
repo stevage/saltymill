@@ -10,17 +10,17 @@ postgresql:
     - require: [ cmd: install_postgis ]
     - reload: True
 
-{{tm_dir}}:
+{{grains['tm_dir']}}:
   file.directory:
     - group: ubuntu
     - user: ubuntu
     - makedirs: True
 
 
-{{tm_dir}}/import.sh:
+{{grains['tm_dir']}}/import.sh:
   file.managed:
     - source: salt://osm/import.sh:
 
-{{tm_dir}}/process.sh:
+{{grains['tm_dir']}}/process.sh:
   file.managed:
     - source: salt://osm/process.sh:
