@@ -34,17 +34,18 @@ install_postgis_pkgs:
     - names: [ policykit-1, postgresql-9.1, libpq-dev, postgis ]
 
 move_postgis:
-  cmd.run: |
-      POSTGRESDIR={{grains['tm_postgresdir']}}
-      echo Moving postgresql from /var/lib/postgresql to $POSTGRESDIR/postgresql
+  cmd.run: 
+    - name: |
+        POSTGRESDIR={{grains['tm_postgresdir']}}
+        echo Moving postgresql from /var/lib/postgresql to $POSTGRESDIR/postgresql
 
-      mkdir -p $POSTGRESDIR
-      service postgresql stop
-      cd /var/lib/
-      mv postgresql $POSTGRESDIR
-      ln -s $POSTGRESDIR/postgresql postgresql
-      chmod a+r $POSTGRESDIR
-      service postgresql start
+        mkdir -p $POSTGRESDIR
+        service postgresql stop
+        cd /var/lib/
+        mv postgresql $POSTGRESDIR
+        ln -s $POSTGRESDIR/postgresql postgresql
+        chmod a+r $POSTGRESDIR
+        service postgresql start
     - unless: test -d "{{grains['tm_postgresdir']}}/postgresql"
 
 postgresql:
