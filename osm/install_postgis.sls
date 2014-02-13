@@ -2,6 +2,7 @@
   file.directory:
     - group: ubuntu
     - user: ubuntu
+    - mode: 755
     - makedirs: True
 
 {{grains['tm_dir']}}/tm-settings:
@@ -44,5 +45,5 @@ install_postgis:
 postgresql:
   service.running:
     - enable: True
-    - require: [ cmd: install_postgis ]
-    - reload: True
+    - watch: [ cmd: install_postgis ]
+    #- reload: True
