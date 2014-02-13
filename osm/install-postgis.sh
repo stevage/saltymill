@@ -6,8 +6,8 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi 
 
-source ../getspecs.sh
-source ../tm-settings
+source ./getspecs.sh
+source ./tm-settings
 
 
 #As per https://github.com/gravitystorm/openstreetmap-carto

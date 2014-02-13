@@ -1,6 +1,23 @@
+{{grains['tm_dir']}}/tm-settings:
+  file.managed:
+    - source: salt://osm/tm-settings
+    - template: jinja
+    - user: ubuntu
+    - group: ubuntu
+    - mode: 744
+
+{{grains['tm_dir']}}/getspecs.sh:
+  file.managed:
+    - source: salt://osm/getspecs.sh
+    - template: jinja
+    - user: ubuntu
+    - group: ubuntu
+    - mode: 744
+
 install_postgis:
   cmd.script:
     - source: salt://osm/install-postgis.sh
+    - cwd: {{grains['tm_dir']}}
   #sysctl.present:
   #  kernal.shmmax
 
@@ -31,18 +48,3 @@ postgresql:
     - group: ubuntu
     - mode: 744
 
-{{grains['tm_dir']}}/tm-settings:
-  file.managed:
-    - source: salt://osm/tm-settings
-    - template: jinja
-    - user: ubuntu
-    - group: ubuntu
-    - mode: 744
-
-{{grains['tm_dir']}}/getspecs.sh:
-  file.managed:
-    - source: salt://osm/getspecs.sh
-    - template: jinja
-    - user: ubuntu
-    - group: ubuntu
-    - mode: 744
