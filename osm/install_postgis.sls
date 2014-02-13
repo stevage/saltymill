@@ -21,11 +21,6 @@ install_postgis:
   #sysctl.present:
   #  kernal.shmmax
 
-postgresql:
-  service.running:
-    - enable: True
-    - require: [ cmd: install_postgis ]
-    - reload: True
 
 {{grains['tm_dir']}}:
   file.directory:
@@ -48,3 +43,8 @@ postgresql:
     - group: ubuntu
     - mode: 744
 
+postgresql:
+  service.running:
+    - enable: True
+    - require: [ cmd: install_postgis ]
+    - reload: True
