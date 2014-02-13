@@ -61,3 +61,17 @@ config_postgis:
     - source: salt://osm/config-postgis.sh
     - cwd: {{grains['tm_dir']}}
     - watch: [ pkg: install_postgis_pkgs ] 
+
+/etc/postgresql/9.1/main/postgresql.conf:
+  file.append:
+    - template: jinja
+    - text: |
+      # Settings tuned for TileMill
+      shared_buffers = {{grains['mem_total'] / 4}}MB
+      autovacuum = on
+      effective_cache_size = {{grains['mem_total'] / 4}}MB
+      work_mem = 128MB
+      maintenance_work_mem = 64MB
+      wal_buffers = 1MB
+
+
