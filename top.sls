@@ -7,5 +7,6 @@ base:
     - waterpolygons         # Grabs OSM waterpolygon shapefile
   'roles:osm':
     - match: grain
-    - osm.install_postgis   # Installs PostGIS and OSM2PGSQL, configures for subsequent reloading
+    - osm.postgis   # Installs PostGIS and moves it if needed
+    - osm.osm2pgsql # Installs OSM2PGSQL, configures for subsequent reloading
     - osm.update_data       # Fetches and imports OSM data
