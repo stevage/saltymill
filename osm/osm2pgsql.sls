@@ -13,14 +13,21 @@ osm2pgsql:
     - source: salt://osm/import.sh
     - user: ubuntu
     - group: ubuntu
-    - mode: 744
+    - mode: 774
 
 {{grains['tm_dir']}}/process.sh:
   file.managed:
     - source: salt://osm/process.sh
     - user: ubuntu
     - group: ubuntu
-    - mode: 744
+    - mode: 774
+
+{{grains['tm_dir']}}/customised.style:
+  file.managed:
+    - source: salt://osm/customised.style
+    - user: ubuntu
+    - group: ubuntu
+    - mode: 664
 
 
 
