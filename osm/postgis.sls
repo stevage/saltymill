@@ -54,7 +54,6 @@ postgresql:
     - watch: 
       - pkg: install_postgis_pkgs
       - cmd: move_postgis
-      - cmd: config_postgis
 
 config_postgis:
   cmd.script:
