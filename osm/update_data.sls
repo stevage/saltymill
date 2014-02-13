@@ -15,4 +15,4 @@ do_import:
     - cwd: {{grains['tm_dir']}}
     - user: ubuntu
     - group: ubuntu
-    - require: [ cmd: install_postgis ]
+    - require: [ pkg: install_postgis_pkgs ]
