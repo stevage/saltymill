@@ -35,7 +35,7 @@ install_postgis_pkgs:
 
 move_postgis:
   cmd.run: |
-      POSTGRESDIR={{grains['POSTGRESDIR']}}
+      POSTGRESDIR={{grains['tm_postgresdir']}}
       echo Moving postgresql from /var/lib/postgresql to $POSTGRESDIR/postgresql
 
       mkdir -p $POSTGRESDIR
@@ -45,8 +45,7 @@ move_postgis:
       ln -s $POSTGRESDIR/postgresql postgresql
       chmod a+r $POSTGRESDIR
       service postgresql start
-    - unless: [ -d "{{grains['POSTGRESDIR']}}/postgresql" ]
-
+    - unless: [ -d "{{grains['tm_postgresdir']}}/postgresql" ]
 
 postgresql:
   service.running:
