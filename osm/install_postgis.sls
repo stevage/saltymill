@@ -1,3 +1,9 @@
+{{grains['tm_dir']}}:
+  file.directory:
+    - group: ubuntu
+    - user: ubuntu
+    - makedirs: True
+
 {{grains['tm_dir']}}/tm-settings:
   file.managed:
     - source: salt://osm/tm-settings
@@ -14,21 +20,6 @@
     - group: ubuntu
     - mode: 744
 
-install_postgis:
-  cmd.script:
-    - source: salt://osm/install-postgis.sh
-    - cwd: {{grains['tm_dir']}}
-  #sysctl.present:
-  #  kernal.shmmax
-
-
-{{grains['tm_dir']}}:
-  file.directory:
-    - group: ubuntu
-    - user: ubuntu
-    - makedirs: True
-
-
 {{grains['tm_dir']}}/import.sh:
   file.managed:
     - source: salt://osm/import.sh
@@ -42,6 +33,13 @@ install_postgis:
     - user: ubuntu
     - group: ubuntu
     - mode: 744
+
+install_postgis:
+  cmd.script:
+    - source: salt://osm/install-postgis.sh
+    - cwd: {{grains['tm_dir']}}
+  #sysctl.present:
+  #  kernal.shmmax
 
 postgresql:
   service.running:
