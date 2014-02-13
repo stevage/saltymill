@@ -8,21 +8,21 @@ deps:
 osm2pgsql:
   pkg.installed
 
-{{grains['tm_dir']}}/import.sh:
+{{pillar['tm_dir']}}/import.sh:
   file.managed:
     - source: salt://osm/import.sh
     - user: ubuntu
     - group: ubuntu
     - mode: 774
 
-{{grains['tm_dir']}}/process.sh:
+{{pillar['tm_dir']}}/process.sh:
   file.managed:
     - source: salt://osm/process.sh
     - user: ubuntu
     - group: ubuntu
     - mode: 774
 
-{{grains['tm_dir']}}/customised.style:
+{{pillar['tm_dir']}}/customised.style:
   file.managed:
     - source: salt://osm/customised.style
     - user: ubuntu

@@ -11,8 +11,10 @@ nginx:
 /etc/nginx/htpasswd:
   cmd.run:
     - name: |
-          printf "{{grains['tm_username']}}:$(openssl passwd -crypt ""{{grains['tm_password']}}"")\n" >> /etc/nginx/htpasswd
-    - unless: test -f /etc/nginx/htpasswd
+          printf "{{pillar['tm_username']}}:$(openssl passwd -crypt ""{{pillar['tm_password']}}"")\n" > /etc/nginx/htpasswd
+    # - unless: test -f /etc/nginx/htpasswd
+    # on second thoughts, always replace the username/password
+    
   file.managed:
     - group: www-data
     - user: root

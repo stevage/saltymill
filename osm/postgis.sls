@@ -1,11 +1,11 @@
-{{grains['tm_dir']}}:
+{{pillar['tm_dir']}}:
   file.directory:
     - group: ubuntu
     - user: ubuntu
     - mode: 755
     - makedirs: True
 
-{{grains['tm_dir']}}/tm-settings:
+{{pillar['tm_dir']}}/tm-settings:
   file.managed:
     - source: salt://osm/tm-settings
     - template: jinja
@@ -13,7 +13,7 @@
     - group: ubuntu
     - mode: 744
 
-{{grains['tm_dir']}}/getspecs.sh:
+{{pillar['tm_dir']}}/getspecs.sh:
   file.managed:
     - source: salt://osm/getspecs.sh
     - template: jinja
@@ -23,10 +23,10 @@
 
 kernel.shmmax:
   sysctl.present:
-    - value: {{ (grains['mem_total'] // 4 + 1000) * 1000000 }}
+    - value: {{ (pillar['mem_total'] // 4 + 1000) * 1000000 }}
 kernel.shmall:
   sysctl.present:
-    - value: {{ (grains['mem_total'] // 4 + 1000) * 1000000 }}
+    - value: {{ (pillar['mem_total'] // 4 + 1000) * 1000000 }}
 
 
 install_postgis_pkgs:
@@ -36,7 +36,7 @@ install_postgis_pkgs:
 move_postgis:
   cmd.run: 
     - name: |
-        POSTGRESDIR={{grains['tm_postgresdir']}}
+        POSTGRESDIR={{pillar['tm_postgresdir']}}
         echo Moving postgresql from /var/lib/postgresql to $POSTGRESDIR/postgresql
 
         mkdir -p $POSTGRESDIR
@@ -46,7 +46,7 @@ move_postgis:
         ln -s $POSTGRESDIR/postgresql postgresql
         chmod a+r $POSTGRESDIR
         service postgresql start
-    - unless: test -d "{{grains['tm_postgresdir']}}/postgresql"
+    - unless: test -d "{{pillar['tm_postgresdir']}}/postgresql"
 
 postgresql:
   service.running:
@@ -58,18 +58,19 @@ postgresql:
 config_postgis:
   cmd.script:
     - source: salt://osm/config-postgis.sh
-    - cwd: {{grains['tm_dir']}}
+    - cwd: {{pillar['tm_dir']}}
     - watch: [ pkg: install_postgis_pkgs ]
     - require: [ service: postgresql ]
+    - stateful: True
 
 /etc/postgresql/9.1/main/postgresql.conf:
   file.append:
     - template: jinja
     - text: |
         # Settings tuned for TileMill
-        shared_buffers = {{grains['mem_total'] // 4}}MB
+        shared_buffers = {{pillar['mem_total'] // 4}}MB
         autovacuum = on
-        effective_cache_size = {{grains['mem_total'] // 4}}MB
+        effective_cache_size = {{pillar['mem_total'] // 4}}MB
         work_mem = 128MB
         maintenance_work_mem = 64MB
         wal_buffers = 1MB

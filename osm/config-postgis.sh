@@ -1,6 +1,11 @@
 source ./getspecs.sh
 source ./tm-settings
 
+if psql gis -c '' 2>/dev/null; then 
+    # If database already exists, then exit with no output so salt knows this script did nothing.
+    exit 0
+fi
+
 # Configure Postgres
 # Argh - can't crack the right combination here. I give up in the end and just make ubuntu a superuser. Just needs
 # to be able to modify the 'relation' spatial_ref_sys

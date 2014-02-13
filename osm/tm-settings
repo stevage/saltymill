@@ -1,6 +1,6 @@
-export tm_dbusername={{grains['tm_dbusername']}}
-export tm_dbpassword={{grains['tm_dbpassword']}}
-export tm_username={{grains['tm_username']}}
-export tm_password={{grains['tm_password']}}
-export tm_timezone={{grains['tm_timezone']}}
-export POSTGRESDIR={{grains['tm_postgresdir']}}
+export tm_dbusername={{pillar['tm_dbusername']}}
+export tm_dbpassword={{pillar['tm_dbpassword']}}
+export tm_username={{pillar['tm_username']}}
+export tm_password={{pillar['tm_password']}}
+export tm_timezone={{pillar['tm_timezone']}}
+export POSTGRESDIR={{pillar['tm_postgresdir']}}
