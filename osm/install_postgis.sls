@@ -31,9 +31,10 @@ postgresql:
     - group: ubuntu
     - mode: 744
 
-{{grains['tm_dir']}}/tm-settings.sh:
+{{grains['tm_dir']}}/tm-settings:
   file.managed:
-    - source: salt://osm/tm-settings.sh
+    - source: salt://osm/tm-settings
+    - template: jinja
     - user: ubuntu
     - group: ubuntu
     - mode: 744
@@ -41,6 +42,7 @@ postgresql:
 {{grains['tm_dir']}}/getspecs.sh:
   file.managed:
     - source: salt://osm/getspecs.sh
+    - template: jinja
     - user: ubuntu
     - group: ubuntu
     - mode: 744
