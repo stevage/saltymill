@@ -60,7 +60,8 @@ config_postgis:
   cmd.script:
     - source: salt://osm/config-postgis.sh
     - cwd: {{grains['tm_dir']}}
-    - watch: [ pkg: install_postgis_pkgs ] 
+    - watch: [ pkg: install_postgis_pkgs ]
+    - require: [ service: postgresql ]
 
 /etc/postgresql/9.1/main/postgresql.conf:
   file.append:
