@@ -5,7 +5,7 @@ deps:
   pkg.installed:
     - names: [ software-properties-common, git, unzip ] 
 
-oms2pgsql:
+osm2pgsql:
   pkg.installed
 
 {{grains['tm_dir']}}/import.sh:
