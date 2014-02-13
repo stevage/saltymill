@@ -67,9 +67,9 @@ config_postgis:
     - template: jinja
     - text: |
         # Settings tuned for TileMill
-        shared_buffers = {{grains['mem_total'] / 4}}MB
+        shared_buffers = {{grains['mem_total'] // 4}}MB
         autovacuum = on
-        effective_cache_size = {{grains['mem_total'] / 4}}MB
+        effective_cache_size = {{grains['mem_total'] // 4}}MB
         work_mem = 128MB
         maintenance_work_mem = 64MB
         wal_buffers = 1MB
