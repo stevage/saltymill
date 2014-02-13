@@ -3,7 +3,7 @@ ppa:kakrueger/openstreetmap:
 
 deps:
   pkg.installed:
-    names: [ software-properties-common, git, unzip ] 
+    - names: [ software-properties-common, git, unzip ] 
 
 oms2pgsql:
   pkg.installed
