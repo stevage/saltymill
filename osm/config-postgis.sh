@@ -28,18 +28,3 @@ EOF
 
 sudo -E -u postgres createdb --template=$db gis
 sudo -E -u postgres psql -d gis -c "GRANT ALL ON DATABASE gis TO $tm_dbusername;"
-
-
-echo "Configure Postgres for performance, given ${MYMEM} GB of RAM."
-tee -a /etc/postgresql/9.1/main/postgresql.conf <<FOF
-# Settings tuned for TileMill
-shared_buffers = $((MYMEM/4))GB
-autovacuum = on
-effective_cache_size = $((MYMEM/4))GB
-work_mem = 128MB
-maintenance_work_mem = 64MB
-wal_buffers = 1MB
-FOF 
-
-#sudo bash /etc/rc.local
-#sudo service postgresql reload
