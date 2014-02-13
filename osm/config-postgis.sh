@@ -39,7 +39,6 @@ effective_cache_size = $((MYMEM/4))GB
 work_mem = 128MB
 maintenance_work_mem = 64MB
 wal_buffers = 1MB
-
 FOF 
 
 #sudo bash /etc/rc.local
