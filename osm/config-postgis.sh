@@ -15,7 +15,7 @@ FOF
 # create GIS template
 template=template_gis
 sudo -E -su postgres <<EOF
-createdb --encoding=UTF8 --owner=$tm_dbusername $db --template=$template
+createdb --encoding=UTF8 --owner=$tm_dbusername $template --template=template0
 psql -d postgres -c "UPDATE pg_database SET datistemplate='true' WHERE datname='$template'"
 
 psql -d $db -f /usr/share/postgresql/9.1/contrib/postgis-1.5/postgis.sql > /dev/null
