@@ -23,10 +23,10 @@
 
 kernel.shmmax:
   sysctl.present:
-    - value: {{ (grains['mem_total'] // 4 + 1) * 1000000 }}
+    - value: {{ (grains['mem_total'] // 4 + 1000) * 1000000 }}
 kernel.shmall:
   sysctl.present:
-    - value: {{ (grains['mem_total'] // 4 + 1) * 1000000 }}
+    - value: {{ (grains['mem_total'] // 4 + 1000) * 1000000 }}
 
 
 install_postgis_pkgs:
