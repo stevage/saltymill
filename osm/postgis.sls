@@ -45,7 +45,7 @@ move_postgis:
       ln -s $POSTGRESDIR/postgresql postgresql
       chmod a+r $POSTGRESDIR
       service postgresql start
-    - unless: [ -d "{{grains['tm_postgresdir']}}/postgresql" ]
+    - unless: test -d "{{grains['tm_postgresdir']}}/postgresql"
 
 postgresql:
   service.running:
