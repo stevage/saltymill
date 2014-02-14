@@ -1,8 +1,8 @@
 ###TODO call update_data to get the latest data in one hit.
 osrm_update:
   file.copy:
-    - name: {{ pillar['tm_osrmdir'] }}/osm.pbf
-    - source: {{ pillar['tm_dir'] }}/osm.pbf
+    - name: {{ pillar['tm_osrmdir'] }}/extract.osm.pbf
+    - source: {{ pillar['tm_dir'] }}/extract.osm.pbf
   cmd.run:
     - cwd: {{pillar['tm_osrmdir']}}
     - name: |
