@@ -28,6 +28,12 @@ tm_timezone: 'Australia/Melbourne'    # We set the timezone because NeCTAR VMs d
 tm_dir: /mnt/saltymill                # Where to install scripts to.
                                       # Where to download OSM extracts from.
 tm_osmsourceurl: http://download.geofabrik.de/australia-oceania/australia-latest.osm.pbf
+
+# (If using OSRM)
+tm_osrmdir: /mnt/saltymill/osrm
+tm_osrmport: 5010
+tm_osrmprofile: bicycle
+
 EOF
 
 sudo service salt-master start

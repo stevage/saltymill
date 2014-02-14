@@ -10,7 +10,8 @@ export cachesize=800
 if [ "$MYMEM" -ge 16 ]; then
   export cachesize=4000
 fi
-sudo -u ubuntu osm2pgsql  -S customised.style --database $newdb --slim --create --username $dbusername --hstore --number-processes $MYCORES --unlogged --cache $cachesize australia-latest.osm.pbf
+PBFNAME=extract.osm.pbf
+sudo -u ubuntu osm2pgsql  -S customised.style --database $newdb --slim --create --username $dbusername --hstore --number-processes $MYCORES --unlogged --cache $cachesize $PBFNAME
 # some of these will probably fail
 echo Creating indexes
 sudo -u postgres psql -d $newdb <<EOF
