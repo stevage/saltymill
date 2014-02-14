@@ -13,6 +13,6 @@ https://github.com/DennisSchiefer/Project-OSRM-Web.git:
 
 /usr/share/nginx/www/osrm/WebContent/index.html:
   file.symlink:
-    target: /usr/share/nginx/www/osrm/WebContent/main.html
+    - target: /usr/share/nginx/www/osrm/WebContent/main.html
 
   
