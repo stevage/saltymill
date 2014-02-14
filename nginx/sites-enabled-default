@@ -21,6 +21,10 @@ server {
       #try_files $uri $uri/main.html;
       alias   /usr/share/nginx/www/osrm/WebContent/;
     }
+    location /osrm {
+      #try_files $uri $uri/main.html;
+      alias   /usr/share/nginx/www/osrm/WebContent/;
+    }
     {% endif %}
    location /tilemill {
        rewrite     ^(.*)$ http://{{grains['fqdn']}}:5002 permanent;
