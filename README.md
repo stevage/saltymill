@@ -29,6 +29,10 @@ tm_dir: /mnt/saltymill                # Where to install scripts to.
                                       # Where to download OSM extracts from.
 tm_osmsourceurl: http://download.geofabrik.de/australia-oceania/australia-latest.osm.pbf
 
+# (Optional)
+tm_projects:
+  - http://gis.researchmaps.net/sample/melbourne.zip
+
 # (If using OSRM)
 tm_osrmdir: /mnt/saltymill/osrm
 tm_osrmport: 5010

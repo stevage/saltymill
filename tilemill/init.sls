@@ -28,7 +28,7 @@ tilemill:
 
 /etc/tilemill/tilemill.config:
   file.managed:
-    - source: salt://tilemill.config
+    - source: salt://tilemill/tilemill.config
     - user: mapbox
     - group: mapbox
     - template: jinja
