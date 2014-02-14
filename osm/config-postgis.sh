@@ -36,3 +36,6 @@ EOF
 
 sudo -E -u postgres createdb --template=$template gis
 sudo -E -u postgres psql -d gis -c "GRANT ALL ON DATABASE gis TO $tm_dbusername;"
+
+echo ""
+echo "changed=yes"
