@@ -8,7 +8,7 @@ update_data:
         wget -q {{ pillar['tm_osmsourceurl'] }}
         touch {{ pillar['tm_osmsourceurl'] }}   # we want to know the date we received the file, not the age of its content. 
         # fetch data only if there is none newer than 6 hours old around.
-    - unless:  test `find -iname '{{ pillar['tm_dir']}}/*.pbf' -mmin -360`
+    - unless:  test `find {{ pillar['tm_dir']}} -iname '*.pbf' -mmin -360`
 
 do_import:
   cmd.run:
