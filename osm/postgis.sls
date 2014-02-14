@@ -68,7 +68,9 @@ config_postgis:
     - template: jinja
     - text: |
         # Settings tuned for TileMill
-        shared_buffers = {{grains['mem_total'] // 4}}MB
+        # Problem that for small servers, not enough memory left for OSRM to do its thing.
+        #shared_buffers = {{grains['mem_total'] // 4}}MB
+        shared_buffers = {{grains['mem_total'] // 4 - 500}}MB
         autovacuum = on
         effective_cache_size = {{grains['mem_total'] // 4}}MB
         work_mem = 128MB
