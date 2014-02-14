@@ -6,8 +6,8 @@ osrm_update:
   cmd.run:
     - cwd: {{pillar['tm_osrmdir']}}
     - name: |
-        ./osrm-extract extract.osm.pbf
-        ./osrm-prepare extract.osrm extract.osrm.restrictions
+        build/osrm-extract extract.osm.pbf
+        build/osrm-prepare extract.osrm extract.osrm.restrictions
 
 osrm_daemon:
   cmd.run:
