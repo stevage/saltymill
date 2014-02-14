@@ -12,4 +12,4 @@ osrm_update:
   cmd.run:
       - cwd: {{ pillar['tm_osrmdir'] }}
       - name: |
-          nohup build/osrm-routed -i {{ grains['fqdn'] -p {{pillar['tm_osrmport']}} -t 8 extract.osrm > /dev/null 2>&1 & 
+          nohup build/osrm-routed -i {{ grains['fqdn'] }} -p {{pillar['tm_osrmport']}} -t 8 extract.osrm > /dev/null 2>&1 & 
