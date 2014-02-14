@@ -23,10 +23,10 @@
 
 kernel.shmmax:
   sysctl.present:
-    - value: {{ (pillar['mem_total'] // 4 + 1000) * 1000000 }}
+    - value: {{ (grains['mem_total'] // 4 + 1000) * 1000000 }}
 kernel.shmall:
   sysctl.present:
-    - value: {{ (pillar['mem_total'] // 4 + 1000) * 1000000 }}
+    - value: {{ (grains['mem_total'] // 4 + 1000) * 1000000 }}
 
 
 install_postgis_pkgs:
@@ -68,9 +68,9 @@ config_postgis:
     - template: jinja
     - text: |
         # Settings tuned for TileMill
-        shared_buffers = {{pillar['mem_total'] // 4}}MB
+        shared_buffers = {{grains['mem_total'] // 4}}MB
         autovacuum = on
-        effective_cache_size = {{pillar['mem_total'] // 4}}MB
+        effective_cache_size = {{grains['mem_total'] // 4}}MB
         work_mem = 128MB
         maintenance_work_mem = 64MB
         wal_buffers = 1MB
