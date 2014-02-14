@@ -17,8 +17,8 @@ server {
     }
     {% if pillar['tm_osrmport'] is defined %}
     {# Hopefully this means the osrm line only gets included if OSRM is being installed. #}
-    location /maps {
-      try_files $uri $uri/main.html;
+    location /osrm/ {
+      #try_files $uri $uri/main.html;
       alias   /usr/share/nginx/www/osrm/WebContent/;
     }
     {% endif %}

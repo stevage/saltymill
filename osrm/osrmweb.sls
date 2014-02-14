@@ -11,4 +11,8 @@ https://github.com/DennisSchiefer/Project-OSRM-Web.git:
     - target: /usr/share/nginx/www/osrm
     - user: ubuntu
 
+/usr/share/nginx/www/osrm/WebContent/index.html:
+  file.symlink:
+    target: /usr/share/nginx/www/osrm/WebContent/main.html
+
   
