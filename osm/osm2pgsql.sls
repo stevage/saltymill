@@ -1,3 +1,4 @@
+# Install and configure OSM2PGSQL, the tool for importing OSM extracts into Postgres.
 ppa:kakrueger/openstreetmap:
   pkgrepo.managed
 
