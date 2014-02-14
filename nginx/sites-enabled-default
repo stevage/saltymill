@@ -15,9 +15,12 @@ server {
         proxy_set_header Host $http_host;
         proxy_pass http://127.0.0.1:20008;
     }
-    #location /maps {
-    # alias   /usr/share/nginx/www/Project-OSRM-Web/WebContent/;
-    #}
+    {% if tm_osrmport %}
+    {# Hopefully this means the osrm line only gets included if OSRM is being installed. #}
+    location /maps {
+     alias   /usr/share/nginx/www/osrm/WebContent/;
+    }
+    {% endif %}
    location /tilemill {
        rewrite     ^(.*)$ http://{{grains['fqdn']}}:5002 permanent;
    }
@@ -31,7 +34,6 @@ server {
 }
 
 server {
-   #listen $ip:20008;
    listen 5002;
    server_name localhost;
    location / {

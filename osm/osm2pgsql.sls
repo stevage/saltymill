@@ -19,7 +19,7 @@ osm2pgsql:
 {{pillar['tm_dir']}}/process.sh:
   file.managed:
     - source: salt://osm/process.sh
-    - user: ubuntu
+    #- use:
     - group: ubuntu
     - mode: 774
 
