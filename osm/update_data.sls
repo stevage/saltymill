@@ -15,7 +15,7 @@ do_import:
 #    - name: | 
 #        {{pillar['tm_dir']}}/import.sh
 #        {{pillar['tm_dir']}}/process.sh
-    - name: nohup bash -c './import.sh && ./process.sh ' &
+    - name: nohup bash -c './import.sh && ./process.sh' > /dev/null 2>&1 &
     - cwd: {{pillar['tm_dir']}}
     - user: ubuntu
     - group: ubuntu
