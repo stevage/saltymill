@@ -13,5 +13,5 @@ base:
 
   'roles:osrm':
     - match: grain
-    - osrm.init                 # Installs Open Source Routing Machine
+    - osrm                  # Installs Open Source Routing Machine
     - osrm.update_data      # Builds the OSRM routing index

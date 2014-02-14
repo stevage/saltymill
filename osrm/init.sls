@@ -10,13 +10,13 @@ osrm_repo:
   git.latest:
     - name: https://github.com/DennisOSRM/Project-OSRM.git
     - rev: master
-    - target: {{pillar('tm_osrmdir')}}
+    - target: {{pillar['tm_osrmdir']}}
 
 ###TODO expand for multiple instances
 ###TODO allow fetching custom profiles
 osrm_build:
   cmd.wait:
-    - cwd: {{pillar('tm_osrmdir')}}
+    - cwd: {{pillar['tm_osrmdir']}}
     - name: |
         mkdir -p build
         cd build
@@ -24,10 +24,5 @@ osrm_build:
         make 
         cd ..
         rm profile.lua
-        ln -s profiles/{{tm_osrmprofile}}.lua profile.lua
+        ln -s profiles/{{ pillar['tm_osrmprofile'] }}.lua profile.lua
     - watch: [ git: osrm_repo ]
-
-#cp ../../osrm/incoming.* .
-#build/osrm-extract incoming.osm.pbf
-#build/osrm-prepare incoming.osrm 
-#build/osrm-routed -i cycletour.org -p 5010 -t 8 --hsgrdata incoming.osrm.hsgr --nodesdata incoming.osrm.nodes 
