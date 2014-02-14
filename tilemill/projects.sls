@@ -1,4 +1,4 @@
-{% if pillar['tm_projects'] %}
+{% if pillar['tm_projects'] is defined %}
 {% for project in pillar['tm_projects'] %}
 {{ project }}:
   cmd.run:

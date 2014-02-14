@@ -37,6 +37,8 @@ tm_projects:
 tm_osrmdir: /mnt/saltymill/osrm
 tm_osrmport: 5010
 tm_osrmprofile: bicycle
+# (optional)
+#tm_osrmprofilesource: ...
 
 EOF
 

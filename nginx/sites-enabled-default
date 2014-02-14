@@ -15,7 +15,7 @@ server {
         proxy_set_header Host $http_host;
         proxy_pass http://127.0.0.1:20008;
     }
-    {% if tm_osrmport %}
+    {% if pillar['tm_osrmport'] is defined %}
     {# Hopefully this means the osrm line only gets included if OSRM is being installed. #}
     location /maps {
      alias   /usr/share/nginx/www/osrm/WebContent/;

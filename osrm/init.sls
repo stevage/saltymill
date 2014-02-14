@@ -24,5 +24,18 @@ osrm_build:
         make 
         cd ..
         rm profile.lua
+        {% if pillar['tm_osrmprofilesource'] is defined %}
+        wget {{ pillar['tm_osrmprofilesource'] }} -O profile.lua
+        {% else %}
         ln -s profiles/{{ pillar['tm_osrmprofile'] }}.lua profile.lua
+        {% endif %}
     - watch: [ git: osrm_repo ]
+
+
+{# Multiple instances something like:
+
+tm_osrminstances:
+  - hiking:              # used in OSRMweb?
+    - profile: hiking
+    - source: http://... # optional?
+    - port: 5011
