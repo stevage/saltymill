@@ -22,4 +22,4 @@ do_import:
     - require: [ pkg: install_postgis_pkgs ]
     # - watch: [ cmd: update_data ] # Only import if we have fresh .pbf
       # import only if file is less than 6 hours old.
-    - ifonly:  test `find -iname '{{ pillar['tm_dir']}}/*.pbf' -mmin -360`
+    - ifonly:  test `find {{ pillar['tm_dir']}} -iname '*.pbf' -mmin -360`
