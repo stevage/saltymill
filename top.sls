@@ -7,6 +7,11 @@ base:
     - waterpolygons         # Grabs OSM waterpolygon shapefile
   'roles:osm':
     - match: grain
-    - osm.postgis   # Installs PostGIS and moves it if needed
-    - osm.osm2pgsql # Installs OSM2PGSQL, configures for subsequent reloading
-    # - osm.update_data       # Fetches and imports OSM data
+    - osm.postgis           # Installs PostGIS and moves it if needed
+    - osm.osm2pgsql         # Installs OSM2PGSQL, configures for subsequent reloading
+    # - osm.update_data      # Fetches and imports OSM data
+
+  'roles:osrm':
+    - match: grain
+    - osrm                  # Installs Open Source Routing Machine
+    - osrm.update_data      # Builds the OSRM routing index
