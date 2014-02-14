@@ -1,7 +1,3 @@
-OSRMDIR=osrm
-OSRMPROFILE=bicycle
-
-
 osrm_deps:
   pkg.installed:
     - names: [ build-essential, git, cmake, pkg-config, libprotoc-dev, libprotobuf7,
