@@ -4,6 +4,7 @@ source ./tm-settings
 if psql gis -c '' 2>/dev/null; then 
     # If database already exists, then exit with no output so salt knows this script did nothing.
     # Well that's the theory. Doesn't seem to like it.
+    echo ""
     echo "changed=no"
     exit 0
 fi
