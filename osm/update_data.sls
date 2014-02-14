@@ -15,7 +15,9 @@ do_import:
 #    - name: | 
 #        {{pillar['tm_dir']}}/import.sh
 #        {{pillar['tm_dir']}}/process.sh
-    - name: nohup bash -c './import.sh && ./process.sh' > /dev/null 2>&1 &
+    # All of this mess is about preventing the import holding up the whole deployment.
+    # - name: nohup bash -c './import.sh && ./process.sh' > /dev/null 2>&1 &
+    - name: echo './import.sh && ./process.sh' | at +1 minute
     - cwd: {{pillar['tm_dir']}}
     - user: ubuntu
     - group: ubuntu
