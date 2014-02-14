@@ -1,6 +1,6 @@
 # TODO web location?
 
-/usr/share/nginx/osrm:
+/usr/share/nginx/www/osrm:
   file.directory:
     - user: ubuntu
     - group: ubuntu
@@ -8,7 +8,7 @@
 
 https://github.com/DennisSchiefer/Project-OSRM-Web.git:
   git.latest:
-    - target: /usr/share/nginx/osrm
+    - target: /usr/share/nginx/www/osrm
     - user: ubuntu
 
   
