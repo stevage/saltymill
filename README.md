@@ -10,8 +10,9 @@ Typical usage:
 
 *If needed:* 
 
-curl -L http://bootstrap.saltstack.org | sudo sh -s -- -M -N
+`curl -L http://bootstrap.saltstack.org | sudo sh -s -- -M -N`
 
+```
 sudo tee /srv/pillar/top.sls <<EOF
 base:
   '*':
@@ -30,9 +31,9 @@ tm_osmsourceurl: http://download.geofabrik.de/australia-oceania/australia-latest
 EOF
 
 sudo service salt-master start
-
+```
 ### On a clean VM
-
+```
 wget -O - http://bootstrap.saltstack.org | sudo sh
 
 sudo tee -a /etc/salt/minion <<EOF
@@ -45,8 +46,10 @@ grains:
 EOF
 
 sudo salt-minion -d
-
+```
 ### On the master again
+```
 sudo salt-key -A
 
 sudo salt '*' state.highstate
+```
