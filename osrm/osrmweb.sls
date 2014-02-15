@@ -25,5 +25,6 @@ https://github.com/DennisSchiefer/Project-OSRM-Web.git:
 
 osrmweb_logdone:
   cmd.wait:
-    - name: echo "OSRM web interface installed and configured." >> /var/log/salt/buildlog.html
-    - watch: [ file: /usr/share/nginx/www/osrm/WebContent/index.html ]
+    - name: |
+        echo "OSRM web interface installed and configured." >> /var/log/salt/buildlog.html
+    - watch: [ { file: /usr/share/nginx/www/osrm/WebContent/index.html } ]

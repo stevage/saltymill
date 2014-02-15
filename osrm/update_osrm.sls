@@ -17,6 +17,7 @@ osrm_daemon:
     - name: |
         pkill osrm-routed
         nohup build/osrm-routed -i {{ grains['fqdn'] }} -p {{pillar['tm_osrmport']}} -t 8 extract.osrm > /dev/null 2>&1 & 
+    - wait: [ cmd: osrm_update ]
     - unless: test `pgrep osrm-routed` # if it's still running, it means we didn't just rebuild our index.
 
 osrm_logdone:
