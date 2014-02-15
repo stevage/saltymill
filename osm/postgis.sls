@@ -33,6 +33,12 @@ install_postgis_pkgs:
   pkg.installed:
     - names: [ policykit-1, postgresql-9.1, libpq-dev, postgis ]
 
+postgisinstall_logdone:
+  cmd.wait:
+    - name: |
+        echo "Postgres and PostGIS installed, now configuring." >> /var/log/salt/buildlog.html
+    - watch: [ { pkg: install_postgis_pkgs } ]
+
 move_postgis:
   cmd.run: 
     - name: |

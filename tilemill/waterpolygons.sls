@@ -14,3 +14,8 @@ waterpoly:
         unzip -o water-polygons-split-3857.zip
     - unless: test -d /usr/share/mapbox/water-polygons-split-3857
 
+waterpoly_logdone:
+  cmd.wait:
+    - name: |
+        echo "Waterpolygon downloaded and unzipped." >> /var/log/salt/buildlog.html
+    - watch: [ { cmd: waterpoly } ]
