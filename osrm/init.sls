@@ -15,7 +15,7 @@ osrm_repo:
 ###TODO expand for multiple instances
 ###TODO allow fetching custom profiles
 osrm_build:
-  cmd.wait:
+  cmd.run:
     - cwd: {{pillar['tm_osrmdir']}}
     - name: |
         mkdir -p build
@@ -29,7 +29,7 @@ osrm_build:
         {% else %}
         ln -s profiles/{{ pillar['tm_osrmprofile'] }}.lua profile.lua
         {% endif %}
-    - watch: [ git: osrm_repo ]
+    - watch: [ git: osrm_repo ] # this trigger not working?
 
 osrm_logdone:
   cmd.wait:
