@@ -15,6 +15,8 @@ preamble:
     - home: /home/ubuntu
     - groups: [ ubuntu ]
 
+python-software-properties:
+  pkg.installed
 
 ppa:developmentseed/mapbox:
   pkgrepo.managed
