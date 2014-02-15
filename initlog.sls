@@ -2,6 +2,8 @@
   file.managed:
     - source: salt://initlog.html
     #- unless: test -f /var/log/salt/buildlog.html
+  
+initlogappend:
   file.append:
     - name: /var/log/salt/buildlog.html
     - text: Commencing build...
