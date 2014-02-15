@@ -1,5 +1,6 @@
 # Download latest OpenStreetMap extract and import it.
 
+###TODO: What to do if another import process is underway? Test for this? Kill it? Kill ourselves?
 update_data:
   cmd.run:
     - cwd: {{ pillar['tm_dir'] }}

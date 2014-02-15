@@ -1,16 +1,52 @@
 SaltyMill
 ---------
 
-This is a rough salt configuration to deploy a tilemill stack (including nginx, postgres, and OSM data).
+This is a rough salt configuration to deploy a tilemill stack. The major components are:
+
+- TileMill: cartographic IDE for turning map data into web or static maps
+- PostGIS: Postgresql database with GIS extensions, holds OpenStreetMap data
+- Nginx: web server, provides password authentication and allows services to share one port (80).
+- OSM (optional): extract of OpenStreetMap data downloaded and imported
+- OSRM (optional): Open Source Routing Machine, adds a trip routing web interface to your data.
+
 It's a conversion of http://github.com/stevage/tilemill-server
+
+Building a machine with the three main components takes a few minutes. Adding OSM and OSRM can take
+half an hour or more, possibly much more, depending on machine configuration and extract size.
 
 Typical usage:
 
+```
+### On a clean VM
+```
+wget -O - http://bootstrap.saltstack.org | sudo sh
+
+sudo tee -a /etc/salt/minion <<EOF
+master: *INSERT YOUR SALTMASTER IP/FQDN HERE*
+grains:
+  fqdn: `curl http://ifconfig.me` # Nginx needs to know the server's actual IP.
+  roles:
+    - tilemill
+    - osm                         # Remove the osm role to skip hosting a local OSM database.
+EOF
+
+sudo salt-minion -d
+```
+
+
 ### On the saltmaster:
 
-*If needed:* 
+*Install Salt, if needed:* 
 
 `curl -L http://bootstrap.saltstack.org | sudo sh -s -- -M -N`
+
+Install these scripts:
+```
+cd /srv/salt
+sudo git clone https://github.com/stevage/saltymill
+```
+
+Set up pillar properties:
 
 ```
 sudo tee /srv/pillar/top.sls <<EOF
@@ -43,22 +79,6 @@ tm_osrmprofile: bicycle
 EOF
 
 sudo service salt-master start
-```
-### On a clean VM
-```
-wget -O - http://bootstrap.saltstack.org | sudo sh
-
-sudo tee -a /etc/salt/minion <<EOF
-master: *INSERT YOUR SALTMASTER IP/FQDN HERE*
-grains:
-  fqdn: `curl http://ifconfig.me` # Nginx needs to know the server's actual IP.
-  roles:
-    - tilemill
-    - osm                         # Remove the osm role to skip hosting a local OSM database.
-EOF
-
-sudo salt-minion -d
-```
 ### On the master again
 ```
 sudo salt-key -A

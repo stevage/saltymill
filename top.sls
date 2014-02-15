@@ -1,8 +1,8 @@
 base:
   'roles:tilemill':
     - match: grain
-    - tilemill                # Installs TileMill itself
     - nginx                   # Adds authentication and port sharing (only 80 exposed to the outside world)
+    - tilemill                # Installs TileMill itself
     - tilemill.fonts          # Grabs useful fonts (just CartoGothic for the momen)
     - tilemill.waterpolygons  # Grabs OSM waterpolygon shapefile
   'roles:osm':

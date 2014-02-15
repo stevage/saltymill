@@ -29,6 +29,9 @@ server {
    location /tilemill {
        rewrite     ^(.*)$ http://{{grains['fqdn']}}:5002 permanent;
    }
+   location /saltymill {
+       alias /var/log/salt/minion/;
+   }
 
    location / {
         proxy_set_header Host $http_host;
