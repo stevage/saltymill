@@ -19,10 +19,11 @@ Typical usage:
 ```
 ### On a clean VM
 ```
+MASTER=*INSERT YOUR SALTMASTER IP/FQDN HERE*
 wget -O - http://bootstrap.saltstack.org | sudo sh
 
 sudo tee -a /etc/salt/minion <<EOF
-master: *INSERT YOUR SALTMASTER IP/FQDN HERE*
+master: $MASTER
 grains:
   fqdn: `curl http://ifconfig.me` # Nginx needs to know the server's actual IP.
   roles:
