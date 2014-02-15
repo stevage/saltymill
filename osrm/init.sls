@@ -31,6 +31,13 @@ osrm_build:
         {% endif %}
     - watch: [ git: osrm_repo ]
 
+osrm_logdone:
+  cmd.wait:
+    - name: |
+        echo "OSRM installed and built." >> /var/log/salt/buildlog.html
+    - watch: [ { cmd: osrm_build } ]
+
+
 
 {# Multiple instances something like:
 
