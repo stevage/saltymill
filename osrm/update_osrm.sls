@@ -3,6 +3,7 @@ osrm_update:
   file.copy:
     - name: {{ pillar['tm_osrmdir'] }}/extract.osm.pbf
     - source: {{ pillar['tm_dir'] }}/extract.osm.pbf
+    - require: [ cmd: update_data ]
   cmd.wait:
     - cwd: {{pillar['tm_osrmdir']}}
     - name: |
@@ -20,7 +21,7 @@ osrm_daemon:
     - wait: [ cmd: osrm_update ]
     - unless: test `pgrep osrm-routed` # if it's still running, it means we didn't just rebuild our index.
 
-osrm_logdone:
+updateosrm_logdone:
   cmd.wait:
     - name: echo "OSRM index rebuilt and daemon started." >> /var/log/salt/buildlog.html
     - watch: [ cmd: osrm_daemon ]
