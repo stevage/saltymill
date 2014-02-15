@@ -1,4 +1,4 @@
 include:
-  .osrminstall
-  .update_osrm
-  .osrmweb
+  - .osrminstall
+  - .update_osrm
+  - .osrmweb
