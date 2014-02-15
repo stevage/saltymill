@@ -18,3 +18,8 @@ osrm_daemon:
         pkill osrm-routed
         nohup build/osrm-routed -i {{ grains['fqdn'] }} -p {{pillar['tm_osrmport']}} -t 8 extract.osrm > /dev/null 2>&1 & 
     - unless: test `pgrep osrm-routed` # if it's still running, it means we didn't just rebuild our index.
+
+osrm_logdone:
+  cmd.wait:
+    - name: echo "OSRM index rebuilt and daemon started." >> /var/log/salt/buildlog.html
+    - watch: [ cmd: osrm_daemon ]

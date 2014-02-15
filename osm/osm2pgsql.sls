@@ -30,7 +30,10 @@ osm2pgsql:
     - group: ubuntu
     - mode: 664
 
-
+osm2pgsql_logdone:
+  cmd.wait:
+    - name: echo "OSM2PGSQL installed." >> /var/log/salt/buildlog.html
+    - watch: [ file: {{pillar['tm_dir']}}/customised.style ]        
 
 # what if I skip this line?
 ###TODO

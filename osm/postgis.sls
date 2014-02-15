@@ -77,4 +77,7 @@ config_postgis:
         maintenance_work_mem = 64MB
         wal_buffers = 1MB
 
-
+postgis_logdone:
+  cmd.wait:
+    - name: echo "Postgis installed and configured." >> /var/log/salt/buildlog.html
+    - watch: [ file: /etc/postgresql/9.1/main/postgresql.conf ]

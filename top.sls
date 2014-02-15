@@ -1,4 +1,6 @@
 base:
+  '*':
+    - initlog
   'roles:tilemill':
     - match: grain
     - nginx                   # Adds authentication and port sharing (only 80 exposed to the outside world)

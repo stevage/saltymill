@@ -35,3 +35,8 @@ tilemill:
     - mode: 644
     - require:
         - pkg: tilemill
+
+tilemill_logdone:
+  cmd.wait:
+    - name: echo "Tilemill installed and configured." >> /var/log/salt/buildlog.html
+    - watch: [ file: /etc/tilemill/tilemill.config ]        

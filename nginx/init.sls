@@ -27,3 +27,7 @@ nginx:
     - group: root
     - user: root
     - mode: 644
+  cmd.wait:
+    - name: |
+        echo "Nginx server installed and configured." >> /var/log/salt/buildlog.html
+    - watch: [ file: /etc/nginx/sites-enabled/default ]

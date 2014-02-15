@@ -12,6 +12,12 @@ update_data:
         # fetch data only if there is none newer than 6 hours old around.
     - unless:  test `find {{ pillar['tm_dir']}} -iname extract.osm.pbf -mmin -360`
 
+osmgetdata_logdone:
+  cmd.wait:
+    - name: echo "OSM data downloaded." >> /var/log/salt/buildlog.html
+    - watch: [ cmd: update_data ]        
+
+
 do_import:
   cmd.wait:
     # All of this mess is about preventing the import holding up the whole deployment.
@@ -20,3 +26,8 @@ do_import:
     - user: ubuntu
     - group: ubuntu
     - watch: [ cmd: update_data ] # Only import if we have fresh .pbf
+
+osmmimport_logdone:
+  cmd.wait:
+    - name: echo "Loading OSM data with OSM2PGSQL in background." >> /var/log/salt/buildlog.html
+    - watch: [ cmd: do_import ]        
