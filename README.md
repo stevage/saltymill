@@ -27,12 +27,12 @@ grains:
   fqdn: `curl http://ifconfig.me` # Nginx needs to know the server's actual IP.
   roles:
     - tilemill
-    - osm                         # Remove the osm role to skip hosting a local OSM database.
+    - osm                         # Optional: local OSM data.
+    - osrm                        # Optional: OSRM routing engine. (requires osm)
 EOF
 
 sudo salt-minion -d
 ```
-
 
 ### On the saltmaster:
 
