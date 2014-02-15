@@ -1,4 +1,10 @@
 ###TODO call update_data to get the latest data in one hit.
+osrm_start:
+  cmd.run:
+    - name: |
+        echo "Building OSRM index..." >> /var/log/salt/buildlog.html
+    # - watch: [ { cmd: osrm_build } ]
+
 osrm_update:
   file.copy:
     - name: {{ pillar['tm_osrmdir'] }}/extract.osm.pbf

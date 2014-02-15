@@ -46,4 +46,4 @@ from places
 where st_dwithin(a.way, places.way, 20000.0) and coalesce(a.amenity, a.tourism) is not null and places.name='Melbourne';
 
 EOF
-echo "Finished post-processing OSM data." | sudo tee -a /var/log/salt/buildlog.html
+echo "   (Finished post-processing OSM data.)" | sudo tee -a /var/log/salt/buildlog.html
