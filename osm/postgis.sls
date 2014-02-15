@@ -67,7 +67,9 @@ config_postgis:
     - cwd: {{pillar['tm_dir']}}
     - watch: [ pkg: install_postgis_pkgs ]
     - require: [ service: postgresql ]
-    - stateful: True
+    #- stateful: True
+    # If we can already connect to a gis database, we don't need to do this.
+    - unless: sudo -u postgres psql -d gis -c '' 2>/dev/null
 
 /etc/postgresql/9.1/main/postgresql.conf:
   file.append:
