@@ -32,7 +32,7 @@ grains:
     - osrm                        # Optional: OSRM routing engine. (requires osm)
 EOF
 
-sudo service salt-minion reload
+sudo service salt-minion restart
 ```
 
 ### On the saltmaster:

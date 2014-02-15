@@ -2,7 +2,7 @@
 ppa:kakrueger/openstreetmap:
   pkgrepo.managed
 
-deps:
+osm2pgsqldeps:
   pkg.installed:
     - names: [ software-properties-common, git, unzip ] 
 

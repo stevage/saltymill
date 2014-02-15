@@ -27,7 +27,7 @@ do_import:
     - group: ubuntu
     - watch: [ cmd: update_data ] # Only import if we have fresh .pbf
 
-osmmimport_logdone:
+osmimport_logdone:
   cmd.wait:
     - name: echo "Loading OSM data with OSM2PGSQL in background." >> /var/log/salt/buildlog.html
     - watch: [ cmd: do_import ]        
