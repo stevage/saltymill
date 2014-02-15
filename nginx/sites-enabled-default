@@ -30,7 +30,7 @@ server {
        rewrite     ^(.*)$ http://{{grains['fqdn']}}:5002 permanent;
    }
    location /saltymill {
-       alias /var/log/salt/minion/;
+       alias /var/log/salt/;
    }
 
    location / {
