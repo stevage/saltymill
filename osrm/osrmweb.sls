@@ -1,12 +1,13 @@
+{#
 # TODO options:
 - web location?
-- disk location?
+  - disk location?
 - layers
 - bit.ly service
 - use the routing port...
 
 # TODO
-
+#}
 /usr/share/nginx/www/osrm:
   file.directory:
     - user: ubuntu
