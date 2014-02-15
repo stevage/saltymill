@@ -9,7 +9,7 @@ base:
     - tilemill.fonts          # Grabs useful fonts (just CartoGothic for the momen)
     - tilemill.waterpolygons  # Grabs OSM waterpolygon shapefile
   {% endif %}
-  {% if ['roles:osm'] is not defined %}
+  {% if grains['roles:osm'] is not defined %}
   #'roles:osm':
     - match: grain
     - osm.postgis           # Installs PostGIS and moves it if needed
