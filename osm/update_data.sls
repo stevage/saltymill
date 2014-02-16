@@ -13,8 +13,9 @@ update_data:
     - unless:  test `find {{ pillar['tm_dir']}} -iname extract.osm.pbf -mmin -360`
 
 osmgetdata_logdone:
-  cmd.wait:
-    - name: echo "OSM data downloaded.<br/>" >> /var/log/salt/buildlog.html
+  cmd.wait_script:
+    - source: salt://log.sh
+    - args: '"OSM data downloaded."'
     - watch: [ cmd: update_data ]        
 
 
@@ -28,6 +29,7 @@ do_import:
     - watch: [ cmd: update_data ] # Only import if we have fresh .pbf
 
 osmimport_logdone:
-  cmd.wait:
-    - name: echo "Loading OSM data with OSM2PGSQL in background.<br/>" >> /var/log/salt/buildlog.html
+  cmd.wait_script:
+    - source: salt://log.sh
+    - args: "'Loading OSM data with OSM2PGSQL in background.'"
     - watch: [ cmd: do_import ]        

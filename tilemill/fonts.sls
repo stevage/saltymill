@@ -13,7 +13,7 @@ fonts:
     - unless: test -d /usr/share/fonts/truetype/CartoGothic
 
 fonts_logdone:
-  cmd.wait:
-    - name: |
-        echo "Fonts downloaded and unzipped.<br/>" >> /var/log/salt/buildlog.html
+  cmd.wait_script:
+    - source: salt://log.sh
+    - args: "'Fonts downloaded and unzipped.'"
     - watch: [ { cmd: fonts } ]

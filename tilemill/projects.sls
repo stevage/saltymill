@@ -11,9 +11,9 @@
 {% endfor %}
 
 projects_logdone:
-  cmd.wait:
-    - name: |
-        echo "Sample projects downloaded and unzipped.<br/>" >> /var/log/salt/buildlog.html
-    # We hope...
+  cmd.wait_script:
+    - source: salt://log.sh
+    - args: "'Sample projects downloaded and unzipped.'"
+    # We hope... (no explicit checking whether this step even got run)
 {% endif %}
 

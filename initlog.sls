@@ -13,6 +13,6 @@ initindex:
   file.managed:
     - source: salt://initlog.html
     - template: jinja
-  cmd.run:
-    - name: |
-        echo "Building your new server...<br/>" >> /var/log/salt/buildlog.html
+  cmd.wait_script:
+    - source: salt://log.sh
+    - args: "'Building your new server...'"

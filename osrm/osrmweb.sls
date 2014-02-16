@@ -54,7 +54,7 @@ configure_osrmweb:
 
 
 osrmweb_logdone:
-  cmd.wait:
-    - name: |
-        echo "OSRM web interface installed and configured.<br/>" >> /var/log/salt/buildlog.html
+  cmd.wait_script:
+    - source: salt://log.sh
+    - args: "'OSRM web interface installed and configured.'"
     - watch: [ { file: /usr/share/nginx/www/osrm/WebContent/index.html } ]

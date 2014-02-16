@@ -34,9 +34,9 @@ install_postgis_pkgs:
     - names: [ policykit-1, postgresql-9.1, libpq-dev, postgis ]
 
 postgisinstall_logdone:
-  cmd.wait:
-    - name: |
-        echo "Postgres and PostGIS installed, now configuring." >> /var/log/salt/buildlog.html
+  cmd.wait_script:
+    - source: salt://log.sh
+    - args: '"Postgres and PostGIS installed, now configuring."'
     - watch: [ { pkg: install_postgis_pkgs } ]
 
 move_postgis:
@@ -86,6 +86,7 @@ config_postgis:
         wal_buffers = 1MB
 
 postgis_logdone:
-  cmd.wait:
-    - name: echo "Postgis installed and configured.<br/>" >> /var/log/salt/buildlog.html
+  cmd.wait_script:
+    - source: salt://log.sh
+    - args: '"Postgis installed and configured."'
     - watch: [ file: /etc/postgresql/9.1/main/postgresql.conf ]

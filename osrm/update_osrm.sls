@@ -7,9 +7,9 @@ osrm_update:
     # - require: [ cmd: update_data ]
 
 osrm_start:
-  cmd.wait:
-    - name: |
-        echo "Building OSRM index..." >> /var/log/salt/buildlog.html
+  cmd.wait_script:
+    - source: salt://log.sh
+    - args: "'Building OSRM index...'"
     - onlyif: test -f {{pillar['tm_osrmdir']}}/build/osrm-routed 
     - watch: [ file: osrm_update ] 
 
@@ -34,6 +34,7 @@ osrm_daemon:
     - unless: test "`curl localhost:{{ pillar.tm_osrmport }}`" 
 
 updateosrm_logdone:
-  cmd.wait:
-    - name: echo "OSRM daemon started.<br/>" >> /var/log/salt/buildlog.html
+  cmd.wait_script:
+    - source: salt://log.sh
+    - args: "'OSRM daemon started.'"
     - watch: [ cmd: osrm_daemon ]

@@ -39,6 +39,7 @@ tilemill:
         - pkg: tilemill
 
 tilemill_logdone:
-  cmd.wait:
-    - name: echo "Tilemill installed and configured.<br/>" >> /var/log/salt/buildlog.html
+  cmd.wait_script:
+    - source: salt://log.sh
+    - args: "'Tilemill installed and configured.'"
     - watch: [ file: /etc/tilemill/tilemill.config ]        

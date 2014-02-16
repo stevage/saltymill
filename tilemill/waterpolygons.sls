@@ -15,7 +15,7 @@ waterpoly:
     - unless: test -d /usr/share/mapbox/water-polygons-split-3857
 
 waterpoly_logdone:
-  cmd.wait:
-    - name: |
-        echo "Waterpolygon downloaded and unzipped.<br/>" >> /var/log/salt/buildlog.html
+  cmd.wait_script:
+    - source: salt://log.sh
+    - args: "'Waterpolygon downloaded and unzipped.'"
     - watch: [ { cmd: waterpoly } ]

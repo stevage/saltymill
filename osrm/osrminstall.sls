@@ -34,9 +34,9 @@ osrm_build:
     - require: [ pkg: osrm_deps ]
 
 osrm_logdone:
-  cmd.wait:
-    - name: |
-        echo "OSRM installed and built.<br/>" >> /var/log/salt/buildlog.html
+  cmd.wait_script:
+    - source: salt://log.sh
+    - args: "'OSRM installed and built.'"
     - watch: [ { cmd: osrm_build } ]
 
 

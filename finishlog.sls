@@ -1,7 +1,7 @@
 finishlog:
-  cmd.run:
-    - name: |
-        echo "All done! Enjoy your new server.<br/>" >> /var/log/salt/buildlog.html
+  cmd.wait_script:
+    - source: salt://log.sh
+    - args: "'All done! Enjoy your new server.'"
   file.managed:
     - name: /var/log/salt/index.html
     - source: salt://initindex.html
