@@ -13,6 +13,7 @@ osrm_start:
     - onlyif: test -f {{pillar['tm_osrmdir']}}/build/osrm-routed 
     - watch: [ file: osrm_update ] 
 
+osrm_reindex:
   cmd.wait:
     - cwd: {{pillar['tm_osrmdir']}}
     - name: |
@@ -21,7 +22,7 @@ osrm_start:
         pkill osrm-routed
         echo "OSRM index rebuilt." >> /var/log/salt/buildlog.html
         exit 0 # so Salt doesn't think it failed?
-    - watch: [ file: osrm_start ]
+    - watch: [ cmd: osrm_start ]
 
 osrm_daemon:
   cmd.run:
@@ -29,7 +30,7 @@ osrm_daemon:
     - name: |
         #pkill osrm-routed
         nohup build/osrm-routed -i {{ grains['fqdn'] }} -p {{pillar['tm_osrmport']}} -t 8 extract.osrm > /dev/null 2>&1 & 
-    # - wait: [ cmd: osrm_update ] # Bah, for some reason, the OSRM build is returning a failure?
+    # - wait: [ cmd: osrm_reindex ] # Bah, for some reason, the OSRM build is returning a failure?
     - unless: test "`curl localhost:{{ pillar.tm_osrmport }}`" 
 
 updateosrm_logdone:
