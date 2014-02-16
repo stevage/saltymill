@@ -4,7 +4,8 @@ osrm_deps:
                protobuf-compiler, libprotobuf-dev, libosmpbf-dev, libpng12-dev,
                libbz2-dev, libstxxl-dev, libstxxl-doc, libstxxl1, libxml2-dev,
                libzip-dev, libboost-all-dev, lua5.1, liblua5.1-0-dev, libluabind-dev, libluajit-5.1-dev]
-
+    - order: 1
+    #### Damn, some problem here - probably a conflict with a ppa?
 
 osrm_repo:
   git.latest:
@@ -30,6 +31,7 @@ osrm_build:
         ln -s profiles/{{ pillar['tm_osrmprofile'] }}.lua profile.lua
         {% endif %}
     - watch: [ git: osrm_repo ] # this trigger not working?
+    - require: [ pkg: osrm_deps ]
 
 osrm_logdone:
   cmd.wait:
