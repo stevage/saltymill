@@ -1,8 +1,6 @@
 nginx:
   pkg: 
     - installed
-    #- require: # really? why?
-    #    - pkg: tilemill
   service.running:
     - enable: True
     - watch:
@@ -28,7 +26,7 @@ nginx:
     - user: root
     - mode: 644
 
-nginx_logdone:
-  cmd.wait:
-    - name: echo "Nginx server installed and configured.<br/>" >> /var/log/salt/buildlog.html
+"Nginx server installed and configured":
+  cmd.wait_script:
+    - source: salt//log.sh
     - watch: [ file: /etc/nginx/sites-enabled/default ]
