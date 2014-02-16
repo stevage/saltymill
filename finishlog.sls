@@ -1,3 +1,7 @@
+{% from 'initlog.sls' import buildtitle %}
+{% from 'initlog.sls' import buildsubtitle %}
+{% from 'initlog.sls' import buildtitlecolor %}
+
 {% set buildtitle = "Your server is ready!" %}
 {% set buildsubtitle = "Get in there and make something." %}
 {% set titlecolor = "hsl(130,70%,70%)" %}
