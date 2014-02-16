@@ -7,7 +7,7 @@ finishlog:
     - source: salt://initindex.html
     - template: jinja
     - context:
-      - buildtitle: "Your server is read!"
-      - buildsubtitle: "Get in there and make something."
-      - buildtitlecolor: "hsl(130,70%,70%)"
+        buildtitle: "Your server is read!"
+        buildsubtitle: "Get in there and make something."
+        buildtitlecolor: "hsl(130,70%,70%)"
 
