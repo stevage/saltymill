@@ -47,6 +47,9 @@ configure_osrmweb:
               r'\2\n', data, flags=re.DOTALL)
             fout.write(data)
         EOF
+        echo
+        if [ "`diff OSRM.config.js OSRM.config.js.orig`" ]; then echo "changed=yes"; else echo "changed=no"; fi
+    - stateful: True
     #- watch [ git: osrmweb_repo ]
 
 
