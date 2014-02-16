@@ -19,7 +19,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>  </head>
     <style>
-      .jumbotron { background-color: hsl(210,40%,70%); }
+      .jumbotron { background-color: hsl(210,40%,80%); }
     </style>
   <body>
 
@@ -33,9 +33,9 @@
         <h3 class="text-muted">Saltymill</h3>
       </div>
 
-      <div class="jumbotron">
+      <div class="jumbotron col-lg-10">
         <h1>Your server is building</h1>
-        <p class="lead">Sit back and relax. Your Saltymill server will be ready soon.</p>
+        <p class="lead">Sit back and relax. Your server will be ready soon.</p>
       </div>
 
       <div class="row marketing">
@@ -44,10 +44,15 @@
           <p>Your new server will contain:</p>
           <dl>
             <dt><a href="http://{{grains.fqdn}}/tilemill">http://{{grains.fqdn}}/tilemill</a></dt>
-            <dd>TileMill, an excellent map creation studio. </dd>
+            <dd>TileMill, an excellent map creation studio. We've loaded some OpenStreetMap data, a water polygon shapefile and some fonts to help get you started.</dd>
             <dt><a href="http://{{grains.fqdn}}/osrm">http://{{grains.fqdn}}/osrm</a></dd>
             <dd> OSRM (the Open Source Routing Machine) - a simple map + routing website, using the data you've downloaded.</dd>
           </dl>
+
+          <table class="table table-condensed table-striped">
+            <tr><td>OSM extract source</td><td>{{ pillar.tm_osmsourceurl }}</td></tr>
+            <tr><td>OSRM routing profile</td><td>{{ pillar.tm_osrmprofile }}</td></tr>
+          </table>
         </div>
         <div class="col-lg-5">
           <h4>Progress</h4>

@@ -18,6 +18,7 @@ osrm_update:
         build/osrm-prepare extract.osrm
         pkill osrm-routed
         echo "OSRM index rebuilt." >> /var/log/salt/buildlog.html
+        exit 0 # so Salt doesn't think it failed?
     - watch: [ file: osrm_update ]
 
 osrm_daemon:
@@ -26,7 +27,7 @@ osrm_daemon:
     - name: |
         pkill osrm-routed
         nohup build/osrm-routed -i {{ grains['fqdn'] }} -p {{pillar['tm_osrmport']}} -t 8 extract.osrm > /dev/null 2>&1 & 
-    #- wait: [ cmd: osrm_update ] # Bah, for some reason, the OSRM build is returning a failure?
+    - wait: [ cmd: osrm_update ] # Bah, for some reason, the OSRM build is returning a failure?
     - unless: test `pgrep osrm-routed` # if it's still running, it means we didn't just rebuild our index.
 
 updateosrm_logdone:
