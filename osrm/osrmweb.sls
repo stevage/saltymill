@@ -34,7 +34,7 @@ configure_osrmweb:
         import os, sys, re
         os.rename('OSRM.config.js', 'OSRM.config.js.orig')
         # In the process we convert line endings for some reason. :/
-        with open('OSRM.config.js.orig', 'rb') as fin, open('OSRM.config.js', 'wb') as fout:
+        with open('OSRM.config.js.orig', 'r') as fin, open('OSRM.config.js', 'w') as fout:
             data = fin.read()
             
             data = re.sub(r'(ROUTING_ENGINES: \[).*?(\s+\],)', r'\1\n' +
