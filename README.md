@@ -14,17 +14,18 @@ It's a conversion of http://github.com/stevage/tilemill-server
 Building a machine with the three main components takes a few minutes. Adding OSM and OSRM can take
 half an hour or more, possibly much more, depending on machine configuration and extract size.
 
+There are two ways to build a server using Salt:
+1. Using a separate SaltMaster which drives the "minion" - you need two servers for this.
+2. Using a "masterless minion" which drives itself.
+
 Typical usage:
 
 
-### On a clean VM
+### On a clean Ubuntu Quantal VM
 ```
-MASTER=*INSERT YOUR SALTMASTER IP/FQDN HERE*
-
 wget -O - http://bootstrap.saltstack.org | sudo sh
 
 sudo tee -a /etc/salt/minion <<EOF
-master: $MASTER
 grains:
   fqdn: `curl http://ifconfig.me` # Nginx needs to know the server's actual IP.
   roles:
@@ -33,24 +34,28 @@ grains:
     - osrm                        # Optional: OSRM routing engine. (requires osm)
 EOF
 
+*Skip the next line if in masterless mode* 
+sudo tee -a /etc/salt/minion "master: <<<INSERT YOUR SALTMASTER IP/FQDN HERE>>>"
+
 sudo service salt-minion restart
 ```
 
-### On the saltmaster:
+### On the saltmaster (or the same VM if masterless):
 
-*Install Salt, if needed:* 
+* Skip this one step if masterless *
+Install Salt, if needed:
 
 `curl -L http://bootstrap.saltstack.org | sudo sh -s -- -M -N`
 
 Install these scripts:
 ```
-cd /srv/salt
-sudo git clone https://github.com/stevage/saltymill
+sudo git clone https://github.com/stevage/saltymill /srv/salt
 ```
 
 Set up pillar properties:
 
 ```
+sudo mkdir /srv/pillar
 sudo tee /srv/pillar/top.sls <<EOF
 base:
   '*':
@@ -79,11 +84,18 @@ tm_osrmprofile: bicycle
 #tm_osrmprofilesource: ...
 
 EOF
-
-sudo service salt-master start
-### On the master again
 ```
-sudo salt-key -A
+
+*If running masterless:*
+
+`salt --local state.highstate`
+
+*If running saltmaster:*
+
+```
+sudo service salt-master start
+
+yes | sudo salt-key -A
 
 sudo salt '*' state.highstate
 ```
