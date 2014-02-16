@@ -9,4 +9,11 @@
     - cwd: /usr/share/mapbox/project
     # TODO: figure out how to work out the file name in advance, and hence avoid running this task if needless
 {% endfor %}
+
+projects_logdone:
+  cmd.wait:
+    - name: |
+        echo "Sample projects downloaded and unzipped.<br/>" >> /var/log/salt/buildlog.html
+    # We hope...
 {% endif %}
+

@@ -15,5 +15,5 @@ fonts:
 fonts_logdone:
   cmd.wait:
     - name: |
-        echo "Fonts downloaded and unzipped." >> /var/log/salt/buildlog.html
+        echo "Fonts downloaded and unzipped.<br/>" >> /var/log/salt/buildlog.html
     - watch: [ { cmd: fonts } ]

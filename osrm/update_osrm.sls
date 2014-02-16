@@ -20,7 +20,7 @@ osrm_reindex:
         build/osrm-extract extract.osm.pbf
         build/osrm-prepare extract.osrm
         pkill osrm-routed
-        echo "OSRM index rebuilt." >> /var/log/salt/buildlog.html
+        echo "OSRM index rebuilt.<br/>" >> /var/log/salt/buildlog.html
         exit 0 # so Salt doesn't think it failed?
     - watch: [ cmd: osrm_start ]
 
@@ -35,5 +35,5 @@ osrm_daemon:
 
 updateosrm_logdone:
   cmd.wait:
-    - name: echo "OSRM daemon started." >> /var/log/salt/buildlog.html
+    - name: echo "OSRM daemon started.<br/>" >> /var/log/salt/buildlog.html
     - watch: [ cmd: osrm_daemon ]

@@ -5,7 +5,7 @@ osrm_deps:
                libbz2-dev, libstxxl-dev, libstxxl-doc, libstxxl1, libxml2-dev,
                libzip-dev, libboost-all-dev, lua5.1, liblua5.1-0-dev, libluabind-dev, libluajit-5.1-dev]
     #- order: 1
-    ### Oh, I think the problem is we can't build on Quantal.
+    ### Oh, I think the problem is we can't build on Precise.
 
 osrm_repo:
   git.latest:
@@ -36,7 +36,7 @@ osrm_build:
 osrm_logdone:
   cmd.wait:
     - name: |
-        echo "OSRM installed and built." >> /var/log/salt/buildlog.html
+        echo "OSRM installed and built.<br/>" >> /var/log/salt/buildlog.html
     - watch: [ { cmd: osrm_build } ]
 
 

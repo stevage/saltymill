@@ -87,5 +87,5 @@ config_postgis:
 
 postgis_logdone:
   cmd.wait:
-    - name: echo "Postgis installed and configured." >> /var/log/salt/buildlog.html
+    - name: echo "Postgis installed and configured.<br/>" >> /var/log/salt/buildlog.html
     - watch: [ file: /etc/postgresql/9.1/main/postgresql.conf ]

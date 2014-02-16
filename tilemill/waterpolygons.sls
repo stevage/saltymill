@@ -17,5 +17,5 @@ waterpoly:
 waterpoly_logdone:
   cmd.wait:
     - name: |
-        echo "Waterpolygon downloaded and unzipped." >> /var/log/salt/buildlog.html
+        echo "Waterpolygon downloaded and unzipped.<br/>" >> /var/log/salt/buildlog.html
     - watch: [ { cmd: waterpoly } ]

@@ -14,7 +14,7 @@ update_data:
 
 osmgetdata_logdone:
   cmd.wait:
-    - name: echo "OSM data downloaded." >> /var/log/salt/buildlog.html
+    - name: echo "OSM data downloaded.<br/>" >> /var/log/salt/buildlog.html
     - watch: [ cmd: update_data ]        
 
 
@@ -29,5 +29,5 @@ do_import:
 
 osmimport_logdone:
   cmd.wait:
-    - name: echo "Loading OSM data with OSM2PGSQL in background." >> /var/log/salt/buildlog.html
+    - name: echo "Loading OSM data with OSM2PGSQL in background.<br/>" >> /var/log/salt/buildlog.html
     - watch: [ cmd: do_import ]        

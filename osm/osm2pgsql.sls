@@ -32,7 +32,7 @@ osm2pgsql:
 
 osm2pgsql_logdone:
   cmd.wait:
-    - name: echo "OSM2PGSQL installed." >> /var/log/salt/buildlog.html
+    - name: echo "OSM2PGSQL installed.<br/>" >> /var/log/salt/buildlog.html
     - watch: [ file: {{pillar['tm_dir']}}/customised.style ]        
 
 # what if I skip this line?
