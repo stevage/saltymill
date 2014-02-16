@@ -28,5 +28,5 @@ nginx:
 
 "Nginx server installed and configured":
   cmd.wait_script:
-    - source: salt//log.sh
+    - source: salt://log.sh
     - watch: [ file: /etc/nginx/sites-enabled/default ]
