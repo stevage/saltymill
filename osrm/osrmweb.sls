@@ -27,7 +27,7 @@ osrmweb_repo:
 # Point our new OSRM Web install at our OSRM instance, instead of the default.
 # The file.blockreplace cannot come soon enough.
 configure_osrmweb:
-  cmd.wait:
+  cmd.run:
     - cwd: /usr/share/nginx/www/osrm/WebContent
     - name: |
         python <<EOF
