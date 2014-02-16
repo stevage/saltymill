@@ -38,8 +38,8 @@ configure_osrmweb:
             
             data = re.sub(r'(ROUTING_ENGINES: \[).*?(\s+\],)', r'\1\n' +
               '{\n' + 
-              '  url: "http://{{ pillar['fqdn'] }}:{{ pillar['tm_osrmport']}}/viaroute",\n' +
-              '  timestamp:  "http://{{ pillar['fqdn'] }}:{{ pillar['tm_osrmport']}}/timestamp",\n' +
+              '  url: "http://{{ grains.fqdn }}:{{ pillar.tm_osrmport}}/viaroute",\n' +
+              '  timestamp:  "http://{{ grains.fqdn }}:{{ pillar.tm_osrmport}}/timestamp",\n' +
               '  metric: 1,\n' +
               '  label: "Default",\n' # Need to make this an option
               '}\n' +
