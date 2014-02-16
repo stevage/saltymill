@@ -1,6 +1,6 @@
-{% set build.title = "Your server is building" %}
-{% set build.subtitle = "Sit back and relax. Your server will be ready soon." %}
-{% set build.titlecolor = "hsl(210,40%,80%)" %}
+{% set buildtitle = "Your server is building" %}
+{% set buildsubtitle = "Sit back and relax. Your server will be ready soon." %}
+{% set buildtitlecolor = "hsl(210,40%,80%)" %}
 
 initindex:
   file.managed:

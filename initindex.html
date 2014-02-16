@@ -22,7 +22,9 @@
       .jumbotron { /*background-color:  titlecolor ;*/ }
     </style>
   <body>
-    {% from 'initlog.sls' import build %}
+    {% from 'initlog.sls' import buildtitle %}
+    {% from 'initlog.sls' import buildsubtitle %}
+    {% from 'initlog.sls' import buildtitlecolor %}
     <div class="container">
       <div class="header">
         <!--<ul class="nav nav-pills pull-right">
@@ -34,8 +36,8 @@
       </div>
 
       <div class="jumbotron col-lg-10">
-        <h1>{{ build.title }}</h1>
-        <p class="lead">{{ build.subtitle }}</p>
+        <h1>{{ buildtitle }}</h1>
+        <p class="lead">{{ buildsubtitle }}</p>
       </div>
 
       <div class="row marketing">
