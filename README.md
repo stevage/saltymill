@@ -16,10 +16,11 @@ half an hour or more, possibly much more, depending on machine configuration and
 
 Typical usage:
 
-```
+
 ### On a clean VM
 ```
 MASTER=*INSERT YOUR SALTMASTER IP/FQDN HERE*
+
 wget -O - http://bootstrap.saltstack.org | sudo sh
 
 sudo tee -a /etc/salt/minion <<EOF
