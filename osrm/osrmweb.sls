@@ -33,6 +33,7 @@ configure_osrmweb:
         python <<EOF
         import os, sys, re
         os.rename('OSRM.config.js', 'OSRM.config.js.orig')
+        # In the process we convert line endings for some reason. :/
         with open('OSRM.config.js.orig', 'rb') as fin, open('OSRM.config.js', 'wb') as fout:
             data = fin.read()
             
