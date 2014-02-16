@@ -15,6 +15,7 @@ Building a machine with the three main components takes a few minutes. Adding OS
 half an hour or more, possibly much more, depending on machine configuration and extract size.
 
 There are two ways to build a server using Salt:
+
 1. Using a separate SaltMaster which drives the "minion" - you need two servers for this.
 2. Using a "masterless minion" which drives itself.
 
