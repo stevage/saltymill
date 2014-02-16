@@ -1,15 +1,17 @@
 ###TODO call update_data to get the latest data in one hit.
-osrm_start:
-  cmd.run:
-    - name: |
-        echo "Building OSRM index..." >> /var/log/salt/buildlog.html
-    # - watch: [ { cmd: osrm_build } ]
 
 osrm_update:
   file.copy:
     - name: {{ pillar['tm_osrmdir'] }}/extract.osm.pbf
     - source: {{ pillar['tm_dir'] }}/extract.osm.pbf
-    - require: [ cmd: update_data ]
+    # - require: [ cmd: update_data ]
+
+osrm_start:
+  cmd.wait:
+    - name: |
+        echo "Building OSRM index..." >> /var/log/salt/buildlog.html
+    - onlyif: test -f {{pillar['tm_osrmdir']}}/build/osrm-routed 
+    - watch: [ file: osrm_update ] 
 
   cmd.wait:
     - cwd: {{pillar['tm_osrmdir']}}
@@ -19,16 +21,16 @@ osrm_update:
         pkill osrm-routed
         echo "OSRM index rebuilt." >> /var/log/salt/buildlog.html
         exit 0 # so Salt doesn't think it failed?
-    - watch: [ file: osrm_update ]
+    - watch: [ file: osrm_start ]
 
 osrm_daemon:
-  cmd.wait:
+  cmd.run:
     - cwd: {{ pillar['tm_osrmdir'] }}
     - name: |
-        pkill osrm-routed
+        #pkill osrm-routed
         nohup build/osrm-routed -i {{ grains['fqdn'] }} -p {{pillar['tm_osrmport']}} -t 8 extract.osrm > /dev/null 2>&1 & 
-    - wait: [ cmd: osrm_update ] # Bah, for some reason, the OSRM build is returning a failure?
-    - unless: test `pgrep osrm-routed` # if it's still running, it means we didn't just rebuild our index.
+    # - wait: [ cmd: osrm_update ] # Bah, for some reason, the OSRM build is returning a failure?
+    - unless: test "`curl localhost:{{ pillar.tm_osrmport }}`" 
 
 updateosrm_logdone:
   cmd.wait:

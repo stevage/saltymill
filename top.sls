@@ -5,8 +5,6 @@ base:
     #- match: grain
     - nginx                   # Adds authentication and port sharing (only 80 exposed to the outside world)
     - tilemill                # Installs TileMill itself
-    - tilemill.fonts          # Grabs useful fonts (just CartoGothic for the momen)
-    - tilemill.waterpolygons  # Grabs OSM waterpolygon shapefile
     #'roles:osm':
     #- match: grain
     - osm.postgis           # Installs PostGIS and moves it if needed
@@ -15,6 +13,4 @@ base:
     #'roles:osrm':
     #- match: grain
     - osrm                  # Installs Open Source Routing Machine
-    #- osrm.osrmweb
-    #- osrm.update_osrm      # Builds the OSRM routing index
     
