@@ -43,7 +43,7 @@ configure_osrmweb:
               '  metric: 1,\n' +
               '  label: "Default",\n' # Need to make this an option
               '}\n' +
-              '\2', data, flags=re.DOTALL)
+              r'\2\n', data, flags=re.DOTALL)
             fout.write(data)
         EOF
     #- watch [ git: osrmweb_repo ]
