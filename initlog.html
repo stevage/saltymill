@@ -19,7 +19,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>  </head>
     <style>
-      .jumbotron { background-color: hsl(210,40%,80%); }
+      .jumbotron { background-color: {{ titlecolor }}; }
     </style>
   <body>
 
@@ -34,8 +34,8 @@
       </div>
 
       <div class="jumbotron col-lg-10">
-        <h1>Your server is building</h1>
-        <p class="lead">Sit back and relax. Your server will be ready soon.</p>
+        <h1>{{ buildtitle %}</h1>
+        <p class="lead">{{ buildsubtitle }}</p>
       </div>
 
       <div class="row marketing">

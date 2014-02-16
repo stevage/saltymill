@@ -1,3 +1,6 @@
+{% set buildtitle = "Your server is ready!" %}
+{% set buildsubtitle = "Get in there and make something." %}
+{% set titlecolor = "hsl(130,70%,70%)" %}
 finishlogappend:
   file.append:
     - name: /var/log/salt/buildlog.html
