@@ -26,8 +26,8 @@ nginx:
     - user: root
     - mode: 644
 
-nginx_log:
+salt://log.sh:
   cmd.wait_script:
-    - source: salt://log.sh
+    #- source: salt://log.sh
     - args: '"Nginx server installed and configured"'
     - watch: [ file: /etc/nginx/sites-enabled/default ]
