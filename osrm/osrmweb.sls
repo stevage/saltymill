@@ -46,7 +46,7 @@ configure_osrmweb:
               '\2', data, flags=re.DOTALL)
             fout.write(data)
         EOF
-    - watch [ git: osrmweb_repo ]
+    #- watch [ git: osrmweb_repo ]
 
 
 osrmweb_logdone:
