@@ -1,8 +1,8 @@
+initindex:
+  file.managed:
 {% set buildtitle = "Your server is building" %}
 {% set buildsubtitle = "Sit back and relax. Your server will be ready soon." %}
 {% set titlecolor = "hsl(210,40%,80%)" %}
-initindex:
-  file.managed:
     - name: /var/log/salt/index.html
     - source: salt://initindex.html
     - template: jinja
