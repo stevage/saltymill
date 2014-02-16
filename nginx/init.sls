@@ -29,5 +29,5 @@ nginx:
 nginx_log:
   cmd.wait_script:
     - source: salt://log.sh
-    - args: "Nginx server installed and configured"
+    - args: '"Nginx server installed and configured"'
     - watch: [ file: /etc/nginx/sites-enabled/default ]
