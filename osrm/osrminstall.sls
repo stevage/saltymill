@@ -4,8 +4,8 @@ osrm_deps:
                protobuf-compiler, libprotobuf-dev, libosmpbf-dev, libpng12-dev,
                libbz2-dev, libstxxl-dev, libstxxl-doc, libstxxl1, libxml2-dev,
                libzip-dev, libboost-all-dev, lua5.1, liblua5.1-0-dev, libluabind-dev, libluajit-5.1-dev]
-    - order: 1
-    #### Damn, some problem here - probably a conflict with a ppa?
+    #- order: 1
+    ### Oh, I think the problem is we can't build on Quantal.
 
 osrm_repo:
   git.latest:
