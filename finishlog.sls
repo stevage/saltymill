@@ -1,10 +1,3 @@
-{% from 'initlog.sls' import buildtitle %}
-{% from 'initlog.sls' import buildsubtitle %}
-{% from 'initlog.sls' import buildtitlecolor %}
-
-{% set buildtitle = "Your server is ready!" %}
-{% set buildsubtitle = "Get in there and make something." %}
-{% set titlecolor = "hsl(130,70%,70%)" %}
 finishlog:
   cmd.run:
     - name: |
@@ -13,4 +6,8 @@ finishlog:
     - name: /var/log/salt/index.html
     - source: salt://initindex.html
     - template: jinja
+    - context:
+      - buildtitle: "Your server is read!"
+      - buildsubtitle: "Get in there and make something."
+      - buildtitlecolor: "hsl(130,70%,70%)"
 
