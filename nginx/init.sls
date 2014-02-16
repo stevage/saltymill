@@ -27,7 +27,13 @@ nginx:
     - group: root
     - user: root
     - mode: 644
-  cmd.wait:
-    - name: |
-        echo "Nginx server installed and configured." >> /var/log/salt/buildlog.html
-    - watch: [ file: /etc/nginx/sites-enabled/default ]
+
+nginxlog: 
+  {% set log = log ~ "Nginx server installed and configured.<br/>" %}
+  file.managed:
+    - name: /var/log/salt/buildlog.html
+    - source: salt://initlog.html
+    - template: jinja
+    - require: [ file: /etc/nginx/sites-enabled/default ]
+
+
