@@ -38,7 +38,7 @@ configure_osrmweb:
             data = fin.read()
             
             data = re.sub(r'(ROUTING_ENGINES: \[).*?(\s+\],)', r'\1\n' +
-            {% for instance in tm_osrminstances %}
+            {% for instance in pillar.tm_osrminstances %}
               '{\n' + 
               '  url: "http://{{ grains.fqdn }}:{{ instance.port}}/viaroute",\n' +
               '  timestamp:  "http://{{ grains.fqdn }}:{{ instance.port}}/timestamp",\n' +
