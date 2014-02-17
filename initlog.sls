@@ -14,7 +14,7 @@ initindex:
         buildsubtitle: "Sit back and relax. Your server will be ready soon."
         buildtitlecolor: "hsl(210,40%,80%)"
 
-{{ pillar.tm_dir}}/buildlog.html
+{{ pillar.tm_dir }}/buildlog.html:
   file.managed:
     - source: salt://initlog.html
     - template: jinja
