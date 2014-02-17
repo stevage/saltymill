@@ -38,12 +38,14 @@ configure_osrmweb:
             data = fin.read()
             
             data = re.sub(r'(ROUTING_ENGINES: \[).*?(\s+\],)', r'\1\n' +
+            {% for instance in tm_osrminstances %}
               '{\n' + 
-              '  url: "http://{{ grains.fqdn }}:{{ pillar.tm_osrmport}}/viaroute",\n' +
-              '  timestamp:  "http://{{ grains.fqdn }}:{{ pillar.tm_osrmport}}/timestamp",\n' +
+              '  url: "http://{{ grains.fqdn }}:{{ instance.port}}/viaroute",\n' +
+              '  timestamp:  "http://{{ grains.fqdn }}:{{ instance.port}}/timestamp",\n' +
               '  metric: 1,\n' +
-              '  label: "Default",\n' # Need to make this an option
-              '}\n' +
+              '  label: "{{ instance.name }}",\n'
+              '}, \n' +
+            {% endfor %}
               r'\2\n', data, flags=re.DOTALL)
             fout.write(data)
         EOF

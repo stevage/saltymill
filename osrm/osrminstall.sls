@@ -23,30 +23,32 @@ osrm_build:
         cd build
         cmake ..
         make 
-        cd ..
-        rm profile.lua
-        {% if pillar['tm_osrmprofilesource'] is defined %}
-        wget {{ pillar['tm_osrmprofilesource'] }} -O profile.lua
-        {% else %}
-        ln -s profiles/{{ pillar['tm_osrmprofile'] }}.lua profile.lua
-        {% endif %}
     - watch: [ git: osrm_repo ] # this trigger not working?
     - require: [ pkg: osrm_deps ]
+
+# We build OSRM once, then copy the executables to each of the instances.
+
+{% for instance in pillar['tm_osrminstances'] %}
+# Profiles have to be unique atm. Probably ok?
+osrm_instance_{{ instance.profile }}:
+  cmd.wait:
+    - name: |
+      mkdir {{ pillar.tm_osrmdir }}/{{instance.profile}}
+      cd {{ pillar.tm_osrmdir }}/{{instance.profile}}
+      cp {{ pillar.tm_osrmdir }}/build/osrm-* .
+      cp -R ../profiles .
+      {% if instance.profilesource is defined %}
+      wget {{ instance.profilesource }} -O profile.lua
+      {% else %}
+      cp profiles/{{ instance.profile }}.lua profile.lua
+      {% endif %}
+    - watch: [ cmd: osrm_build ]
+    - unless: test -d {{ pillar.tm_osrmdir }}/{{ instance.profile }}
+{% endfor %}
 
 osrm_logdone:
   cmd.wait_script:
     - source: salt://log.sh
-    - args: "'OSRM installed and built.'"
+    - args: "'OSRM installed and built with profiles: {{ pillar.tm_osrminstances | map(attribute='profile') | join(', ') }}'"
     - watch: [ { cmd: osrm_build } ]
 
-
-
-{# Multiple instances something like:
-
-tm_osrminstances:
-  - hiking:              # used in OSRMweb?
-    - profile: hiking
-    - source: http://... # optional?
-    - port: 5011
-
-#}

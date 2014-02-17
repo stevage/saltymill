@@ -36,7 +36,7 @@ grains:
 EOF
 
 *Skip the next line if in masterless mode* 
-sudo tee -a /etc/salt/minion "master: <<<INSERT YOUR SALTMASTER IP/FQDN HERE>>>"
+echo master: <<<INSERT YOUR SALTMASTER IP/FQDN HERE>>> | sudo tee -a /etc/salt/minion 
 
 sudo service salt-minion restart
 ```
@@ -50,7 +50,7 @@ Install Salt, if needed:
 
 Install these scripts:
 ```
-sudo git clone https://github.com/stevage/saltymill /srv/salt
+sudo apt-get install -y git && sudo git clone https://github.com/stevage/saltymill /srv/salt
 ```
 
 Set up pillar properties:
@@ -79,18 +79,21 @@ tm_projects:
 
 # (If using OSRM)
 tm_osrmdir: /mnt/saltymill/osrm
-tm_osrmport: 5010
-tm_osrmprofile: bicycle
-# (optional)
-#tm_osrmprofilesource: ...
+tm_osrminstances:
+  - { name: Bike, port: 5010, profile: bicycle }
+  - { name: Walking, port: 5011, profile: foot }
+  # optional: , profilesource: http://...
+
 
 EOF
 ```
 
 *If running masterless:*
 
-`salt --local state.highstate`
-
+```
+cd /srv/salt
+sudo salt-call --local state.highstate -l info
+```
 *If running saltmaster:*
 
 ```
