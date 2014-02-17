@@ -17,7 +17,7 @@ osrm_start_{{instance.profile}}:
     - source: salt://log.sh
     - args: "'Building OSRM index for {{instance.name}}...'"
     - onlyif: test -f {{pillar.tm_osrmdir}}/{{ instance.profile }}/osrm-routed 
-    - watch: [ file: osrm_update_{{instance.profile}}, osrm_missingindex_{{instance.profile}} ] 
+    - watch: [ file: osrm_update_{{instance.profile}}, cmd: osrm_missingindex_{{instance.profile}} ] 
 
 osrm_reindex_{{instance.profile}}:
   cmd.wait:
