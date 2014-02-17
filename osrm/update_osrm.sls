@@ -1,6 +1,6 @@
 ###TODO call update_data to get the latest data in one hit.
 {% for instance in pillar.tm_osrminstances %}
-osrm_update:
+osrm_update_{{instance.profile}}:
   file.copy:
     - name: {{ pillar.tm_osrmdir }}/{{ instance.profile }}/extract.osm.pbf
     - source: {{ pillar.tm_dir }}/extract.osm.pbf
