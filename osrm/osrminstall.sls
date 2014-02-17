@@ -33,15 +33,15 @@ osrm_build:
 osrm_instance_{{ instance.profile }}:
   cmd.wait:
     - name: |
-      mkdir {{ pillar.tm_osrmdir }}/{{instance.profile}}
-      cd {{ pillar.tm_osrmdir }}/{{instance.profile}}
-      cp {{ pillar.tm_osrmdir }}/build/osrm-* .
-      cp -R ../profiles .
-      {% if instance.profilesource is defined %}
-      wget {{ instance.profilesource }} -O profile.lua
-      {% else %}
-      cp profiles/{{ instance.profile }}.lua profile.lua
-      {% endif %}
+        mkdir {{ pillar.tm_osrmdir }}/{{instance.profile}}
+        cd {{ pillar.tm_osrmdir }}/{{instance.profile}}
+        cp {{ pillar.tm_osrmdir }}/build/osrm-* .
+        cp -R ../profiles .
+        {% if instance.profilesource is defined %}
+        wget {{ instance.profilesource }} -O profile.lua
+        {% else %}
+        cp profiles/{{ instance.profile }}.lua profile.lua
+        {% endif %}
     - watch: [ cmd: osrm_build ]
     - unless: test -d {{ pillar.tm_osrmdir }}/{{ instance.profile }}
 {% endfor %}
