@@ -49,6 +49,7 @@ osrm_instance_{{ instance.profile }}:
 osrm_logdone:
   cmd.wait_script:
     - source: salt://log.sh
-    - args: "'OSRM installed and built with profiles: {{ pillar.tm_osrminstances | map(attribute='profile') | join(', ') }}'"
+    # Requires Jinja 2.7 - args: "'OSRM installed and built with profiles: {{ pillar.tm_osrminstances | map(attribute='profile') | join(', ') }}'"
+    - args: "'OSRM installed and built.'"
     - watch: [ { cmd: osrm_build } ]
 
