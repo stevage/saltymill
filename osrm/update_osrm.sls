@@ -6,14 +6,14 @@ osrm_update_{{instance.profile}}:
     - source: {{ pillar.tm_dir }}/extract.osm.pbf
     # - require: [ cmd: update_data ] # Needs an include?
 
-osrm_start:
+osrm_start_{{instance.profile}}:
   cmd.wait_script:
     - source: salt://log.sh
     - args: "'Building OSRM index for {{instance.name}}...'"
     - onlyif: test -f {{pillar.tm_osrmdir}}/{{ instance.profile }}/osrm-routed 
     - watch: [ file: osrm_update ] 
 
-osrm_reindex:
+osrm_reindex_{{instance.profile}}:
   cmd.wait:
     - cwd: {{pillar.tm_osrmdir}}/{{instance.profile}}
     - name: |
@@ -24,7 +24,7 @@ osrm_reindex:
         exit 0 # so Salt doesn't think it failed?
     - watch: [ cmd: osrm_start ]
 
-osrm_daemon:
+osrm_daemon_{{instance.profile}}:
   cmd.run:
     - cwd: {{ pillar.tm_osrmdir }}
     - name: |
@@ -32,7 +32,7 @@ osrm_daemon:
     # - wait: [ cmd: osrm_reindex ] # Bah, for some reason, the OSRM build is returning a failure?
     - unless: test "`curl localhost:{{ instance.port }}`" 
 
-updateosrm_logdone:
+updateosrm_logdone_{{instance.profile}}:
   cmd.wait_script:
     - source: salt://log.sh
     - args: "'OSRM daemon started for profile {{ instance.name }} on port {{ instance.port}}.'"
