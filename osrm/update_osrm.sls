@@ -30,7 +30,7 @@ osrm_daemon:
     - name: |
         nohup build/osrm-routed -i {{ grains.fqdn }} -p {{instance.port}} -t 8 extract.osrm > /dev/null 2>&1 & 
     # - wait: [ cmd: osrm_reindex ] # Bah, for some reason, the OSRM build is returning a failure?
-    - unless: test "`curl localhost:{{ pillar.osrmport }}`" 
+    - unless: test "`curl localhost:{{ instance.port }}`" 
 
 updateosrm_logdone:
   cmd.wait_script:
