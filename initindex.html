@@ -19,7 +19,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>  </head>
     <style>
-      .jumbotron { background-color:  titlecolor ; }
+      .jumbotron { background-color:  {{ titlecolor }} ; }
     </style>
   <body>
     <div class="container">
@@ -49,13 +49,14 @@
           </dl>
           <h4>Configuration</h4>
           <table class="table table-condensed table-striped">
-            <tr><td>OSM extract source</td><td>{{ pillar.tm_osmsourceurl }}</td></tr>
-            <tr><td>OSRM routing profile</td><td>{{ pillar.tm_osrmprofile }}</td></tr>
+            <tr><td>OSM extract source</td><td><small>{{ pillar.tm_osmsourceurl }}</small></td></tr>
+            <tr><td>OSRM routing profile</td><td><small>{{ pillar.tm_osrmprofile }}</small></td></tr>
+            <tr><td>TileMill sample projects</td><td><small>{{ pillar.tm_projects|join(', ') }}</small></td></tr>
           </table>
         </div>
         <div class="col-lg-5">
           <h4>Progress</h4>
-          <pre><!-- logend -->
+          <pre>{# Dammit, I really want to do this but I don't think it will work {% include 'buildlog.html' %} #}<!-- logend -->
           </pre>
         </div>
       </div>

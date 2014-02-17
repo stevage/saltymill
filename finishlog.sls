@@ -1,5 +1,5 @@
 finishlog:
-  cmd.wait_script:
+  cmd.script:
     - source: salt://log.sh
     - args: "'All done! Enjoy your new server.'"
   file.managed:

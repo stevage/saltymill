@@ -29,7 +29,7 @@ wget -O - http://bootstrap.saltstack.org | sudo sh
 sudo tee -a /etc/salt/minion <<EOF
 grains:
   fqdn: `curl http://ifconfig.me` # Nginx needs to know the server's actual IP.
-  roles:
+  roles:                          # (These roles are currently ignored - all components installed)
     - tilemill
     - osm                         # Optional: local OSM data.
     - osrm                        # Optional: OSRM routing engine. (requires osm)
@@ -100,3 +100,5 @@ yes | sudo salt-key -A
 
 sudo salt '*' state.highstate
 ```
+
+You can watch the progress of your server being built, by going to http://<serverip>/saltymill

@@ -11,7 +11,7 @@
 {% endfor %}
 
 projects_logdone:
-  cmd.wait_script:
+  cmd.script:
     - source: salt://log.sh
     - args: "'Sample projects downloaded and unzipped.'"
     # We hope... (no explicit checking whether this step even got run)
