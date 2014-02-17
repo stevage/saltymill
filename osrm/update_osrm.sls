@@ -11,7 +11,7 @@ osrm_start_{{instance.profile}}:
     - source: salt://log.sh
     - args: "'Building OSRM index for {{instance.name}}...'"
     - onlyif: test -f {{pillar.tm_osrmdir}}/{{ instance.profile }}/osrm-routed 
-    - watch: [ file: osrm_update ] 
+    - watch: [ file: osrm_update_{{instance.profile}} ] 
 
 osrm_reindex_{{instance.profile}}:
   cmd.wait:
@@ -22,7 +22,7 @@ osrm_reindex_{{instance.profile}}:
         pkill -f 'osrm-routed.*-p {{ instance.port }}' # Make sure we kill the right instance.
         echo "OSRM index for profile '{{ instance.name}}' rebuilt.<br/>" >> /var/log/salt/buildlog.html
         exit 0 # so Salt doesn't think it failed?
-    - watch: [ cmd: osrm_start ]
+    - watch: [ cmd: osrm_start_{{instance.profile}} ]
 
 osrm_daemon_{{instance.profile}}:
   cmd.run:
@@ -36,5 +36,5 @@ updateosrm_logdone_{{instance.profile}}:
   cmd.wait_script:
     - source: salt://log.sh
     - args: "'OSRM daemon started for profile {{ instance.name }} on port {{ instance.port}}.'"
-    - watch: [ cmd: osrm_daemon ]
+    - watch: [ cmd: osrm_daemon_{{instance.profile}} ]
 {% endfor %}
