@@ -6,12 +6,18 @@ osrm_update_{{instance.profile}}:
     - source: {{ pillar.tm_dir }}/extract.osm.pbf
     # - require: [ cmd: update_data ] # Needs an include?
 
+# Hmm, if the indexing fails for some reason, it won't re-try?
+osrm_missingindex_{{instance.profile}}:
+  cmd.run:
+    - name: ''
+    - unless: test -f {{ pillar.tm_osrmdir }}/{{ instance.profile}}/extract.osrm.hsgr ## todo, find which of the .osrm's is the last generated
+
 osrm_start_{{instance.profile}}:
   cmd.wait_script:
     - source: salt://log.sh
     - args: "'Building OSRM index for {{instance.name}}...'"
     - onlyif: test -f {{pillar.tm_osrmdir}}/{{ instance.profile }}/osrm-routed 
-    - watch: [ file: osrm_update_{{instance.profile}} ] 
+    - watch: [ file: osrm_update_{{instance.profile}}, osrm_missingindex_{{instance.profile}} ] 
 
 osrm_reindex_{{instance.profile}}:
   cmd.wait:
