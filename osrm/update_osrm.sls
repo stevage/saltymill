@@ -23,8 +23,8 @@ osrm_reindex_{{instance.profile}}:
   cmd.wait:
     - cwd: {{pillar.tm_osrmdir}}/{{instance.profile}}
     - name: |
-        build/osrm-extract extract.osm.pbf
-        build/osrm-prepare extract.osrm
+        ./osrm-extract extract.osm.pbf
+        ./osrm-prepare extract.osrm
         pkill -f 'osrm-routed.*-p {{ instance.port }}' # Make sure we kill the right instance.
         echo "OSRM index for profile '{{ instance.name}}' rebuilt.<br/>" >> /var/log/salt/buildlog.html
         exit 0 # so Salt doesn't think it failed?
@@ -32,9 +32,9 @@ osrm_reindex_{{instance.profile}}:
 
 osrm_daemon_{{instance.profile}}:
   cmd.run:
-    - cwd: {{ pillar.tm_osrmdir }}
+    - cwd: {{ pillar.tm_osrmdir }}/{{instance.profile}}
     - name: |
-        nohup build/osrm-routed -i {{ grains.fqdn }} -p {{instance.port}} -t 8 extract.osrm > /dev/null 2>&1 & 
+        nohup ./osrm-routed -i {{ grains.fqdn }} -p {{instance.port}} -t 8 extract.osrm > /dev/null 2>&1 & 
     # - wait: [ cmd: osrm_reindex ] # Bah, for some reason, the OSRM build is returning a failure?
     - unless: test "`curl localhost:{{ instance.port }}`" 
 
