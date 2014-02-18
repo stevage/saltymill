@@ -32,12 +32,13 @@ mapbox:
     - createhome: True
     - fullname: "Mapbox developer account"
 
+  cmd.wait_script:
+    - source: salt://log.sh
+    - args: "'Getting dependencies for dev-mode Tilemill installed. This will take a while.'"
+    - wait: [ user:mapbox ]        
+
 
 dev-ppas:
-  cmd.script:
-    - source: salt://log.sh
-    - args: "Getting dependencies for dev-mode Tilemill installed. This will take a while."
-    - prereq: [ pkgrepo: dev-ppas ]        
   pkgrepo.managed:
     - names: [ 'ppa:chris-lea/node.js' , 'ppa:mapnik/v2.2.0' ]
 
@@ -47,7 +48,7 @@ dev-deps:
                protobuf-compiler, libprotobuf-lite7, libprotobuf-dev, libgdal1-dev]
   cmd.wait_script:
     - source: salt://log.sh
-    - args: "Dependencies for dev-mode Tilemill installed. Getting source now."
+    - args: "'Dependencies for dev-mode Tilemill installed. Getting source now.'"
     - watch: [ pkg: dev-deps ]        
 
 mapnik-pkg:

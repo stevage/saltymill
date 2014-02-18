@@ -2,13 +2,11 @@
 # Just a quick launcher script that bootstraps a bunch of minions.
 # It assumes that all keys and identity information is in your ~/.ssh/config
 # You still need to manually accept the keys on the saltmaster.
-echo "$1"
 if [ "$1" = "" ]; then
     echo "Usage: launcher.sh server1 server2 server3 ..."
     exit
 fi
 servers="$@"
-#servers=tm24
 for server in $servers; do
 
 ssh $server 'cat > go.sh' <<"EOF"
