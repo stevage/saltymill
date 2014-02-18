@@ -10,9 +10,9 @@ waterpoly:
     - require:
         - pkg: unzip
     - name: |
-        wget -nv http://gis.researchmaps.net/water-polygons-split-3857.zip  && sleep 5 && 
+        wget -nv {{pillar.tm_waterpolygonsource}}  && sleep 5 && 
         unzip -o water-polygons-split-3857.zip
-    - unless: test -d /usr/share/mapbox/water-polygons-split-3857
+    - unless: test -d /usr/share/mapbox/water-polygons-split-3857 # fix this hardcoding
 
 waterpoly_logdone:
   cmd.wait_script:

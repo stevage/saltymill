@@ -1,9 +1,12 @@
 SaltyMill
 ---------
 
-This is a rough salt configuration to deploy a tilemill stack. The major components are:
+SaltyMill uses Salt to deploy a tilemill stack on a clean Ubuntu Quantal VM. The major components are:
 
 - TileMill: cartographic IDE for turning map data into web or static maps
+-- Additional fonts
+-- Sample projects
+-- Waterpolygon file
 - PostGIS: Postgresql database with GIS extensions, holds OpenStreetMap data
 - Nginx: web server, provides password authentication and allows services to share one port (80).
 - OSM (optional): extract of OpenStreetMap data downloaded and imported
@@ -40,7 +43,8 @@ sudo service salt-minion restart
 
 ### On the saltmaster (or the same VM if masterless):
 
-* Skip this one step if masterless *
+*Skip this one step if masterless*
+
 Install Salt, if needed:
 
 `curl -L http://bootstrap.saltstack.org | sudo sh -s -- -M -N`
@@ -70,6 +74,10 @@ tm_dir: /mnt/saltymill                # Where to install scripts to.
 tm_fonts:       # List of urls that provide zip downloads
   - http://www.freefontspro.com/d/12524/cartogothic_std.zip
   - http://www.fontsquirrel.com/fonts/download/roboto
+
+# (Optional)
+tm_waterpolygonsource: http://gis.researchmaps.net/water-polygons-split-3857.zip
+
 # (Optional)
 tm_projects:
                                       # Sample projects to unzip in /usr/share/mapbox/project. Name required but not used for much.
