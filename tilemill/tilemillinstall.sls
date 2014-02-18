@@ -66,7 +66,7 @@ tilemill-dev:
         mkdir /usr/share/mapbox/project
         # TODO: add git updating.
     - unless: test -f /usr/share/tilemill/index.js
-    - require [ { file: tilemill-dirs}, {pkg: dev-deps}, {pkg: mapnik-pkg} ]
+    - require: [ { file: tilemill-dirs}, {pkg: dev-deps}, {pkg: mapnik-pkg} ]
   file.managed:
     - name: /etc/init/tilemill.conf
     - source: salt://tilemill/init-tilemill.conf    
