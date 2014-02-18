@@ -6,11 +6,11 @@ osrm_update_{{instance.profile}}:
     - source: {{ pillar.tm_dir }}/extract.osm.pbf
     # - require: [ cmd: update_data ] # Needs an include?
 
-# Hmm, if the indexing fails for some reason, it won't re-try?
+# So that it will re-run if the indexing fails.
 osrm_missingindex_{{instance.profile}}:
   cmd.run:
     - name: ''
-    - unless: test -f {{ pillar.tm_osrmdir }}/{{ instance.profile}}/extract.osrm.hsgr ## todo, find which of the .osrm's is the last generated
+    - unless: test -f {{ pillar.tm_osrmdir }}/{{ instance.profile}}/extract.osrm.hsgr
 
 osrm_start_{{instance.profile}}:
   cmd.wait_script:
@@ -30,18 +30,4 @@ osrm_reindex_{{instance.profile}}:
         {{ pillar.tm_dir}}/log.sh "OSRM index for profile '{{ instance.name}}' rebuilt."
         exit 0 # so Salt doesn't report failed pkill as a fail.
     - watch: [ cmd: osrm_start_{{instance.profile}} ]
-
-osrm_daemon_{{instance.profile}}:
-  cmd.run:
-    - cwd: {{ pillar.tm_osrmdir }}/{{instance.profile}}
-    - name: |
-        nohup ./osrm-routed -i {{ grains.fqdn }} -p {{instance.port}} -t 8 extract.osrm > /dev/null 2>&1 & 
-    # - wait: [ cmd: osrm_reindex ] # Bah, for some reason, the OSRM build is returning a failure?
-    - unless: test "`curl localhost:{{ instance.port }}`" 
-
-updateosrm_logdone_{{instance.profile}}:
-  cmd.wait_script:
-    - source: salt://log.sh
-    - args: "'OSRM daemon started for profile {{ instance.name }} on port {{ instance.port}}.'"
-    - watch: [ cmd: osrm_daemon_{{instance.profile}} ]
 {% endfor %}
