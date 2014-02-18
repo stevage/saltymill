@@ -5,7 +5,7 @@ prereqs:
 getfonts:
   cmd.run:
     - cwd: /usr/share/fonts/truetype
-    - name: "wget '{{pillar.tm_fonts|join(' ')}}'"
+    - name: "wget --content-disposition '{{pillar.tm_fonts|join(' ')}}'"
     #- unless what?? unless: test -d /usr/share/fonts/truetype/CartoGothic
 
 unzip_fonts:
