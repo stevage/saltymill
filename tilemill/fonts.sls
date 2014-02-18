@@ -20,4 +20,4 @@ fonts_logdone:
   cmd.wait_script:
     - source: salt://log.sh
     - args: "'Fonts downloaded and unzipped.'"
-    - watch: [ { cmd: fonts } ]
+    - watch: [ { cmd: unzip_fonts } ]
