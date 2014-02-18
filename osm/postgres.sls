@@ -51,7 +51,7 @@ postgres_conf:
 postgresql:
   service.running:
     - enable: True
-    - watch: [ pkg: install_postgis_pkgs, cmd: move_postgis, file: postgres_conf ]
+    - watch: [ pkg: install_postgres_pkgs, cmd: move_postgres, file: postgres_conf ]
 
 postgres_logdone:
   cmd.wait_script:

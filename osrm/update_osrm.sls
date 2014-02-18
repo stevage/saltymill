@@ -25,9 +25,10 @@ osrm_reindex_{{instance.profile}}:
     - name: |
         ./osrm-extract extract.osm.pbf
         ./osrm-prepare extract.osrm
+        [ -f extract.osrm.hsgr ] || exit 1
         pkill -f 'osrm-routed.*-p {{ instance.port }}' # Make sure we kill the right instance.
-        echo "OSRM index for profile '{{ instance.name}}' rebuilt.<br/>" >> /var/log/salt/buildlog.html
-        exit 0 # so Salt doesn't think it failed?
+        {{ pillar.tm_dir}}/log.sh "OSRM index for profile '{{ instance.name}}' rebuilt."
+        exit 0 # so Salt doesn't report failed pkill as a fail.
     - watch: [ cmd: osrm_start_{{instance.profile}} ]
 
 osrm_daemon_{{instance.profile}}:
