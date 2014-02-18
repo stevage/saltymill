@@ -27,7 +27,7 @@ Typical usage:
 wget -O - http://bootstrap.saltstack.org | sudo sh
 
 #*Skip the next two lines if in masterless mode* 
-m=INSERT.YOUR.SALTMASTER.HOSTNAME.HERE
+[ $m ] || m=INSERT.YOUR.SALTMASTER.HOSTNAME.HERE
 echo master: $m | sudo tee -a /etc/salt/minion 
 
 #Continue here for both master and masterless:
@@ -76,7 +76,8 @@ tm_timezone: 'Australia/Melbourne'    # We set the timezone because NeCTAR VMs d
 tm_dir: /mnt/saltymill                # Where to install scripts to.
                                       # Where to download OSM extracts from.
 tm_osmsourceurl: http://download.geofabrik.de/australia-oceania/australia-latest.osm.pbf
-
+tm_fonts:
+  - http://www.freefontspro.com/d/12524/cartogothic_std.zip
 # (Optional)
 tm_projects:
   - http://gis.researchmaps.net/sample/melbourne.zip
