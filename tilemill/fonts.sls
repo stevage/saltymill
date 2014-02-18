@@ -13,8 +13,8 @@ unzip_fonts:
   cmd.wait:
     - cwd: /usr/share/fonts/truetype
     - name: "unzip -d . -o '*.zip'"
-    # - require: [ pkg: prereqs ]
-    - wait: [ cmd: getfonts ]
+    - require: [ pkg: prereqs ]
+    - watch: [ cmd: getfonts ]
 
 fonts_logdone:
   cmd.wait_script:
