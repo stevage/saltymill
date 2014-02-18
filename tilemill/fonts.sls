@@ -2,13 +2,11 @@ prereqs:
   pkg.installed:
     - names: [ unzip, wget ]
 
-{% for font in pillar.tm_fonts %}
-getfont_{{font}}:
+getfonts:
   cmd.run:
     - cwd: /usr/share/fonts/truetype
-    - name: "wget '{{font}}'"
+    - name: "wget '{{pillar.tm_fonts|join(' ')}}'"
     #- unless what?? unless: test -d /usr/share/fonts/truetype/CartoGothic
-{% endfor %}
 
 unzip_fonts:
   cmd.run:
