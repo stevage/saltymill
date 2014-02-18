@@ -12,7 +12,7 @@ tilemill:
   pkg.installed
 
 {% else %}
-# Installing Tilemill from source
+# Installing Tilemill from source. We try to make the end result look as much like the apt-get install as possible.
 {# consider purging old ppas...
 # First, clear out any old mapnik or node.js installs that might conflict
 apt-get purge libmapnik libmapnik-dev mapnik-utils nodejs
@@ -60,12 +60,6 @@ tilemill-dev:
     - user: mapbox
     - group: mapbox
     - name: |
-        {# pity, we can't use this method because of a nodejs post-install version hook. #}
-        wget -nv https://github.com/mapbox/tilemill/archive/master.zip -O tilemill.zip
-        unzip tilemill.zip
-        mv tilemill-master tilemill
-        #}
-        
         git clone --single-branch --branch=master --depth=1 https://github.com/mapbox/tilemill tilemill
         cd tilemill
         npm install
@@ -95,18 +89,8 @@ tilemill_service:
     - enable: True
     - watch: [ file: /etc/tilemill/tilemill.config ]
 
-
 tilemill_logdone:
   cmd.wait_script:
     - source: salt://log.sh
     - args: "'Tilemill installed and configured  {% if pillar.tm_dev is defined and pillar.tm_dev %}(in dev mode){% endif %}.'"
     - watch: [ file: /etc/tilemill/tilemill.config ]        
-
-{#
-tilemill_dev:
-
-#eemaybe not sudo apt-get install -y build-essential python-dev libbz2-dev libicu-dev
-
-wget https://gist.github.com/springmeyer/2164897/raw/install-tilemill-latest.sh -O - | bash
-
-#}

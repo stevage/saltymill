@@ -25,7 +25,7 @@ osm2pgsql:
 
 {{pillar['tm_dir']}}/customised.style:
   file.managed:
-    - source: salt://osm/customised.style
+    - source: {{ pillar.tm_osmpgsqlstyle|default('salt://osm/customised.style') }}
     - user: ubuntu
     - group: ubuntu
     - mode: 664

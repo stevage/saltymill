@@ -32,15 +32,8 @@ echo master: $m | sudo tee -a /etc/salt/minion
 
 #Continue here for both master and masterless:
 
-sudo tee -a /etc/salt/minion <<EOF
-grains:
-  fqdn: `curl http://ifconfig.me` # Nginx needs to know the server's actual IP.
-  roles:                          # (These roles are currently ignored - all components installed)
-    - tilemill
-    - osm                         # Optional: local OSM data.
-    - osrm                        # Optional: OSRM routing engine. (requires osm)
-EOF
-
+# Nginx needs to know the server's actual IP.
+sudo tee -a /etc/salt/grains fqdn: `curl http://ifconfig.me` 
 
 sudo service salt-minion restart
 ```
@@ -74,8 +67,6 @@ tm_dbpassword: ubuntu                 # and used to load data with. It doesn't g
 tm_postgresdir: /mnt/var/lib          # Directory to move Postgres to (ie, big, non-ephemeral drive).
 tm_timezone: 'Australia/Melbourne'    # We set the timezone because NeCTAR VMs don't have it set.
 tm_dir: /mnt/saltymill                # Where to install scripts to.
-                                      # Where to download OSM extracts from.
-tm_osmsourceurl: http://download.geofabrik.de/australia-oceania/australia-latest.osm.pbf
 tm_fonts:       # List of urls that provide zip downloads
   - http://www.freefontspro.com/d/12524/cartogothic_std.zip
   - http://www.fontsquirrel.com/fonts/download/roboto
@@ -84,12 +75,15 @@ tm_projects:
   - http://gis.researchmaps.net/sample/melbourne.zip
 tm_dev: True                           # if defined, install dev mode
 
+                                      # OSM extract source. Comment out to skip all OSM stuff.
+tm_osmsourceurl: http://download.geofabrik.de/australia-oceania/australia-latest.osm.pbf
+
 # (If using OSRM)
-tm_osrmdir: /mnt/saltymill/osrm
-tm_osrminstances:
+tm_osrminstances:                     # If no instances, OSRM doesn't get installed.
   - { name: Bike, port: 5010, profile: bicycle }
   - { name: Walking, port: 5011, profile: foot }
   # optional: , profilesource: http://...
+tm_osrmdir: /mnt/saltymill/osrm
 
 
 EOF
