@@ -60,12 +60,12 @@ tilemill-dev:
     - user: mapbox
     - group: mapbox
     - name: |
+        # TODO: add git updating.
         git clone --single-branch --branch=master --depth=1 https://github.com/mapbox/tilemill tilemill
         cd tilemill
         npm install
-        mkdir /usr/share/mapbox/project
-        # TODO: add git updating.
-    - unless: test -f /usr/share/tilemill/index.js
+        mkdir -p /usr/share/mapbox/project # -p so no error if it got made already.
+    - unless: test -d /usr/share/tilemill/node_modules
     - require: [ { file: tilemill-dirs}, {pkg: dev-deps}, {pkg: mapnik-pkg} ]
   file.managed:
     - name: /etc/init/tilemill.conf
