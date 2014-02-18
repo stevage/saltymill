@@ -76,7 +76,7 @@ tm_timezone: 'Australia/Melbourne'    # We set the timezone because NeCTAR VMs d
 tm_dir: /mnt/saltymill                # Where to install scripts to.
                                       # Where to download OSM extracts from.
 tm_osmsourceurl: http://download.geofabrik.de/australia-oceania/australia-latest.osm.pbf
-tm_fonts:
+tm_fonts:       # List of zip urls
   - http://www.freefontspro.com/d/12524/cartogothic_std.zip
 # (Optional)
 tm_projects:
