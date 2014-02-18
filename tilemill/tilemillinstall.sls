@@ -42,13 +42,20 @@ dev-deps:
     - names: [ nodejs, git, build-essential, libgtk2.0-dev, libwebkitgtk-dev, 
                protobuf-compiler, libprotobuf-lite7, libprotobuf-dev, libgdal1-dev]
 
+
 mapnik-pkg:
   pkg.installed:
     - names: [ libmapnik-dev, mapnik-utils ]
 
+/usr/share/tilemill:
+  file.directory:
+    - user: mapbox
+    - group: mapbox
+    - mode: 755  
+
 tilemill-dev:
   cmd.run:
-    - cwd: /usr/share/mapbox
+    - cwd: /usr/share
     - user: mapbox
     - group: mapbox
     - name: |
@@ -57,10 +64,11 @@ tilemill-dev:
         unzip tilemill.zip
         mv tilemill-master tilemill
         #}
-        mkdir project
+        
         git clone --single-branch --branch=master --depth=1 https://github.com/mapbox/tilemill tilemill
         cd tilemill
         npm install
+        mkdir /usr/share/mapbox/project
         nohup ./index.js &
   file.managed:
     - name: /etc/init/tilemill.conf
