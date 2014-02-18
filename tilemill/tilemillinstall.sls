@@ -57,10 +57,11 @@ tilemill-dev:
         unzip tilemill.zip
         mv tilemill-master tilemill
         #}
+        mkdir project
         git clone --single-branch --branch=master --depth=1 https://github.com/mapbox/tilemill tilemill
         cd tilemill
         npm install
-        nohup ./index.js 
+        nohup ./index.js &
   file.managed:
     - name: /etc/init/tilemill.conf
     - source: salt://tilemill/init-tilemill.conf    
