@@ -3,7 +3,7 @@
 {{ project }}:
   cmd.run:
     - name: |
-        wget {{ project }}
+        wget -nv {{ project }}
         unzip *.zip   # may sort of conflict with waterpolygons
         rm *.zip
     - cwd: /usr/share/mapbox/project

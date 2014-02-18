@@ -47,11 +47,12 @@ mapnik-pkg:
   pkg.installed:
     - names: [ libmapnik-dev, mapnik-utils ]
 
-/usr/share/tilemill:
+tilemill-dirs:
   file.directory:
     - user: mapbox
     - group: mapbox
-    - mode: 755  
+    - mode: 755
+    - names: [ /usr/share/tilemill, /etc/tilemill ]  
 
 tilemill-dev:
   cmd.run:
@@ -69,7 +70,8 @@ tilemill-dev:
         cd tilemill
         npm install
         mkdir /usr/share/mapbox/project
-        nohup ./index.js &
+        # nohup ./index.js &
+    - unless: test -f /usr/share/tilemill/index.js
   file.managed:
     - name: /etc/init/tilemill.conf
     - source: salt://tilemill/init-tilemill.conf    
@@ -83,9 +85,10 @@ tilemill-dev:
     - group: mapbox
     - template: jinja
     - mode: 644
+{% if pillar.tm_dev is not defined or not pillar.tm_dev %}
     - require:
         - pkg: tilemill
-
+{% endif %}
 tilemill_service:
   service.running:
     - name: tilemill
