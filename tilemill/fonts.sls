@@ -6,7 +6,7 @@ getfonts:
   cmd.run:
     - cwd: /usr/share/fonts/truetype
     - names: {% for font in pillar.tm_fonts %}
-        - "wget --content-disposition '{{font}'"
+        - "wget --content-disposition '{{font}}'"
         {% endfor %}
     - unless what?? unless: test -f '/usr/share/fonts/truetype/*.zip'
 
