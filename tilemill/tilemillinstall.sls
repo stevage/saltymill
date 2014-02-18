@@ -28,6 +28,7 @@ mapbox:
     - present
   user.present:
     - home: /usr/share/mapbox
+    - groups: [ mapbox ]
     - createhome: True
     - fullname: "Mapbox developer account"
 
