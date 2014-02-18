@@ -6,7 +6,7 @@ get_{{ project.name }}:
     - name: |
         wget -nv {{ project.source }} -O {{ project.name }}.zip
         mkdir {{ project.name }}        
-        unzip  {{ project.name }}.zip # Would be nice to unzip into this name, but too hard.
+        unzip -o {{ project.name }}.zip # Would be nice to unzip into this name, but too hard.
         
     - unless: test -d /usr/share/mapbox/project/{{ project.name }}.zip
 {% endfor %}
