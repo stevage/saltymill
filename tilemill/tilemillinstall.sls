@@ -52,9 +52,12 @@ tilemill-dev:
     - user: mapbox
     - group: mapbox
     - name: |
+        {# pity, we can't use this method because of a nodejs post-install version hook. #}
         wget -nv https://github.com/mapbox/tilemill/archive/master.zip -O tilemill.zip
         unzip tilemill.zip
         mv tilemill-master tilemill
+        #}
+        git clone --single-branch --branch=master --depth=1 https://github.com/mapbox/tilemill tilemill
         cd tilemill
         npm install
         nohup ./index.js 
