@@ -44,4 +44,4 @@ initindex:
 # Copy our log script over so that other scripts can call it.
 {{ pillar.tm_dir}}/log.sh:
   file.managed:
-    - source: salt//log.sh
+    - source: salt://log.sh

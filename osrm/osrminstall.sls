@@ -22,7 +22,8 @@ osrm_build:
         mkdir -p build
         cd build
         cmake ..
-        make 
+        make
+    - unless: test -f {{ pillar.tm_osrmdir }}/build/osrm-routed  # Ideally we'd allow rebuilding on git changes?
     - watch: [ git: osrm_repo ] # this trigger not working?
     - require: [ pkg: osrm_deps ]
 
