@@ -27,7 +27,7 @@ osrmweb_repo:
 # Point our new OSRM Web install at our OSRM instance, instead of the default.
 # The file.blockreplace cannot come soon enough.
 configure_osrmweb:
-  cmd.run:
+  cmd.run: 
     - cwd: /usr/share/nginx/www/osrm/WebContent
     - name: |
         python <<EOF
@@ -44,13 +44,13 @@ configure_osrmweb:
               '  timestamp:  "http://{{ grains.fqdn }}:{{ instance.port}}/timestamp",\n' +
               '  metric: 1,\n' +
               '  label: "{{ instance.name }}",\n'
-              '}, \n' +
+              '}, ' +
             {% endfor %}
               r'\2\n', data, flags=re.DOTALL)
             fout.write(data)
         EOF
         echo
-        if [ "`diff OSRM.config.js OSRM.config.js.orig`" ]; then echo "changed=yes"; else echo "changed=no"; fi
+        if [ "`diff -bW OSRM.config.js OSRM.config.js.orig`" ]; then echo "changed=yes"; else echo "changed=no"; fi
     - stateful: True
     #- watch [ git: osrmweb_repo ]
 
