@@ -1,13 +1,14 @@
-{% if pillar['tm_projects'] is defined %}
-{% for project in pillar['tm_projects'] %}
-{{ project }}:
+{% if pillar.tm_projects is defined %}
+{% for project in pillar.tm_projects %}
+get_{{ project.name }}:
   cmd.run:
-    - name: |
-        wget -nv {{ project }}
-        unzip *.zip   # may sort of conflict with waterpolygons
-        rm *.zip
     - cwd: /usr/share/mapbox/project
-    # TODO: figure out how to work out the file name in advance, and hence avoid running this task if needless
+    - name: |
+        wget -nv {{ project.source }} -O {{ project.name }}.zip
+        mkdir {{ project.name }}        
+        unzip  {{ project.name }}.zip # Would be nice to unzip into this name, but too hard.
+        
+    - unless: test -d /usr/share/mapbox/project/{{ project.name }}.zip
 {% endfor %}
 
 projects_logdone:
