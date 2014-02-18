@@ -52,7 +52,7 @@ tilemill-dirs:
     - user: mapbox
     - group: mapbox
     - mode: 755
-    - names: [ /usr/share/tilemill, /etc/tilemill ]  
+    - names: [ /usr/share/tilemill, /etc/tilemill, /var/log/tilemill ]  
 
 tilemill-dev:
   cmd.run:
