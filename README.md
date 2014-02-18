@@ -26,6 +26,12 @@ Typical usage:
 ```
 wget -O - http://bootstrap.saltstack.org | sudo sh
 
+#*Skip the next two lines if in masterless mode* 
+m=INSERT.YOUR.SALTMASTER.HOSTNAME.HERE
+echo master: $m | sudo tee -a /etc/salt/minion 
+
+#Continue here for both master and masterless:
+
 sudo tee -a /etc/salt/minion <<EOF
 grains:
   fqdn: `curl http://ifconfig.me` # Nginx needs to know the server's actual IP.
@@ -35,8 +41,6 @@ grains:
     - osrm                        # Optional: OSRM routing engine. (requires osm)
 EOF
 
-*Skip the next line if in masterless mode* 
-echo master: <<<INSERT YOUR SALTMASTER IP/FQDN HERE>>> | sudo tee -a /etc/salt/minion 
 
 sudo service salt-minion restart
 ```
