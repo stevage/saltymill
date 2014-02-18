@@ -34,7 +34,7 @@ mapbox:
 
 dev-ppas:
   pkgrepo.managed:
-    - names: [  ppa:chris-lea/node.js, ppa:mapnik/v2.2.0 ]
+    - names: [ 'ppa:chris-lea/node.js' , 'ppa:mapnik/v2.2.0' ]
 
 dev-deps:
   pkg.installed: 
