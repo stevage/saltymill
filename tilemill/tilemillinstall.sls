@@ -34,6 +34,10 @@ mapbox:
 
 
 dev-ppas:
+  cmd.script:
+    - source: salt://log.sh
+    - args: "Getting dependencies for dev-mode Tilemill installed. This will take a while."
+    - prereq: [ pkgrepo: dev-ppas ]        
   pkgrepo.managed:
     - names: [ 'ppa:chris-lea/node.js' , 'ppa:mapnik/v2.2.0' ]
 
@@ -85,7 +89,7 @@ tilemill-dev:
     - template: jinja
     - mode: 644
     {% if pillar.tm_dev is not defined or not pillar.tm_dev %}
-      - require: [ pkg: tilemill ]
+    - require: [ pkg: tilemill ]
     {% endif %}
 tilemill_service:
   service.running:
