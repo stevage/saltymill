@@ -15,7 +15,7 @@ server {
         proxy_set_header Host $http_host;
         proxy_pass http://127.0.0.1:20008;
     }
-    {% if pillar['tm_osrmport'] is defined %}
+    {% if pillar['tm_osrminstances'] is defined %}
     {# Hopefully this means the osrm line only gets included if OSRM is being installed. #}
     location /osrm/ {
       #try_files $uri $uri/main.html;
