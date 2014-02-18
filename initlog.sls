@@ -1,13 +1,13 @@
-# We copy the log template itself over so we can template with it at the end of the run. I know!
+{## We copy the log template itself over so we can template with it at the end of the run. I know!
 copytemplate:
   file.managed:
     - name: {{ pillar.tm_dir}}/initindex.html
     - source: salt://initindex.html    
-
+#}
 initindex:
   file.managed:
     - name: /var/log/salt/index.html
-    - source: {{ pillar.tm_dir}}/initindex.html
+    - source: salt://initindex.html
     - template: jinja
     - context:
         buildtitle: "Your server is building"
