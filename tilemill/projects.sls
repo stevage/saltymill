@@ -1,3 +1,5 @@
+# Download any arbitrary zipped project files and unzip them.
+# TODO: figure out how to make them 'favourites'
 {% if pillar.tm_projects is defined %}
 {% for project in pillar.tm_projects %}
 get_{{ project.name }}:

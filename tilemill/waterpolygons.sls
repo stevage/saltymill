@@ -1,3 +1,5 @@
+# Install water polygon shapefile. This is needed for working with OpenStreetMap data extracts.
+# TODO: figure out how to make the shapefile a 'favourite'
 waterpoly:
   pkg.installed:
     - names: 

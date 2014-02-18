@@ -124,7 +124,7 @@ sudo salt '*' state.highstate
 ```
 
 ### Watch it build
-You can watch the progress of your server being built. Go to http://<serverip>/saltymill
+You can watch the progress of your server being built. Go to `http://<serverip>/saltymill`
 
 ### Using launcher.sh
 If your SSH is set up so that you can connect to your minions with no arguments ("ssh mmyminion"), then you can use launcher.sh:
