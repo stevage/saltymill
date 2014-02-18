@@ -40,3 +40,8 @@ initindex:
   cmd.wait_script:
     - source: salt://log.sh
     - args: "'Building your new server...'"
+
+# Copy our log script over so that other scripts can call it.
+{{ pillar.tm_dir}}/log.sh:
+  file.managed:
+    - source: salt//log.sh

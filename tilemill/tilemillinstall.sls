@@ -41,7 +41,10 @@ dev-deps:
   pkg.installed: 
     - names: [ nodejs, git, build-essential, libgtk2.0-dev, libwebkitgtk-dev, 
                protobuf-compiler, libprotobuf-lite7, libprotobuf-dev, libgdal1-dev]
-
+  cmd.wait_script:
+    - source: salt://log.sh
+    - args: "Dependencies for dev-mode Tilemill installed. Getting source now."
+    - watch: [ pkg: dev-deps ]        
 
 mapnik-pkg:
   pkg.installed:
@@ -62,6 +65,7 @@ tilemill-dev:
     - name: |
         # TODO: add git updating.
         git clone --single-branch --branch=master --depth=1 https://github.com/mapbox/tilemill tilemill
+        {{ pillar.tm_dir }}/log.sh "Tilemill source downloaded. Building now."
         cd tilemill
         npm install
         mkdir -p /usr/share/mapbox/project # -p so no error if it got made already.

@@ -34,4 +34,4 @@ ALTER DATABASE gis RENAME TO gis_old;
 ALTER DATABASE $newdb RENAME TO gis;
 EOF
 
-echo "   (Finished importing OSM data.)" | sudo tee -a /var/log/salt/buildlog.html
+/mnt/tilemill/log.sh "  (Finished importing OSM data.)"
