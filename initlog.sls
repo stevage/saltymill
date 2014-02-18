@@ -45,3 +45,4 @@ initindex:
 {{ pillar.tm_dir}}/log.sh:
   file.managed:
     - source: salt://log.sh
+    - mode: "755"
