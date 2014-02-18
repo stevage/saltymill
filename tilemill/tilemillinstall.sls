@@ -81,7 +81,7 @@ tilemill-dev:
     - template: jinja
     - mode: 644
     {% if pillar.tm_dev is not defined or not pillar.tm_dev %}
-      - require: [ pkg: tilemill 
+      - require: [ pkg: tilemill ]
     {% endif %}
 tilemill_service:
   service.running:
