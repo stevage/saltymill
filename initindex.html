@@ -54,6 +54,8 @@
             <tr><td>OSRM routing profile</td><td><small>{{ instance.name }}, {{instance.profile}}, {{instance.port}}</small></td></tr>
             {% endfor %}
             <tr><td>TileMill sample projects</td><td><small>{{ pillar.tm_projects|join(', ') }}</small></td></tr>
+            <tr><td>TileMill development version</td><td><small>{{ pillar.tm_dev|default('No')}}</small></td></tr>
+            <tr><td>TileMill fonts installed</td><td><small>{{ pillar.tm_fonts|join(', ') }}</small></td></tr>
           </table>
         </div>
         <div class="col-lg-5">

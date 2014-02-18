@@ -33,7 +33,7 @@ echo master: $m | sudo tee -a /etc/salt/minion
 #Continue here for both master and masterless:
 
 # Nginx needs to know the server's actual IP.
-sudo tee -a /etc/salt/grains fqdn: `curl http://ifconfig.me` 
+echo fqdn: `curl http://ifconfig.me` | sudo tee /etc/salt/grains 
 
 sudo service salt-minion restart
 ```
@@ -73,7 +73,8 @@ tm_fonts:       # List of urls that provide zip downloads
 # (Optional)
 tm_projects:
   - http://gis.researchmaps.net/sample/melbourne.zip
-tm_dev: True                           # if defined, install dev mode
+tm_dev: True                          # Install the development version of TileMill. This has newer features 
+                                      # but may be less stable. No stock sample projects included.
 
                                       # OSM extract source. Comment out to skip all OSM stuff.
 tm_osmsourceurl: http://download.geofabrik.de/australia-oceania/australia-latest.osm.pbf

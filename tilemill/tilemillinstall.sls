@@ -64,8 +64,9 @@ tilemill-dev:
         cd tilemill
         npm install
         mkdir /usr/share/mapbox/project
-        # nohup ./index.js &
+        # TODO: add git updating.
     - unless: test -f /usr/share/tilemill/index.js
+    - require [ file: tilemill-dirs, pkg: dev-deps, pkg: mapnik-pkg ]
   file.managed:
     - name: /etc/init/tilemill.conf
     - source: salt://tilemill/init-tilemill.conf    
@@ -79,15 +80,19 @@ tilemill-dev:
     - group: mapbox
     - template: jinja
     - mode: 644
-{% if pillar.tm_dev is not defined or not pillar.tm_dev %}
-    - require:
-        - pkg: tilemill
-{% endif %}
+    {% if pillar.tm_dev is not defined or not pillar.tm_dev %}
+      - require: [ pkg: tilemill 
+    {% endif %}
 tilemill_service:
   service.running:
     - name: tilemill
     - enable: True
     - watch: [ file: /etc/tilemill/tilemill.config ]
+    {% if pillar.tm_dev is not defined or not pillar.tm_dev %}
+    - require: [ pkg: tilemill ]
+    {% else %}
+    - require: [ file: tilemill-dev, cmd: tilemill-dev ]
+    {% endif %}
 
 tilemill_logdone:
   cmd.wait_script:
