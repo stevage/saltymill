@@ -11,7 +11,7 @@ getfont_{{font}}:
 {% endfor %}
 
 unzip_fonts:
-  cmd.run
+  cmd.run:
     - cwd: /usr/share/fonts/truetype
     - name: "unzip -d . -o *.zip"
     - require: [ { pkg: prereqs } ]
