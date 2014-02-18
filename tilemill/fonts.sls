@@ -11,10 +11,11 @@ getfonts:
     - unless: test "`find /usr/share/fonts/truetype -iname '*.zip'`"
 
 unzip_fonts:
-  cmd.run:
+  cmd.wait:
     - cwd: /usr/share/fonts/truetype
     - name: "unzip -d . -o '*.zip'"
-    - require: [ pkg: prereqs, cmd: getfonts ]
+    - require: [ pkg: prereqs ]
+    - wait: [ cmd: getfonts ]
 
 fonts_logdone:
   cmd.wait_script:
