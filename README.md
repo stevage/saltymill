@@ -82,6 +82,7 @@ tm_fonts:       # List of urls that provide zip downloads
 # (Optional)
 tm_projects:
   - http://gis.researchmaps.net/sample/melbourne.zip
+tm_dev: True                           # if defined, install dev mode
 
 # (If using OSRM)
 tm_osrmdir: /mnt/saltymill/osrm
