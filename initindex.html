@@ -50,7 +50,9 @@
           <h4>Configuration</h4>
           <table class="table table-condensed table-striped">
             <tr><td>OSM extract source</td><td><small>{{ pillar.tm_osmsourceurl }}</small></td></tr>
-            <tr><td>OSRM routing profile</td><td><small>{{ pillar.tm_osrmprofile }}</small></td></tr>
+            {% for instance in pillar.tm_osrminstances }}
+            <tr><td>OSRM routing profile</td><td><small>{{ instance.name }}, {{instance.profile}}, {{instance.port}}</small></td></tr>
+            {% endfor %}
             <tr><td>TileMill sample projects</td><td><small>{{ pillar.tm_projects|join(', ') }}</small></td></tr>
           </table>
         </div>
