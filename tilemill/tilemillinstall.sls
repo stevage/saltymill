@@ -51,12 +51,12 @@ tilemill-dev:
     - user: mapbox
     - group: mapbox
     - name: |
-      wget -nv https://github.com/mapbox/tilemill/archive/master.zip -O tilemill.zip
-      unzip tilemill.zip
-      mv tilemill-master tilemill
-      cd tilemill
-      npm install
-      nohup ./index.js 
+        wget -nv https://github.com/mapbox/tilemill/archive/master.zip -O tilemill.zip
+        unzip tilemill.zip
+        mv tilemill-master tilemill
+        cd tilemill
+        npm install
+        nohup ./index.js 
   file.managed:
     - name: /etc/init/tilemill.conf
     - source: salt://tilemill/init-tilemill.conf    
