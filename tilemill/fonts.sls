@@ -5,7 +5,7 @@ prereqs:
 getfonts:
   cmd.run:
     - cwd: /usr/share/fonts/truetype
-    - name: "wget --content-disposition '{{pillar.tm_fonts|join(' ')}}'"
+    - name: "wget --content-disposition {{pillar.tm_fonts|join(' ')}}"
     - unless what?? unless: test -f '/usr/share/fonts/truetype/*.zip'
 
 unzip_fonts:
