@@ -71,6 +71,8 @@ tm_dbpassword: ubuntu                 # and used to load data with. It doesn't g
 tm_postgresdir: /mnt/var/lib          # Directory to move Postgres to (ie, big, non-ephemeral drive).
 tm_timezone: 'Australia/Melbourne'    # We set the timezone because NeCTAR VMs don't have it set.
 tm_dir: /mnt/saltymill                # Where to install scripts to.
+tm_dev: True                          # Install the development version of TileMill. This has newer features 
+                                      # but may be less stable. No stock sample projects included.
 tm_fonts:       # List of urls that provide zip downloads
   - http://www.freefontspro.com/d/12524/cartogothic_std.zip
   - http://www.fontsquirrel.com/fonts/download/roboto
@@ -83,18 +85,20 @@ tm_projects:
                                       # Sample projects to unzip in /usr/share/mapbox/project. Name required but not used for much.
   - { name: mapstarter, source: "http://gis.researchmaps.net/sample/map-starter.zip" }
   #- { name: melbourne, source: http://gis.researchmaps.net/sample/melbourne.zip } 
-tm_dev: True                          # Install the development version of TileMill. This has newer features 
-                                      # but may be less stable. No stock sample projects included.
 
                                       # OSM extract source. Comment out to skip all OSM stuff.
 tm_osmsourceurl: http://download.geofabrik.de/australia-oceania/australia-latest.osm.pbf
+# For a much quicker test build, try tm_osmsourceurl: http://download.geofabrik.de/asia/azerbaijan-latest.osm.pbf
 
 # (Optional: the Open Source Routing Machine)
 # NB: OSRM instances require a lot of memory, most of which has been allocated to Postgres.
 tm_osrminstances:                     # If no instances, OSRM doesn't get installed.
   - { name: Bike, port: 5010, profile: bicycle }
   - { name: Walking, port: 5011, profile: foot }
-  # optional: , profilesource: http://...
+  # name: Text displayed in the OSRM web interface
+  # port: The port OSRM listens on for this instances
+  # profile: The included .lua file (one of car, foot, bicycle )
+  # profilesource (optional, untested): URL to download a different .lua file from http://...
 tm_osrmdir: /mnt/saltymill/osrm
 
 
