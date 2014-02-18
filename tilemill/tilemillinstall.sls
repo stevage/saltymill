@@ -47,7 +47,9 @@ mapnik-pkg:
 
 tilemill-dev:
   cmd.run:
-    - cwd: {{ /usr/share }}
+    - cwd: /usr/share/mapbox
+    - user: mapbox
+    - group: mapbox
     - name: |
       wget -nv https://github.com/mapbox/tilemill/archive/master.zip -O tilemill.zip
       unzip tilemill.zip
