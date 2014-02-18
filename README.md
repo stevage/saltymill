@@ -81,12 +81,15 @@ tm_dev: True                          # Install the development version of TileM
                                       # OSM extract source. Comment out to skip all OSM stuff.
 tm_osmsourceurl: http://download.geofabrik.de/australia-oceania/australia-latest.osm.pbf
 
-# (If using OSRM)
+# (Optional: the Open Source Routing Machine)
+# NB: OSRM instances require a lot of memory, most of which has been allocated to Postgres.
 tm_osrminstances:                     # If no instances, OSRM doesn't get installed.
   - { name: Bike, port: 5010, profile: bicycle }
   - { name: Walking, port: 5011, profile: foot }
   # optional: , profilesource: http://...
 tm_osrmdir: /mnt/saltymill/osrm
+
+
 
 
 EOF
@@ -110,3 +113,12 @@ sudo salt '*' state.highstate
 
 ### Watch it build
 You can watch the progress of your server being built. Go to http://<serverip>/saltymill
+
+### Using launcher.sh
+If your SSH is set up so that you can connect to your minions with no arguments ("ssh mmyminion"), then you can use launcher.sh:
+
+```
+./launcher.sh minion1 minion2
+# ... wait ...
+ssh saltmaster "yes | salt-key"
+ssh saltmaster "salt '*' state.highstate"
