@@ -106,4 +106,5 @@ yes | sudo salt-key -A
 sudo salt '*' state.highstate
 ```
 
-You can watch the progress of your server being built, by going to http://<serverip>/saltymill
+### Watch it build
+You can watch the progress of your server being built. Go to http://<serverip>/saltymill
