@@ -73,7 +73,7 @@ tm_fonts:       # List of urls that provide zip downloads
 # (Optional)
 tm_projects:
                                       # Sample projects to unzip in /usr/share/mapbox/project. Name required but not used for much.
-  - { name: mapstarter, source: http://gis.researchmaps.net/sample/map-starter.zip }
+  - { name: mapstarter, source: "http://gis.researchmaps.net/sample/map-starter.zip" }
   #- { name: melbourne, source: http://gis.researchmaps.net/sample/melbourne.zip } 
 tm_dev: True                          # Install the development version of TileMill. This has newer features 
                                       # but may be less stable. No stock sample projects included.
