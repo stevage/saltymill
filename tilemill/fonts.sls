@@ -6,7 +6,7 @@ getfonts:
   cmd.run:
     - cwd: /usr/share/fonts/truetype
     - name: |
-        {% for font in pillar.tm_fonts %}wget --content-disposition '{{font}}' ;  {% endfor %}
+        {% for font in pillar.tm_fonts %}wget -nv --content-disposition '{{font}}' ;  {% endfor %}
     - unless: test "`find /usr/share/fonts/truetype -iname '*.zip'`"
 
 unzip_fonts:
