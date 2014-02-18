@@ -8,7 +8,7 @@ getfonts:
     - names: {% for font in pillar.tm_fonts %}
         - "wget --content-disposition '{{font}}'"
         {% endfor %}
-    - unless: test -f '/usr/share/fonts/truetype/*.zip'
+    - unless: test `find /usr/share/fonts/truetype -iname '*.zip'`
 
 unzip_fonts:
   cmd.run:
