@@ -87,8 +87,10 @@ tm_projects:
   #- { name: melbourne, source: http://gis.researchmaps.net/sample/melbourne.zip } 
 
                                       # OSM extract source. Comment out to skip all OSM stuff.
-tm_osmsourceurl: http://download.geofabrik.de/australia-oceania/australia-latest.osm.pbf
-# For a much quicker test build, try tm_osmsourceurl: http://download.geofabrik.de/asia/azerbaijan-latest.osm.pbf
+# For a quick test build, try 
+tm_osmsourceurl: http://download.geofabrik.de/asia/azerbaijan-latest.osm.pbf
+# For the full Australian extract (adds an hour or so to the build time): 
+# tm_osmsourceurl: http://download.geofabrik.de/australia-oceania/australia-latest.osm.pbf
 
 # (Optional: the Open Source Routing Machine)
 # NB: OSRM instances require a lot of memory, most of which has been allocated to Postgres.
