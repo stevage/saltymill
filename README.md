@@ -22,7 +22,7 @@ half an hour or more, possibly much more, depending on machine configuration and
 On a clean Ubuntu Quantal VM, run this command:
 
 ```
-curl -Ls https://raw.github.com/stevage/saltymill/master/turbo.sh | sudo bash
+curl -Ls https://raw.github.com/stevage/saltymill/master/turbo.sh > turbo.sh && bash ./turbo.sh
 ```
 
 You'll be prompted to edit the settings file, which is commented. Follow output at http://SERVERNAME/saltymill
