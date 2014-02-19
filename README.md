@@ -32,7 +32,7 @@ sudo service salt-minion restart
 
 \# Install these scripts:
 ```
-sudo apt-get install -y git && 
+sudo apt-get install -qy git && 
 sudo git clone https://github.com/stevage/saltymill /srv/salt
 ```
 
@@ -73,7 +73,7 @@ sudo service salt-minion restart
 
 \#Install these scripts:
 ```
-sudo apt-get install -y git && 
+sudo apt-get install -qy git && 
 sudo git clone https://github.com/stevage/saltymill /srv/salt
 ```
 
