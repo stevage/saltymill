@@ -13,3 +13,6 @@ tilestream_git:
   file.managed:
     - source: salt://tilestream/init-tilestream.conf
     - template: jinja
+
+tilestream:
+  service.running
