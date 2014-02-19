@@ -44,5 +44,4 @@ tm_osrminstances:                     # If no instances, OSRM doesn't get instal
   # profilesource (optional, untested): URL to download a different .lua file from http://...
 tm_osrmdir: /mnt/saltymill/osrm
 
-tm_tilestreamtileport: 8888
-tm_tilestreamuiport: 8888
+tm_tilestreamport: 5500               # The port to serve both tiles and UI for TileStream
