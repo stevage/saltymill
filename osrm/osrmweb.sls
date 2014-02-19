@@ -27,36 +27,14 @@ osrmweb_repo:
 # Point our new OSRM Web install at our OSRM instance, instead of the default.
 # The file.blockreplace cannot come soon enough.
 configure_osrmweb:
-  cmd.run: 
+  cmd.script: 
     - cwd: /usr/share/nginx/www/osrm/WebContent
-    - name: |
-        python <<EOF
-        import os, sys, re
-        os.rename('OSRM.config.js', 'OSRM.config.js.orig')
-        # In the process we convert line endings for some reason. :/
-        with open('OSRM.config.js.orig', 'r') as fin, open('OSRM.config.js', 'w') as fout:
-            data = fin.read()
-            
-            data = re.sub(r'(ROUTING_ENGINES: \[).*?(\s+\],)', r'\1\n' +
-            {% for instance in pillar.tm_osrminstances %}
-              '{\n' + 
-              '  url: "http://{{ grains.fqdn }}:{{ instance.port}}/viaroute",\n' +
-              '  timestamp:  "http://{{ grains.fqdn }}:{{ instance.port}}/timestamp",\n' +
-              '  metric: 1,\n' +
-              '  label: "{{ instance.name }}",\n'
-              '}, ' +
-            {% endfor %}
-              r'\2\n', data, flags=re.DOTALL)
-            {% if pillar.tm_osrmlayers is defined %}
-            data = re.sub(r'(TILE_SERVERS: \[).*?(\s+\],)', r'\1\n' +
-            """{{ pillar.tm_osrmlayers }}""" + 
-              r'\2\n', data, flags=re.DOTALL)
-            {% endif %}
-            fout.write(data)
-        EOF
-        echo
-        if [ "`diff -bW OSRM.config.js OSRM.config.js.orig`" ]; then echo "changed=yes"; else echo "changed=no"; fi
-    - stateful: True
+    - source: salt://osrm/osrm_textsub.py
+    - template: jinja
+    #- name: |
+    #    echo
+    #    if [ "`diff -bW OSRM.config.js OSRM.config.js.orig`" ]; then echo "changed=yes"; else echo "changed=no"; fi
+    #- stateful: True
     #- watch [ git: osrmweb_repo ]
 
 
