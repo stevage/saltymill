@@ -1,7 +1,12 @@
 include:
   - .tilemillinstall
+    {% if pillar.tm_fonts is defined %}
   - .fonts
-  {% if pillar.tm_waterpolygonsource is defined %}
+    {% endif %}
+    {% if pillar.tm_waterpolygonsource is defined %}
   - .waterpolygons
-  {% endif %}
+    {% endif %}
+    {% if pillar.tm_projects is defined %}
   - .projects
+    {% endif %}
+  

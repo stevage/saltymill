@@ -2,13 +2,13 @@
 
 tm_username: tm                       # Username/password for basic htpasswd authentication
 tm_password: pumpkin                  
-tm_dbusername: ubuntu                 # Postgres username/password that will be created
-tm_dbpassword: ubuntu                 # and used to load data with. It doesn't get external access.
-tm_postgresdir: /mnt/var/lib          # Directory to move Postgres to (ie, big, non-ephemeral drive).
 tm_timezone: 'Australia/Melbourne'    # We set the timezone because NeCTAR VMs don't have it set.
 tm_dir: /mnt/saltymill                # Where to install scripts to.
-tm_dev: True                          # Install the development version of TileMill. This has newer features 
-                                      # but may be less stable. No stock sample projects included.
+tm_dev: False                         # Install the development version of TileMill. This has newer features 
+                                      # but may be less stable. No stock sample projects included. Also much
+                                      # slower to build, as it must be compiled from source.
+
+
 tm_fonts:       # List of urls that provide zip downloads
   - http://www.freefontspro.com/d/12524/cartogothic_std.zip
   - http://www.fontsquirrel.com/fonts/download/roboto
@@ -22,6 +22,11 @@ tm_projects:
   - { name: mapstarter, source: "http://gis.researchmaps.net/sample/map-starter.zip" }
   #- { name: melbourne, source: http://gis.researchmaps.net/sample/melbourne.zip } 
 
+# OpenStreetMap/PostGIS settings
+
+tm_dbusername: ubuntu                 # Postgres username/password that will be created
+tm_dbpassword: ubuntu                 # and used to load data with. It doesn't get external access.
+tm_postgresdir: /mnt/var/lib          # Directory to move Postgres to (ie, big, non-ephemeral drive).
                                       # OSM extract source. Comment out to skip all OSM stuff.
 # For a quick test build, try 
 tm_osmsourceurl: http://download.geofabrik.de/asia/azerbaijan-latest.osm.pbf
