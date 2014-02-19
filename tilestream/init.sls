@@ -14,6 +14,11 @@ tilestream_git:
     - source: salt://tilestream/init-tilestream.conf
     - template: jinja
 
+/var/log/salt/tilestream.log:
+  file.managed:
+    - user: mapbox
+    - group: mapbox
+
 tilestream:
   service.running:
     - enable: True
