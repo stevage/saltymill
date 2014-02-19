@@ -15,4 +15,5 @@ tilestream_git:
     - template: jinja
 
 tilestream:
-  service.running
+  service.running:
+    - enable: True
