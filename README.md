@@ -26,7 +26,7 @@ carry out the installation.
 ```
 wget -nv -O - http://bootstrap.saltstack.org | sudo sh
 # Nginx needs to know the server's actual IP.
-echo fqdn: `curl http://ifconfig.me` | sudo tee /etc/salt/grains 
+echo fqdn: `curl -s http://ifconfig.me` | sudo tee /etc/salt/grains > /dev/null
 sudo service salt-minion restart
 ```
 
@@ -105,7 +105,7 @@ wget -nv -O - http://bootstrap.saltstack.org | sudo sh
 echo master: $m | sudo tee -a /etc/salt/minion 
 
 # Nginx needs to know the server's actual IP.
-echo fqdn: `curl http://ifconfig.me` | sudo tee /etc/salt/grains 
+echo fqdn: `curl -s http://ifconfig.me` | sudo tee /etc/salt/grains > /dev/null
 
 sudo service salt-minion restart
 ```
