@@ -17,12 +17,21 @@ tilestream_git:
     - target: {{pillar.tm_dir}}/tilestream
     - user: mapbox
 
+
+tilestream_nodeenv:
+  cmd.run:
+    - name: nodeenv env --node=0.8.15 # Whoa, this step is slow.
+    - cwd: {{pillar.tm_dir}}/tilestream
+    - user: mapbox
+    - require: [ git: tilestream_git, pip: nodeenv ]
+    - unless: test -f {{pillar.tm_dir}}/tilestream/env/bin/activate
+
+
 tilestream_install:
   cmd.wait:
     - cwd: {{pillar.tm_dir}}/tilestream
     - user: mapbox
     - name: |
-        nodeenv env --node=0.8.15 # Whoa, this step is slow.
         . env/bin/activate
         npm install
   watch: [ git: tilestream_git ]
@@ -33,10 +42,11 @@ tilestream_install:
     - template: jinja
 
 /var/log/salt/tilestream.log:
-  file.managed:
+  file.present:
     - user: mapbox
     - group: mapbox
 
 tilestream:
   service.running:
     - enable: True
+    - watch: [ file: /etc/init/tilestream.conf ]
