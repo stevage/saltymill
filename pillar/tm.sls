@@ -43,3 +43,6 @@ tm_osrminstances:                     # If no instances, OSRM doesn't get instal
   # profile: The included .lua file (one of car, foot, bicycle )
   # profilesource (optional, untested): URL to download a different .lua file from http://...
 tm_osrmdir: /mnt/saltymill/osrm
+
+tm_tilestreamtileport: 8888
+tm_tilestreamuiport: 8888
