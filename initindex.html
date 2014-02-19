@@ -50,9 +50,9 @@
           <h4>Configuration</h4>
           <table class="table table-condensed table-striped">
             <tr><td>OSM extract source</td><td><small>{{ pillar.tm_osmsourceurl|default('N/A') }}</small></td></tr>
-            {% for instance in pillar.tm_osrminstances %}
+            {% if pillar.tm_osrminstances is defined %}{% for instance in pillar.tm_osrminstances %}
             <tr><td>OSRM routing profile</td><td><small>{{ instance.name }}, {{instance.profile}}, {{instance.port}}</small></td></tr>
-            {% endfor %}
+            {% endfor %}{% endif %}
             <tr><td>TileMill sample projects</td><td><small>{{ pillar.tm_projects|default('N/A')|join(', ') }}</small></td></tr>
             <tr><td>TileMill development version</td><td><small>{{ pillar.tm_dev|default('No')}}</small></td></tr>
             <tr><td>TileMill fonts installed</td><td><small>{{ pillar.tm_fonts|default('N/A')|join(', ') }}</small></td></tr>
@@ -66,4 +66,4 @@
       </div>
     </div>
   </body>
-</html>
+</html> 
