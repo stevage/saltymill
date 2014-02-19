@@ -48,7 +48,7 @@ tm_osrmdir: /mnt/saltymill/osrm
 tm_osrmlayers: |
           { display_name: 'MapQuest',
             url:'http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png',
-            attribution:'Data (c) <a href="http://www.openstreetmap.org/copyright/en">OpenStreetMap</a> contributors (ODbL), Imagery © <a href="http://www.mapquest.de/">MapQuest</a>',
+            attribution:'Data (c) <a href="http://www.openstreetmap.org/copyright/en">OpenStreetMap</a> contributors (ODbL), Imagery (c) <a href="http://www.mapquest.de/">MapQuest</a>',
             options:{maxZoom: 18, subdomains: '1234'}
           },
 
