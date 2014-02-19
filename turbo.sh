@@ -7,7 +7,7 @@ echo fqdn: `curl -s http://ifconfig.me` | sudo tee /etc/salt/grains > /dev/null
 sudo service salt-minion restart
 
 sudo apt-get install -qqy git && 
-sudo git clone --quiet --branch stable --depth 1 https://github.com/stevage/saltymill /srv/salt
+sudo git clone --quiet --branch ${branch:-stable} --depth 1 https://github.com/stevage/saltymill /srv/salt
 
 cd /srv/salt
 sudo cp -R pillar /srv/
