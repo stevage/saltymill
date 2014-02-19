@@ -18,6 +18,15 @@ It's a conversion of http://github.com/stevage/tilemill-server
 Building a machine with the three main components takes a few minutes. Adding OSM and OSRM can take
 half an hour or more, possibly much more, depending on machine configuration and extract size.
 
+# Turbo one-VM installer
+On a clean Ubuntu Quantal VM, run this command:
+
+```
+curl -Ls https://raw.github.com/stevage/saltymill/master/turbo.sh | sudo bash
+```
+
+You'll be prompted to edit the settings file, which is commented. Follow output at http://SERVERNAME/saltymill
+
 # Set up one VM
 This is the easier way to run Salt: "masterless minion". The Salt "minion" is installed, then it drives itself to
 carry out the installation.
