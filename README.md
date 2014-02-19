@@ -18,13 +18,13 @@ It's a conversion of http://github.com/stevage/tilemill-server
 Building a machine with the three main components takes a few minutes. Adding OSM and OSRM can take
 half an hour or more, possibly much more, depending on machine configuration and extract size.
 
-# Setting up one VM
+# Set up one VM
 This is the easier way to run Salt: "masterless minion". The Salt "minion" is installed, then it drives itself to
 carry out the installation.
 
 ### On a clean Ubuntu Quantal VM
 ```
-wget -nv -O - http://bootstrap.saltstack.org | sudo sh
+curl -Ls http://bootstrap.saltstack.org | sudo sh
 # Nginx needs to know the server's actual IP.
 echo fqdn: `curl -s http://ifconfig.me` | sudo tee /etc/salt/grains > /dev/null
 sudo service salt-minion restart
@@ -32,8 +32,8 @@ sudo service salt-minion restart
 
 \# Install these scripts:
 ```
-sudo apt-get install -qy git && 
-sudo git clone https://github.com/stevage/saltymill /srv/salt
+sudo apt-get install -qqy git && 
+sudo git clone --quiet --depth 1 https://github.com/stevage/saltymill /srv/salt
 ```
 
 \# Set up pillar properties:
@@ -43,20 +43,21 @@ sudo cp -R pillar /srv/
 # Edit /srv/pillar/tm.sls now. Comments are in the file.
 ```
 
+\# Build!
 ```
 sudo salt-call --local state.highstate -l info
 ```
 ### Watch it build
 You can watch the progress of your server being built. Go to `http://<serverip>/saltymill`
 
-## Master & minion setup
+# Set up several "minion" VMs
 In this set up, multiple Salt "minions" can be set up by a single Salt Master. You will need one VM each. This is the way to go if you need to build a bunch of servers for a workshop or something. Later, you can roll out any configuration choanges: modify /srv/pillar/tm.sls on the Master, then run `salt state.highstate`.
 
 ### On each minion (clean Ubuntu Quantal VM):
 ```
 m=INSERT.YOUR.SALTMASTER.HOSTNAME.HERE
 
-wget -nv -O - http://bootstrap.saltstack.org | sudo sh
+curl -Ls http://bootstrap.saltstack.org | sudo sh
 echo master: $m | sudo tee -a /etc/salt/minion 
 
 # Nginx needs to know the server's actual IP.
@@ -69,12 +70,14 @@ sudo service salt-minion restart
 
 \#Install Salt:
 
-`curl -L http://bootstrap.saltstack.org | sudo sh -s -- -M -N`
+```
+curl -Ls http://bootstrap.saltstack.org | sudo sh -s -- -M -N
+```
 
 \#Install these scripts:
 ```
-sudo apt-get install -qy git && 
-sudo git clone https://github.com/stevage/saltymill /srv/salt
+sudo apt-get install -qqy git && 
+sudo git clone --quiet --depth 1 https://github.com/stevage/saltymill /srv/salt
 ```
 
 \#Set up pillar properties:
