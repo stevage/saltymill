@@ -18,32 +18,24 @@ It's a conversion of http://github.com/stevage/tilemill-server
 Building a machine with the three main components takes a few minutes. Adding OSM and OSRM can take
 half an hour or more, possibly much more, depending on machine configuration and extract size.
 
-## Single-server setup
+# Setting up one VM
 This is the easier way to run Salt: "masterless minion". The Salt "minion" is installed, then it drives itself to
 carry out the installation.
 
 ### On a clean Ubuntu Quantal VM
 ```
-wget -O - http://bootstrap.saltstack.org | sudo sh
-
-#*Skip the next two lines if in masterless mode* 
-[ $m ] || m=INSERT.YOUR.SALTMASTER.HOSTNAME.HERE
-echo master: $m | sudo tee -a /etc/salt/minion 
-
-#Continue here for both master and masterless:
-
+wget -nv -O - http://bootstrap.saltstack.org | sudo sh
 # Nginx needs to know the server's actual IP.
 echo fqdn: `curl http://ifconfig.me` | sudo tee /etc/salt/grains 
-
 sudo service salt-minion restart
 ```
 
-# Install these scripts:
+\# Install these scripts:
 ```
 sudo apt-get install -y git && sudo git clone https://github.com/stevage/saltymill /srv/salt
 ```
 
-#Set up pillar properties:
+\# Set up pillar properties:
 
 ```
 sudo mkdir /srv/pillar
@@ -95,8 +87,6 @@ tm_osrmdir: /mnt/saltymill/osrm
 EOF
 ```
 
-*If running masterless:*
-
 ```
 cd /srv/salt
 sudo salt-call --local state.highstate -l info
@@ -107,13 +97,9 @@ You can watch the progress of your server being built. Go to `http://<serverip>/
 ## Master & minion setup
 In this set up, multiple Salt "minions" can be set up by a single Salt Master. You will need one VM each. This is the way to go if you need to build a bunch of servers for a workshop or something. Later, you can roll out any configuration choanges: modify /srv/pillar/tm.sls on the Master, then run `salt state.highstate`.
 
-
-### Using launcher.sh
-If your SSH is set up so that you can connect to your minions with no arguments ("ssh mmyminion"), then you can use launcher.sh:
-
 ### On each minion (clean Ubuntu Quantal VM):
 ```
-wget -O - http://bootstrap.saltstack.org | sudo sh
+wget -nv -O - http://bootstrap.saltstack.org | sudo sh
 
 [ $m ] || m=INSERT.YOUR.SALTMASTER.HOSTNAME.HERE
 echo master: $m | sudo tee -a /etc/salt/minion 
@@ -124,18 +110,18 @@ echo fqdn: `curl http://ifconfig.me` | sudo tee /etc/salt/grains
 sudo service salt-minion restart
 ```
 
-### On the saltmaster (or the same VM if masterless):
+### On the Saltmaster (any VM):
 
-#Install Salt, if needed:
+\#Install Salt:
 
 `curl -L http://bootstrap.saltstack.org | sudo sh -s -- -M -N`
 
-#Install these scripts:
+\#Install these scripts:
 ```
 sudo apt-get install -y git && sudo git clone https://github.com/stevage/saltymill /srv/salt
 ```
 
-#Set up pillar properties:
+\#Set up pillar properties:
 
 ```
 sudo mkdir /srv/pillar
@@ -197,7 +183,6 @@ sudo salt '*' state.highstate
 
 ### Watch it build
 You can watch the progress of your servers being built. Go to `http://<serverip>/saltymill` for each one.
-
 
 ```
 ### Using launcher.sh
