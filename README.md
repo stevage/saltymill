@@ -33,12 +33,12 @@ sudo service salt-minion restart
 \# Install these scripts:
 ```
 sudo apt-get install -y git && 
-sudo git clone https://github.com/stevage/saltymill /srv/salt && 
-cd /srv/salt
+sudo git clone https://github.com/stevage/saltymill /srv/salt
 ```
 
 \# Set up pillar properties:
 ```
+cd /srv/salt
 sudo cp -R pillar /srv/
 # Edit /srv/pillar/tm.sls now. Comments are in the file.
 ```
@@ -73,12 +73,14 @@ sudo service salt-minion restart
 
 \#Install these scripts:
 ```
-sudo apt-get install -y git && sudo git clone https://github.com/stevage/saltymill /srv/salt
+sudo apt-get install -y git && 
+sudo git clone https://github.com/stevage/saltymill /srv/salt
 ```
 
 \#Set up pillar properties:
 
 ```
+cd /srv/salt
 sudo cp -R pillar /srv/
 ```
 \# Edit /srv/pillar/tm.sls now. Comments are in the file.
