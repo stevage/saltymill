@@ -42,7 +42,7 @@ tilestream_install:
     - template: jinja
 
 /var/log/salt/tilestream.log:
-  file.present:
+  file.managed:
     - user: mapbox
     - group: mapbox
 

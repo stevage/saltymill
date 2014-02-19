@@ -32,11 +32,13 @@ initindex:
         buildtitle: "Your server is building"
         buildsubtitle: "Sit back and relax. Your server will be ready soon."
         buildtitlecolor: "hsl(210,40%,80%)"
+    - replace: False # We don't want to kill the file if it's already there.
 
 {{ pillar.tm_dir }}/buildlog.html:
   file.managed:
     - source: salt://initlog.html
     - template: jinja
+    - replace: False
   cmd.wait_script:
     - source: salt://log.sh
     - args: "'Building your new server...'"
