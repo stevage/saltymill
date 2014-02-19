@@ -186,7 +186,9 @@ You can watch the progress of your servers being built. Go to `http://<serverip>
 
 ```
 ### Using launcher.sh
-If your SSH is set up so that you can connect to your minions with no arguments ("ssh myminion"), then you can use launcher.sh:
+If your SSH is set up so that you can connect to your minions with no arguments ("ssh myminion"), then you can use launcher.sh.
+(See [this blog post](http://steveko.wordpress.com/2013/05/03/forget-trying-to-remember-your-servers-names/) for how to do that.)
+
 
 ./launcher.sh minion1 minion2
 # ... wait ...
