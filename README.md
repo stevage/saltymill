@@ -27,6 +27,11 @@ curl -Ls https://raw.github.com/stevage/saltymill/master/turbo.sh > turbo.sh && 
 
 You'll be prompted to edit the settings file, which is commented. Follow output at http://SERVERNAME/saltymill
 
+For unattended installation with default settings:
+```
+curl -Ls https://raw.github.com/stevage/saltymill/master/turbo.sh > turbo.sh && bash ./turbo.sh noedit
+```
+
 # Set up one VM
 This is the easier way to run Salt: "masterless minion". The Salt "minion" is installed, then it drives itself to
 carry out the installation.
