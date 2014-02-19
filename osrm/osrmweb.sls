@@ -47,6 +47,11 @@ configure_osrmweb:
               '}, ' +
             {% endfor %}
               r'\2\n', data, flags=re.DOTALL)
+            {% if pillar.tm_osrmlayers is defined %}
+            data = re.sub(r'(TILE_SERVERS: \[).*?(\s+\],)', r'\1\n' +
+            """{{ pillar.tm_osrmlayers }}""" + 
+              r'\2\n', data, flags=re.DOTALL)
+            {% endif %}
             fout.write(data)
         EOF
         echo

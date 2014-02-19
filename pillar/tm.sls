@@ -43,5 +43,14 @@ tm_osrminstances:                     # If no instances, OSRM doesn't get instal
   # profile: The included .lua file (one of car, foot, bicycle )
   # profilesource (optional, untested): URL to download a different .lua file from http://...
 tm_osrmdir: /mnt/saltymill/osrm
+  # This block of text will be substituted directly into OSRM.config.js. It's Javascript interpreted by OSRM.
+  # If it's defined, all default layers will be removed.
+tm_osrmlayers: |
+          { display_name: 'MapQuest',
+            url:'http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png',
+            attribution:'Data © <a href="http://www.openstreetmap.org/copyright/en">OpenStreetMap</a> contributors (ODbL), Imagery © <a href="http://www.mapquest.de/">MapQuest</a>',
+            options:{maxZoom: 18, subdomains: '1234'}
+          },
+
 
 tm_tilestreamport: 5500               # The port to serve both tiles and UI for TileStream
