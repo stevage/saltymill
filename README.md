@@ -99,9 +99,9 @@ In this set up, multiple Salt "minions" can be set up by a single Salt Master. Y
 
 ### On each minion (clean Ubuntu Quantal VM):
 ```
-wget -nv -O - http://bootstrap.saltstack.org | sudo sh
+m=INSERT.YOUR.SALTMASTER.HOSTNAME.HERE
 
-[ $m ] || m=INSERT.YOUR.SALTMASTER.HOSTNAME.HERE
+wget -nv -O - http://bootstrap.saltstack.org | sudo sh
 echo master: $m | sudo tee -a /etc/salt/minion 
 
 # Nginx needs to know the server's actual IP.
