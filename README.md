@@ -18,7 +18,7 @@ It's a conversion of http://github.com/stevage/tilemill-server
 Building a machine with the three main components takes a few minutes. Adding OSM and OSRM can take
 half an hour or more, possibly much more, depending on machine configuration and extract size.
 
-# Turbo one-VM installer
+# Turbo one-VM one-line installer
 On a clean Ubuntu Quantal VM, run this command:
 
 ```
