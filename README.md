@@ -4,14 +4,14 @@ SaltyMill
 SaltyMill uses Salt to deploy a tilemill stack on a clean Ubuntu Quantal VM. The major components are:
 
 - TileMill: cartographic IDE for turning map data into web or static maps
--- Additional fonts
--- Sample projects
--- Waterpolygon file
+  - Additional fonts
+  - Sample projects
+  - Waterpolygon file
 - PostGIS: Postgresql database with GIS extensions, holds OpenStreetMap data
 - Nginx: web server, provides password authentication and allows services to share one port (80).
 - OSM (optional): extract of OpenStreetMap data downloaded and imported
 - OSRM (optional): Open Source Routing Machine, a high speed routing engine indexed from the downloaded OSM extract
--- OSRMWeb: A trip routing web interface to your data that uses the OSRM backend.
+  - OSRMWeb: A trip routing web interface to your data that uses the OSRM backend.
 
 It's a conversion of http://github.com/stevage/tilemill-server
 
