@@ -37,7 +37,7 @@ tm_osmsourceurl: http://download.geofabrik.de/asia/azerbaijan-latest.osm.pbf
 # NB: OSRM instances require a lot of memory, most of which has been allocated to Postgres.
 tm_osrminstances:                     # If no instances, OSRM doesn't get installed.
   - { name: Bike, port: 5010, profile: bicycle }
-  - { name: Walking, port: 5011, profile: foot }
+  # - { name: Walking, port: 5011, profile: foot }
   # name: Text displayed in the OSRM web interface
   # port: The port OSRM listens on for this instances
   # profile: The included .lua file (one of car, foot, bicycle )
