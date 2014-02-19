@@ -1,5 +1,7 @@
+# Copy top.sls and tm.sls to /srv/pillar, then change the settings below.
+
 tm_username: tm                       # Username/password for basic htpasswd authentication
-tm_password: pumpkin                   
+tm_password: pumpkin                  
 tm_dbusername: ubuntu                 # Postgres username/password that will be created
 tm_dbpassword: ubuntu                 # and used to load data with. It doesn't get external access.
 tm_postgresdir: /mnt/var/lib          # Directory to move Postgres to (ie, big, non-ephemeral drive).
