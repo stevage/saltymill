@@ -1,9 +1,10 @@
 tilestream_deps:
   pkg.installed:
     - names: [ curl, build-essential, libssl-dev, libsqlite3-0, libsqlite3-dev, git-core, python-pip ]
-  cmd.wait:
-    - name: pip install nodeenv
-    - watch: [ pkg: tilestream_deps ] 
+
+nodeenv:
+  pip.installed: 
+    - require: [ pkg: tilestream_deps ] 
 
 tilestream_git:
   file.directory:
