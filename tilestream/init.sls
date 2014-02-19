@@ -28,13 +28,15 @@ tilestream_nodeenv:
 
 
 tilestream_install:
-  cmd.wait:
+  cmd.run:
     - cwd: {{pillar.tm_dir}}/tilestream
     - user: mapbox
     - name: |
         . env/bin/activate
         npm install
-  watch: [ git: tilestream_git ]
+    - watch: [ git: tilestream_git ]   # won't get updates because of the unless
+    - unless: test -d {{pillar.tm_dir}}/tilestream/node_modules
+
 
 /etc/init/tilestream.conf:
   file.managed:
