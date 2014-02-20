@@ -1,4 +1,4 @@
-import: osm.get_data
+include: osm.get_data
 
 {% for instance in pillar.tm_osrminstances %}
 osrm_update_{{instance.profile}}:
