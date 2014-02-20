@@ -13,8 +13,6 @@ osrm_repo:
     - rev: master
     - target: {{pillar['tm_osrmdir']}}
 
-###TODO expand for multiple instances
-###TODO allow fetching custom profiles
 osrm_build:
   cmd.run:
     - cwd: {{pillar['tm_osrmdir']}}
@@ -39,7 +37,7 @@ osrm_instance_{{ instance.profile }}:
         cp {{ pillar.tm_osrmdir }}/build/osrm-* .
         cp -R ../profiles .
         {% if instance.profilesource is defined %}
-        wget {{ instance.profilesource }} -O profile.lua
+        wget {{ instance.profilesource }} -O profile.lua ## need to actually test this
         {% else %}
         cp profiles/{{ instance.profile }}.lua profile.lua
         {% endif %}

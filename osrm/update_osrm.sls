@@ -28,7 +28,7 @@ osrm_reindex_{{instance.profile}}:
         ./osrm-prepare extract.osrm # creates .fileIndex, .hsgr, .nodes, .ramIndex, .edges
         sleep 2
         #test -f extract.osrm.hsgr || ( echo "OSRM extract failed somehow." && exit 1 )
-        pkill -f 'osrm-routed.*-p {{ instance.port }}' # Make sure we kill the right instance.
+        pgrep pkill -f 'osrm-routed.*-p {{ instance.port }}' || echo "Started osrm-routed." # Make sure we kill the right instance.
         {{ pillar.tm_dir}}/log.sh "OSRM index for profile '{{ instance.name}}' rebuilt."
         exit 0 # so Salt doesn't report failed pkill as a fail.
     - watch: [ cmd: osrm_start_{{instance.profile}} ]
