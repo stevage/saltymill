@@ -15,5 +15,3 @@ osmgetdata_logdone:
     - source: salt://log.sh
     - args: '"OSM data downloaded."'
     - watch: [ cmd: update_data ]        
-
-test "`find /mnt/saltymill -iname extract.osm.pbf -mmin -360`"
