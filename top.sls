@@ -9,4 +9,7 @@ base:
     - osrm                    # Installs Open Source Routing Machine
     {% endif %}
     {% endif %}
+    {% if pillar.tm_tilestreamport is defined %}
+    - tilestream              # Installs TileStream
+    {% endif %}
     - finishlog 

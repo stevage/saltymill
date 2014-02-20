@@ -12,6 +12,7 @@ SaltyMill uses Salt to deploy a tilemill stack on a clean Ubuntu Quantal VM. The
 - OSM (optional): extract of OpenStreetMap data downloaded and imported
 - OSRM (optional): Open Source Routing Machine, a high speed routing engine indexed from the downloaded OSM extract
   - OSRMWeb: A trip routing web interface to your data that uses the OSRM backend.
+- TileStream (optional): A high performance tile streaming interface for exported MBTiles files.
 
 It's a conversion of http://github.com/stevage/tilemill-server
 

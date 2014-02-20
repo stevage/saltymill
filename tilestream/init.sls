@@ -1,3 +1,5 @@
+include: initlog
+
 tilestream_deps:
   pkg.installed:
     - names: [ curl, build-essential, libssl-dev, libsqlite3-0, libsqlite3-dev, git-core, python-pip ]
