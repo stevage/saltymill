@@ -5,6 +5,7 @@
 get_{{ project.name }}:
   cmd.run:
     - cwd: /usr/share/mapbox/project
+    - user: mapbox
     - name: |
         wget -nv {{ project.source }} -O {{ project.name }}.zip
         mkdir {{ project.name }}        

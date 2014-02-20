@@ -1,3 +1,4 @@
+include: [ osm.postgres ]
 install_postgis_pkgs:
   pkg.installed:
     - names: [ policykit-1, postgresql-9.1, libpq-dev, postgis ]
