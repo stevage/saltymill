@@ -11,6 +11,7 @@ do_import:
     - user: ubuntu
     - group: ubuntu
     - watch: [ cmd: update_data ] # Only import if we have fresh .pbf
+    - require: [ sls: osm.postgis ]
 
 osmimport_logdone:
   cmd.wait_script:
