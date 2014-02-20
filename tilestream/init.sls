@@ -1,4 +1,4 @@
-include: initlog
+include: [ initlog ]
 
 tilestream_deps:
   pkg.installed:
