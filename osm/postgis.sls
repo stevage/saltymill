@@ -4,7 +4,7 @@ install_postgis_pkgs:
     - names: [ policykit-1, postgresql-9.1, libpq-dev, postgis ]
 
 config_postgis:
-  cmd.wait_script:
+  cmd.script:
     - source: salt://osm/config-postgis.sh
     - cwd: {{pillar.tm_dir}}
     - watch: [ pkg: install_postgis_pkgs ]
