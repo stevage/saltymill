@@ -6,7 +6,7 @@ include: [ .get_data, .postgis ]
 do_import:
   cmd.wait:
     # All of this mess is about preventing the import holding up the whole deployment.
-    - name: echo './import.sh && ./process.sh' | at now +1 minute
+    - name: echo './import.sh > import.log && ./process.sh >> import.log' | at now +1 minute
     - cwd: {{pillar['tm_dir']}}
     - user: ubuntu
     - group: ubuntu
