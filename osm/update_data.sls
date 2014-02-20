@@ -1,7 +1,7 @@
 # Download latest OpenStreetMap extract and import it.
 
 ###TODO: What to do if another import process is underway? Test for this? Kill it? Kill ourselves?
-include: .get_data
+include: [ .get_data ]
 
 do_import:
   cmd.wait:
