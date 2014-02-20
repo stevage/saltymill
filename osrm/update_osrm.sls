@@ -2,9 +2,9 @@ include: [ osm.get_data ]
 
 {% for instance in pillar.tm_osrminstances %}
 osrm_update_{{instance.profile}}:
-  file.copy:
+  file.symlink:
     - name: {{ pillar.tm_osrmdir }}/{{ instance.profile }}/extract.osm.pbf
-    - source: {{ pillar.tm_dir }}/extract.osm.pbf
+    - target: {{ pillar.tm_dir }}/extract.osm.pbf
     - require: [ cmd: update_data ]
 
 # So that it will re-run if the indexing fails.
