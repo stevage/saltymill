@@ -23,6 +23,7 @@ getdems:
           #wget -nv http://droppr.org/srtm/v4.1/6_5x5_TIFs/srtm_${x}_${y}.zip
           wget -nv ftp://srtm.csi.cgiar.org/SRTM_V41/SRTM_Data_GeoTiff/srtm_${x}_${y}.zip
           changed="yes"
+          rm srtm.tif
         fi
         done
         done
@@ -33,8 +34,8 @@ getdems:
 
 dodems:
   pkg.installed:
-    - name: gdal-bin
-  cmd.wait:
+    - names: [ gdal-bin python-gdal ]
+  cmd.run:
     - cwd: {{ pillar.tm_demdir }}
     - user: ubuntu
     - group: ubuntu
@@ -68,3 +69,4 @@ dodems:
         #echo Creating contours
         #gdal_contour -a elev -i 20 $f-3785.tif $f-3785-contour.shp
     - watch: [ cmd: getdems ]
+    - unless: test -f srtm.tif
