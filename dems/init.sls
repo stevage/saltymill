@@ -23,7 +23,7 @@ getdems:
         fi
         done
         done
-        if [ changed == "yes"]; then unzip '*.zip'; fi
+        if [ $changed == "yes"]; then unzip '*.zip'; fi
         echo
         echo "changed=$changed"
     - stateful: True
@@ -36,7 +36,7 @@ dodems:
     - user: ubuntu
     - group: ubuntu
     - name: |
-        #!/bin/bash
+        
         echo -n "Merging files: "
         gdal_merge.py srtm_*.tif -o srtm.tif
         f=srtm
