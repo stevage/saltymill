@@ -27,7 +27,7 @@ getdems:
         fi
         done
         done
-        if [ $changed == "yes" ]; then no | unzip '*.zip'; fi
+        if [ $changed == "yes" ]; then yes no | unzip '*.zip'; fi
         echo
         echo "changed=$changed"
     - stateful: True
