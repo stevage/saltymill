@@ -55,3 +55,9 @@ tm_osrmlayers: |
 # Tilestream is a high performance tile server that serves exported MBTiles files.
 # It includes an export browsing web interface. Comment out the next line to not install.
 tm_tilestreamport: 5500               # The port to serve both tiles and UI for TileStream
+
+tm_demdir: /mnt/dem
+tm_srtm_x1: 59 # Tile numbers from 1-71 and 1-24 as per http://srtm.csi.cgiar.org/SELECTION/inputCoord.asp
+tm_srtm_x2: 67
+tm_srtm_y1: 14
+tm_srtm_y2: 21
