@@ -15,6 +15,7 @@ getdems:
     - user: ubuntu
     - group: ubuntu
     - name: |
+        bash >> /var/log/salt/minion <<EOF
         changed="no"
         for x in {{'{' ~ pillar.tm_srtm_x1 ~ '..' ~ pillar.tm_srtm_x2 ~ '}'}}; do
         for y in {{'{' ~ pillar.tm_srtm_y1 ~ '..' ~ pillar.tm_srtm_y2 ~ '}'}}; do
@@ -28,6 +29,9 @@ getdems:
         done
         done
         if [ $changed == "yes" ]; then yes no | unzip '*.zip'; fi
+        echo
+        echo "changed=$changed"
+        EOF
         echo
         echo "changed=$changed"
     - stateful: True
