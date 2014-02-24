@@ -27,17 +27,17 @@ getdems:
         fi
         done
         done
-        if [ $changed == "yes" ]; then unzip '*.zip'; fi
+        if [ $changed == "yes" ]; then no | unzip '*.zip'; fi
         echo
         echo "changed=$changed"
-    #- stateful: True
+    - stateful: True
 
 gdal:
   pkg.installed:
     - names: [ gdal-bin python-gdal ]
 
 dodems:
-  cmd.run:
+  cmd.wait:
     - cwd: {{ pillar.tm_demdir }}
     - user: ubuntu
     - group: ubuntu
@@ -70,5 +70,5 @@ dodems:
 
         #echo Creating contours
         #gdal_contour -a elev -i 20 $f-3785.tif $f-3785-contour.shp
-    #- watch: [ cmd: getdems ]
+    - watch: [ cmd: getdems ]
     #- unless: test -f srtm.tif
