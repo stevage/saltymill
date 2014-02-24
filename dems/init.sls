@@ -30,7 +30,7 @@ getdems:
         if [ $changed == "yes" ]; then unzip '*.zip'; fi
         echo
         echo "changed=$changed"
-    - stateful: True
+    #- stateful: True
 
 dodems:
   pkg.installed:
