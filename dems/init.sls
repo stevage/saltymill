@@ -15,7 +15,7 @@ getdems:
     - user: ubuntu
     - group: ubuntu
     - name: |
-        bash >> /var/log/salt/minion-cmd <<EOF
+        #bash >> /var/log/salt/minion-cmd <<EOF
         changed="no"
         #for x in {{'{' ~ pillar.tm_srtm_x1 ~ '..' ~ pillar.tm_srtm_x2 ~ '}'}}; do
         #for y in {{'{' ~ pillar.tm_srtm_y1 ~ '..' ~ pillar.tm_srtm_y2 ~ '}'}}; do
@@ -33,14 +33,14 @@ getdems:
         if [ $changed == "yes" ]; then yes no | unzip '*.zip'; fi
         echo
         echo "changed=$changed"
-        EOF
+        #EOF
         echo
         echo "changed=$changed"
     - stateful: True
 
 gdal:
   pkg.installed:
-    - names: [ gdal-bin python-gdal ]
+    - names: [ gdal-bin, python-gdal ]
 
 dodems:
   cmd.wait:
