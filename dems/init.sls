@@ -15,12 +15,12 @@ getdems:
     - user: ubuntu
     - group: ubuntu
     - name: |
-        #bash >> /var/log/salt/minion-cmd <<EOF
+        bash >> /var/log/salt/minion-cmd <<EOF
         changed="no"
-        #for x in {{'{' ~ pillar.tm_srtm_x1 ~ '..' ~ pillar.tm_srtm_x2 ~ '}'}}; do
-        #for y in {{'{' ~ pillar.tm_srtm_y1 ~ '..' ~ pillar.tm_srtm_y2 ~ '}'}}; do
-        for x in {59..67}; do
-        for y in {14..21}; do
+        for x in {{'{' ~ pillar.tm_srtm_x1 ~ '..' ~ pillar.tm_srtm_x2 ~ '}'}}; do
+        for y in {{'{' ~ pillar.tm_srtm_y1 ~ '..' ~ pillar.tm_srtm_y2 ~ '}'}}; do
+        #for x in {59..67}; do
+        #for y in {14..21}; do
         #echo $x,$y
         if [ ! -f srtm_${x}_${y}.zip ]; then
           #wget -nv http://droppr.org/srtm/v4.1/6_5x5_TIFs/srtm_${x}_${y}.zip
@@ -33,7 +33,7 @@ getdems:
         if [ $changed == "yes" ]; then yes no | unzip '*.zip'; fi
         echo
         echo "changed=$changed"
-        #EOF
+        EOF
         echo
         echo "changed=$changed"
     - stateful: True
