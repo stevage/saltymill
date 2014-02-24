@@ -1,7 +1,7 @@
 # "Where <lat1,2> are 1-24, <lon1,2> are 1-71, tile numbers as per http://srtm.csi.cgiar.org/SELECTION/inputCoord.asp"
 
 {{ pillar.tm_demdir }}:
-  file.directory
+  file.directory:
     - makedirs: True
     - user: ubuntu
     - group: ubuntu
