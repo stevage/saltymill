@@ -8,6 +8,8 @@
 
 
 getdems:
+  pkg.installed: 
+    - name: unzip
   cmd.run:
     - cwd: {{ pillar.tm_demdir }}
     - user: ubuntu
@@ -24,7 +26,7 @@ getdems:
         fi
         done
         done
-        if [ $changed == "yes"]; then unzip '*.zip'; fi
+        if [ $changed == "yes" ]; then unzip '*.zip'; fi
         echo
         echo "changed=$changed"
     - stateful: True
