@@ -69,4 +69,4 @@ dodems:
         #echo Creating contours
         #gdal_contour -a elev -i 20 $f-3785.tif $f-3785-contour.shp
     - watch: [ cmd: getdems ]
-    - unless: test -f srtm.tif
+    #- unless: test -f srtm.tif
