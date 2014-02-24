@@ -18,7 +18,8 @@ getdems:
         for y in {{'{' ~ pillar.tm_srtm_y1 ~ '..' ~ pillar.tm_srtm_y2 ~ '}'}}; do
         #echo $x,$y
         if [ ! -f srtm_${x}_${y}.zip ]; then
-          wget -nv http://droppr.org/srtm/v4.1/6_5x5_TIFs/srtm_${x}_${y}.zip
+          #wget -nv http://droppr.org/srtm/v4.1/6_5x5_TIFs/srtm_${x}_${y}.zip
+          wget -nv ftp://srtm.csi.cgiar.org/SRTM_V41/SRTM_Data_GeoTiff/srtm_${x}_${y}.zip
           changed="yes"
         fi
         done
