@@ -32,9 +32,11 @@ getdems:
         echo "changed=$changed"
     #- stateful: True
 
-dodems:
+gdal:
   pkg.installed:
     - names: [ gdal-bin python-gdal ]
+
+dodems:
   cmd.run:
     - cwd: {{ pillar.tm_demdir }}
     - user: ubuntu
