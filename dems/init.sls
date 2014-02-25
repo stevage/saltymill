@@ -58,7 +58,8 @@ getvicdems:
     # gdalwarp -co "BIGTIFF=YES" -dstalpha -cutline dtm20m_ext_vg94.shp dtm20m-3785-hs.tif dtm20m-3785-hs-cut.tif
     - group: ubuntu
     - name: |
-        wget -nv {{pillar.tm_vicdem_source}}dtm20m_ext_vg94.shp
+        wget -nv {{pillar.tm_vicdem_source}}dtm20m_ext_vg94.zip
+        unzip dtm20m_ext_vg94.zip
         wget -nv {{pillar.tm_vicdem_source}}dtm20m-3785-hs-cut.tif
         # Source files, not needed by me as I have the processed (hs-cut) one available.
         #wget -nv {{pillar.tm_vicdem_source}}vmelev_dtm20m.zip
