@@ -26,7 +26,7 @@ getdems:
         fi
         done
         done
-        if [ $changed == "yes" ]; then yes no | unzip '*.zip'; fi
+        if [ $changed == "yes" ]; then yes no | unzip -o '*.zip'; fi
         echo
         echo "changed=$changed"
     #- stateful: True
@@ -40,7 +40,7 @@ dodems:
     - cwd: {{ pillar.tm_demdir }}
     - user: ubuntu
     - group: ubuntu
-    - source: salt://./process_srtm.sh
+    - source: salt://dems/process_srtm.sh
     - args: "srtm"
     - watch: [ cmd: getdems ]
     - require: [ pkg: gdal ]

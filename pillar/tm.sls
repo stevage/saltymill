@@ -19,7 +19,7 @@ tm_waterpolygonsource: http://gis.researchmaps.net/water-polygons-split-3857.zip
 # (Optional)
 tm_projects:
                                       # Sample projects to unzip in /usr/share/mapbox/project. Name required but not used for much.
-  - { name: mapstarter, source: "http://gis.researchmaps.net/sample/map-starter.zip" }
+  - { name: mapstarter, source: "http://gis.researchmaps.net/sample/map-starter.zip", maki: True }
   #- { name: melbourne, source: http://gis.researchmaps.net/sample/melbourne.zip } 
 
 # OpenStreetMap/PostGIS settings
@@ -59,7 +59,9 @@ tm_tilestreamport: 5500               # The port to serve both tiles and UI for 
 tm_demdir: /mnt/dem
 # Onto tm_srtm_source will be appended 'srtm_50_40.tif' etc.
 tm_srtm_source: ftp://srtm.csi.cgiar.org/SRTM_V41/SRTM_Data_GeoTiff/
-tm_srtm_x1: 59 # Tile numbers from 1-71 and 1-24 as per http://srtm.csi.cgiar.org/SELECTION/inputCoord.asp
-tm_srtm_x2: 67
-tm_srtm_y1: 14
-tm_srtm_y2: 21
+# Full Australasia region is 59-67, 14-21
+tm_srtm_x1: 65 # Tile numbers from 1-71 and 1-24 as per http://srtm.csi.cgiar.org/SELECTION/inputCoord.asp
+tm_srtm_x2: 66
+tm_srtm_y1: 20
+tm_srtm_y2: 20
+tm_vicdem_source: http://gis.researchmaps.net/dem/vic/
