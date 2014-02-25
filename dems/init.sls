@@ -72,3 +72,4 @@ dodems:
     - watch: [ cmd: getdems ]
     - require: [ pkg: gdal ]
     - unless: test -f srtm.tif
+    - onlyif: test "`ls srtm_*.tif`"
