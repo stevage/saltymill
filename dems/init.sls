@@ -1,7 +1,8 @@
 # "Where <lat1,2> are 1-24, <lon1,2> are 1-71, tile numbers as per http://srtm.csi.cgiar.org/SELECTION/inputCoord.asp"
 
-{{ pillar.tm_demdir }}:
+demdirs:
   file.directory:
+    - names: [ {{ pillar.tm_demdir }}, {{ pillar.tm_demdir }}/vic ]
     - makedirs: True
     - user: ubuntu
     - group: ubuntu
@@ -35,7 +36,7 @@ gdal:
     - names: [ gdal-bin, python-gdal ]
 
 dodems:
-  script.run:
+  cmd.script:
     - cwd: {{ pillar.tm_demdir }}
     - user: ubuntu
     - group: ubuntu
