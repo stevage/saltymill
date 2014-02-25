@@ -66,3 +66,13 @@ getvicdems:
         #wget -nv {{pillar.tm_vicdem_source}}dtm10m_ext_vg94.shp
         #yes no | unzip '*.zip'
     - unless: test -f dtm20m-3785-hs-cut.tif
+# Similarly need to sort this out.
+getcontours:
+  cmd.run:
+    - cwd: {{ pillar.tm_demdir }}
+    - user: ubuntu
+    - group: ubuntu
+    - name: |
+        wget -nv http://gis.researchmaps.net/process-dems/se-aust-contours.zip
+        unzip se-aust-contours.zip
+    - unless: test -f se-aust-contours.zip
