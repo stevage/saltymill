@@ -57,6 +57,8 @@ tm_osrmlayers: |
 tm_tilestreamport: 5500               # The port to serve both tiles and UI for TileStream
 
 tm_demdir: /mnt/dem
+# Onto tm_srtm_source will be appended 'srtm_50_40.tif' etc.
+tm_srtm_source: ftp://srtm.csi.cgiar.org/SRTM_V41/SRTM_Data_GeoTiff/
 tm_srtm_x1: 59 # Tile numbers from 1-71 and 1-24 as per http://srtm.csi.cgiar.org/SELECTION/inputCoord.asp
 tm_srtm_x2: 67
 tm_srtm_y1: 14
