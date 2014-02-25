@@ -3,6 +3,7 @@
 # Harder TODOs:
 # - update all database references to be local
 # - strip out/do something with all file references
+# Quasi solution: stevage.github.io/tilemill-portability
 {% if pillar.tm_projects is defined %}
 {% for project in pillar.tm_projects %}
 get_{{ project.name }}:
@@ -29,10 +30,3 @@ projects_logdone:
     - args: "'Sample projects downloaded and unzipped.'"
     # We hope... (no explicit checking whether this step even got run)
 {% endif %}
-
-
-if [ `ls $dest | wc -l` == 1 ]; then
-  subdir=`ls foo`
-  mv foo/$subdir/* foo/
-  rmdir foo/$subdir
-fi
