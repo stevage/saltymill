@@ -14,14 +14,12 @@ get_{{ project.name }}:
         wget -nv {{ project.source }} -O $dest.zip
         mkdir $dest
         unzip -o $dest.zip -d $dest
-
         # If the unzipped archive contains exactly one directory, move it up a layer:
         if [ `ls $dest | wc -l` == 1 ]; then
           subdir=`ls $dest`
           mv $dest/$subdir/* $dest/
           rmdir $dest/$subdir
         fi
-
     - unless: test -d /usr/share/mapbox/project/{{ project.name }}.zip
 {% endfor %}
 
