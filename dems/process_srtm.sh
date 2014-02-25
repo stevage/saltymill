@@ -4,7 +4,7 @@ if [ "$1" == "" ]; then
   exit 1
 fi
 f=$1
-rm -f $f-3785*
+rm -f $f.tif $f-3785*
 echo -n "Merging files: "
 gdal_merge.py ${f}_*.tif -o ${f}.tif
 echo -n "Re-projecting: "
