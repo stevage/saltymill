@@ -22,7 +22,7 @@ getdems:
           #wget -nv http://droppr.org/srtm/v4.1/6_5x5_TIFs/srtm_${x}_${y}.zip
           wget -nv {{pillar.tm_srtm_source}}srtm_${x}_${y}.zip
           changed="yes"
-          rm srtm.tif
+          rm -f srtm.tif
         fi
         done
         done
