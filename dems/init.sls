@@ -6,7 +6,6 @@
     - user: ubuntu
     - group: ubuntu
 
-
 getdems:
   pkg.installed: 
     - name: unzip
@@ -36,40 +35,30 @@ gdal:
     - names: [ gdal-bin, python-gdal ]
 
 dodems:
-  cmd.run:
+  script.run:
     - cwd: {{ pillar.tm_demdir }}
     - user: ubuntu
     - group: ubuntu
-    - name: |
-        
-        echo -n "Merging files: "
-        gdal_merge.py srtm_*.tif -o srtm.tif
-        f=srtm
-        echo -n "Re-projecting: "
-        gdalwarp -s_srs EPSG:4326 -t_srs EPSG:3785 -r bilinear $f.tif $f-3785.tif 
-
-        echo -n "Generating hill shading: "
-        #TODO install dev version of gdal in order to use -combined option.
-        gdaldem hillshade -z 5 $f-3785.tif $f-3785-hs.tif
-        echo and overviews:
-        gdaladdo -r average $f-3785-hs.tif 2 4 8 16 32
-
-
-        echo -n "Generating slope files: "
-        gdaldem slope $f-3785.tif $f-3785-slope.tif 
-        echo -n "Translating to 0-90..."
-        gdal_translate -ot Byte -scale 0 90 $f-3785-slope.tif $f-3785-slope-scale.tif
-        echo "and overviews."
-        gdaladdo -r average $f-3785-slope-scale.tif 2 4 8 16 32
-
-        echo -n Translating DEM...
-        gdal_translate -ot Byte -scale -10 2000 $f-3785.tif $f-3785-scale.tif 
-        echo and overviews.
-        gdaladdo -r average $f-3785-scale.tif 2 4 8 16 32
-
-        #echo Creating contours
-        #gdal_contour -a elev -i 20 $f-3785.tif $f-3785-contour.shp
+    - source: salt://./process_srtm.sh
+    - args: "srtm"
     - watch: [ cmd: getdems ]
     - require: [ pkg: gdal ]
     - unless: test -f srtm.tif
     - onlyif: test "`ls srtm_*.tif`"
+
+# Should clean these up to somewhere else maybe.
+getvicdems:
+  pkg.installed: 
+    - name: unzip
+  cmd.run:
+    - cwd: {{ pillar.tm_demdir }}/vic
+    - user: ubuntu
+    # For reference only, the hs-cut file is produced with 
+    # gdalwarp -co "BIGTIFF=YES" -dstalpha -cutline dtm20m_ext_vg94.shp dtm20m-3785-hs.tif dtm20m-3785-hs-cut.tif
+    - group: ubuntu
+        #wget -nv {{pillar.tm_vicdem_source}}vmelev_dtm20m.zip
+        wget -nv {{pillar.tm_vicdem_source}}dtm20m_ext_vg94.shp
+        wget -nv {{pillar.tm_vicdem_source}}dtm20m_ext_vg94.shp
+        wget -nv {{pillar.tm_vicdem_source}}dtm20m-3785-hs-cut.tif
+        #yes no | unzip '*.zip'
+    - unless: test -f dtm20m-3785-hs-cut.tif
