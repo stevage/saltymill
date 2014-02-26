@@ -35,7 +35,7 @@ mapbox:
   cmd.wait_script:
     - source: salt://log.sh
     - args: "'Getting dependencies for dev-mode Tilemill installed. This will take a while.'"
-    - wait: [ user: mapbox ]        
+    - prereq_in: [ user: mapbox ]        
 
 
 dev-ppas:

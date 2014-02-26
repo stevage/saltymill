@@ -1,6 +1,6 @@
-export tm_dbusername={{pillar['tm_dbusername']}}
-export tm_dbpassword={{pillar['tm_dbpassword']}}
+export tm_dbusername={{pillar['tm_dbusername']}|default('')}
+export tm_dbpassword={{pillar['tm_dbpassword']|default('')}}
 export tm_username={{pillar['tm_username']}}
 export tm_password={{pillar['tm_password']}}
 export tm_timezone={{pillar['tm_timezone']}}
-export POSTGRESDIR={{pillar['tm_postgresdir']}}
+export POSTGRESDIR={{pillar['tm_postgresdir']|default('')}}

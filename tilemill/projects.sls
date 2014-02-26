@@ -1,5 +1,6 @@
 # Download any arbitrary zipped project files and unzip them.
-# TODO: figure out how to make them 'favourites'
+# TODO: include maki by default? https://github.com/mapbox/maki
+# 
 # Harder TODOs:
 # - update all database references to be local
 # - strip out/do something with all file references
@@ -21,6 +22,7 @@ get_{{ project.name }}:
           mv $dest/$subdir/* $dest/
           rmdir $dest/$subdir
         fi
+        {% if 
     - unless: test -d /usr/share/mapbox/project/{{ project.name }}.zip
 {% endfor %}
 
@@ -30,3 +32,11 @@ projects_logdone:
     - args: "'Sample projects downloaded and unzipped.'"
     # We hope... (no explicit checking whether this step even got run)
 {% endif %}
+
+{# If I ever decide to include maki:
+
+wget -nv https://github.com/mapbox/maki/archive/mb-pages.zip
+mkdir -p /usr/share/mapbox/project/maki
+unzip -j mb-pages.zip 'maki-mb-pages/renders/*.*' -d maki
+
+#}
