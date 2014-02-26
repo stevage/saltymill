@@ -22,7 +22,7 @@ get_{{ project.name }}:
           mv $dest/$subdir/* $dest/
           rmdir $dest/$subdir
         fi
-        {% if 
+        
     - unless: test -d /usr/share/mapbox/project/{{ project.name }}.zip
 {% endfor %}
 
