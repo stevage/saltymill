@@ -1,4 +1,4 @@
-export tm_dbusername={{pillar['tm_dbusername']}|default('')}
+export tm_dbusername={{pillar['tm_dbusername']|default('')}
 export tm_dbpassword={{pillar['tm_dbpassword']|default('')}}
 export tm_username={{pillar['tm_username']}}
 export tm_password={{pillar['tm_password']}}
