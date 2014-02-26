@@ -21,8 +21,11 @@
     - group: ubuntu
     - mode: 744
 
-include:
+include: {% if pillar.tm.dbusername is defined %}
     - .postgres         # Installs PostGres and moves it if needed
-    - .postgis          # Installs PostGIS and creates template database
-    - .osm2pgsql        # Installs OSM2PGSQL, configures for subsequent reloading
+    - .postgis          # Installs PostGIS and creates template database    
+    - .osm2pgsql        # Installs OSM2PGSQL, configures for subsequent reloading {% endif %}
+    - .get_data         # Fetch new data (useful for OSRM, even if PostGIS is out.
+    {% if pillar.tm.dbusername is defined %}
     - .update_data      # Fetches and imports OSM data
+    {% endif %}

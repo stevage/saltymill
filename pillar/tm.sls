@@ -22,12 +22,13 @@ tm_projects:
   - { name: mapstarter, source: "http://gis.researchmaps.net/sample/map-starter.zip", maki: True }
   #- { name: melbourne, source: http://gis.researchmaps.net/sample/melbourne.zip } 
 
-# OpenStreetMap/PostGIS settings
-
+# OpenStreetMap/PostGIS settings. Comment this block out to not install PostGIS.
 tm_dbusername: ubuntu                 # Postgres username/password that will be created
 tm_dbpassword: ubuntu                 # and used to load data with. It doesn't get external access.
 tm_postgresdir: /mnt/var/lib          # Directory to move Postgres to (ie, big, non-ephemeral drive).
-                                      # OSM extract source. Comment out to skip all OSM stuff.
+                                      # OSM extract source.
+
+# OpenStreetMap extract to load. OSRM also processes this downloaded extract directly.
 # For a quick test build, try 
 tm_osmsourceurl: http://download.geofabrik.de/asia/azerbaijan-latest.osm.pbf
 # For the full Australian extract (adds an hour or so to the build time): 
