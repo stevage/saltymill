@@ -17,10 +17,9 @@ tm_fonts:       # List of urls that provide zip downloads
 tm_waterpolygonsource: http://gis.researchmaps.net/water-polygons-split-3857.zip
 
 # (Optional)
-tm_projects:
-                                      # Sample projects to unzip in /usr/share/mapbox/project. Name required but not used for much.
-  - { name: mapstarter, source: "http://gis.researchmaps.net/sample/map-starter.zip", maki: True }
-  #- { name: melbourne, source: http://gis.researchmaps.net/sample/melbourne.zip } 
+tm_projects: # Sample projects to unzip in /usr/share/mapbox/project.
+  - { name: mapstarter, source: "http://gis.researchmaps.net/sample/map-starter.zip" }
+  #- { name: melbourne, source: "http://gis.researchmaps.net/sample/melbourne.zip" } 
 
 # OpenStreetMap/PostGIS settings. Comment this block out to not install PostGIS.
 tm_dbusername: ubuntu                 # Postgres username/password that will be created

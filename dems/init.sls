@@ -46,7 +46,7 @@ dodems:
     - require: [ pkg: gdal ]
     - unless: test -f srtm.tif
     - onlyif: test "`ls srtm_*.tif`"
-
+{% if pillar.tm_vicdem_source is defined %}
 # Should clean these up to somewhere else maybe.
 getvicdems:
   pkg.installed: 
@@ -77,3 +77,4 @@ getcontours:
         wget -nv http://gis.researchmaps.net/process-dems/se-aust-contours.zip
         unzip se-aust-contours.zip
     - unless: test -f se-aust-contours.zip
+{% endif %}
