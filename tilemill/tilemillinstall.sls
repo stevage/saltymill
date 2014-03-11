@@ -1,4 +1,6 @@
-
+# TODO
+# mkdir /var/log/tilemill
+# touch /var/log/tilemill/tilemill.log
 python-software-properties:
   pkg.installed
 
@@ -32,10 +34,10 @@ mapbox:
     - createhome: True
     - fullname: "Mapbox developer account"
 
-  cmd.wait_script:
-    - source: salt://log.sh
-    - args: "'Getting dependencies for dev-mode Tilemill installed. This will take a while.'"
-    - prereq_in: [ user: mapbox ]        
+  #cmd.wait_script: # Don't know why this doesn't work, but it seems to prevent user etc being created.
+  #  - source: salt://log.sh
+  #  - args: "'Getting dependencies for dev-mode Tilemill installed. This will take a while.'"
+  #  - prereq_in: [ user: mapbox ]        
 
 
 dev-ppas:

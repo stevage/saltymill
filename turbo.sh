@@ -18,7 +18,9 @@ exit 0;
 fi
 
 echo "You should edit /srv/pillar/tm.sls now. Comments are in the file."
-echo Type "skip" to skip or anything else to edit.
+echo Type "skip" to skip or anything else to edit. 
+echo 
+echo Or ^C now, then later: salt-call --local statehighstate
 read text
 if [ "$text" != "skip" ]; then
 sudo pico /srv/pillar/tm.sls
