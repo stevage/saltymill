@@ -63,6 +63,12 @@ tilemill-dirs:
     - group: mapbox
     - mode: 755
     - names: [ /usr/share/tilemill, /etc/tilemill, /var/log/tilemill ]  
+  
+  cmd.wait:
+    - name: |
+        touch /var/log/tilemill/tilemill.log
+        chown mapbox:mapbox /var/log/tilemill/tilemill.log
+    - watch: [ file: tilemill-dirs ] 
 
 tilemill-dev:
   cmd.run:
