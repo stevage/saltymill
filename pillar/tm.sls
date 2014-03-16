@@ -53,6 +53,9 @@ tm_osrmlayers: |
             options:{maxZoom: 18, subdomains: '1234'}
           },
 
+# Optionally specify a different Git (or other) source of OSRMWeb. If not specified, uses DennisSchiefer's master.
+# tm_osrmwebsource: https://github.com/DennisSchiefer/Project-OSRM-Web.git
+# tm_osrmwebgitbranch: master  # Defaults to master
 # Tilestream is a high performance tile server that serves exported MBTiles files.
 # It includes an export browsing web interface. Comment out the next line to not install.
 tm_tilestreamport: 5500               # The port to serve both tiles and UI for TileStream

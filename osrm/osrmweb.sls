@@ -16,7 +16,8 @@
 
 osrmweb_repo:
   git.latest:
-    - name: https://github.com/DennisSchiefer/Project-OSRM-Web.git
+    - name: {{ pillar.tm_osrmwebgit|default('https://github.com/DennisSchiefer/Project-OSRM-Web.git') }}
+    - rev: {{ pillar.tm_osrmwebgitbranch|default('master') }}
     - target: /usr/share/nginx/www/osrm
     - user: ubuntu
 
