@@ -26,6 +26,17 @@ nginx:
     - user: root
     - mode: 644
 
+{% if pillar['tm_nginxurlssource'] is defined %}
+nginxurls:
+  cmd.run:
+    - name: |
+        mkdir -p /etc/nginx/includes
+        chmod 755 /etc/nginx/includes
+        chown ubuntu:ubuntu /etc/nginx/includes
+        wget -o /etc/nginx/includes/urls {{ pillar['tm_nginxurlssource'] }}  
+    # always run, so we can update urls easily.
+{% endif %}      
+
 nginxlog:
   cmd.wait_script:
     - source: salt://log.sh

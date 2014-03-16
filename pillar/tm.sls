@@ -8,6 +8,7 @@ tm_dev: False                         # Install the development version of TileM
                                       # but may be less stable. No stock sample projects included. Also much
                                       # slower to build, as it must be compiled from source.
 
+#tm_nginxurlssource: http://...       # optional file consisting of Location { } URL redirects for nginx.
 
 tm_fonts:       # List of urls that provide zip downloads
   - http://www.freefontspro.com/d/12524/cartogothic_std.zip
