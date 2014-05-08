@@ -2,11 +2,12 @@
 # Usage: turbo.sh [noedit]
 
 echo Turbo installer for SaltyMill
+sudo apt-get install -y curl
 which salt-call || curl -Ls http://bootstrap.saltstack.org | sudo sh
 echo fqdn: `curl -s http://ifconfig.me` | sudo tee /etc/salt/grains > /dev/null
 sudo service salt-minion restart
 
-sudo apt-get install -qqy git && 
+sudo apt-get install -qqy git-core && 
 sudo git clone --quiet --branch ${branch:-stable} --depth 1 https://github.com/stevage/saltymill /srv/salt
 
 cd /srv/salt
