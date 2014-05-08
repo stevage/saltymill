@@ -48,6 +48,14 @@ postgres_conf:
         maintenance_work_mem = 64MB
         wal_buffers = 1MB
 
+postgres_pg_hba_conf:
+  file.append:
+    - name: /etc/postgresql/9.1/main/pg_hba.conf 
+    - template: jinja
+    - text: |
+        # Allow local user to connect with password
+        host all {{ pillar['tm_dbusername'] }} 127.0.0.1/32 password
+
 postgresql:
   service.running:
     - enable: True
