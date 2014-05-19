@@ -14,6 +14,11 @@ preamble:
     - shell: /bin/bash
     - home: /home/ubuntu
     - groups: [ ubuntu ]
+  file.directory:
+    - name: {{ pillar.tm_dir}}
+    - user: ubuntu
+    - group: ubuntu
+    - makedirs: True
 
 
 {## Actually this didn't work... #}
