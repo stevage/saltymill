@@ -28,7 +28,8 @@ osrm_reindex_{{instance.profile}}:
         ./osrm-prepare extract.osrm # creates .fileIndex, .hsgr, .nodes, .ramIndex, .edges
         sleep 2
         test -f extract.osrm.hsgr || ( echo "OSRM extract failed somehow." && exit 1 )
-        pgrep pkill -f 'osrm-routed.*-p {{ instance.port }}' || echo "Started osrm-routed." # Make sure we kill the right instance.
+        pkill -f 'osrm-routed.*-p {{ instance.port }}' # Make sure we kill the right instance.
+        # nohup ./osrm-routed -p {{instance.port}} -t 8 extract.osrm > /dev/null 2>&1 & 
         {{ pillar.tm_dir}}/log.sh "OSRM index for profile '{{ instance.name}}' rebuilt."
         
     - watch: [ cmd: osrm_start_{{instance.profile}} ]

@@ -25,6 +25,10 @@ rm /etc/apt/sources.list.d/*developmentseed*
 rm /etc/apt/sources.list.d/*chris-lea*
 #}
 
+dev-basic-deps:
+  pkig.installed:
+    - names: [ build-essential libwebkit-dev ]
+
 mapbox:
   group:
     - present
@@ -43,11 +47,15 @@ mapbox:
 dev-ppas:
   pkgrepo.managed:
     - names: [ 'ppa:chris-lea/node.js' , 'ppa:mapnik/v2.2.0' ]
+    # - names: [ ppa:developmentseed/mapbox ]
 
 dev-deps:
   pkg.installed: 
     - names: [ nodejs, git, build-essential, libgtk2.0-dev, libwebkitgtk-dev, 
-               protobuf-compiler, libprotobuf-lite7, libprotobuf-dev, libgdal1-dev]
+               protobuf-compiler, libprotobuf-lite7, libprotobuf-dev, libgdal1-dev, npm]
+    
+    # This version is for bleeding edge maybe? Which doesn't work for me...
+    #- names: [ libmapnik, libmapnik-dev, mapnik-utils, nodejs, nodejs-dev, npm ]
   cmd.wait_script:
     - source: salt://log.sh
     - args: "'Dependencies for dev-mode Tilemill installed. Getting source now.'"
@@ -62,7 +70,7 @@ tilemill-dirs:
     - user: mapbox
     - group: mapbox
     - mode: 755
-    - names: [ /usr/share/tilemill, /etc/tilemill, /var/log/tilemill ]  
+    - names: [ /usr/share/tilemill, /etc/tilemill, /var/log/tilemill, /usr/share/mapbox, /usr/share/mapbox/project ]  
   
   cmd.wait:
     - name: |
@@ -77,11 +85,13 @@ tilemill-dev:
     - group: mapbox
     - name: |
         # TODO: add git updating.
-        git clone --single-branch --branch=master --depth=1 https://github.com/mapbox/tilemill tilemill
-        {{ pillar.tm_dir }}/log.sh "Tilemill source downloaded. Building now."
+        #git clone --single-branch --branch={{ pillar.tm_devbranch|default('c2ab8b081822fb') }} --depth=1 https://github.com/mapbox/tilemill tilemill
+        git clone --single-branch --branch=master https://github.com/mapbox/tilemill tilemill
         cd tilemill
-        npm install
-        mkdir -p /usr/share/mapbox/project # -p so no error if it got made already.
+        git checkout {{ pillar.tm_devbranch|default('c2ab8b081822fb') }}
+        {{ pillar.tm_dir }}/log.sh "Tilemill source downloaded. Building now."
+        
+        npm install # Weird, surely this needs sudo.
     - unless: test -d /usr/share/tilemill/node_modules
     - require: [ { file: tilemill-dirs}, {pkg: dev-deps}, {pkg: mapnik-pkg} ]
   file.managed:
