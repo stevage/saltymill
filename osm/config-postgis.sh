@@ -27,9 +27,9 @@ sudo -E -su postgres <<EOF
 createdb --encoding=UTF8 --owner=$tm_dbusername $template --template=template0
 psql -d postgres -c "UPDATE pg_database SET datistemplate='true' WHERE datname='$template'"
 
-psql -d $template -f /usr/share/postgresql/9.1/contrib/postgis-1.5/postgis.sql > /dev/null
-psql -d $template -f /usr/share/postgresql/9.1/contrib/postgis-1.5/spatial_ref_sys.sql > /dev/null
-psql -d $template -f /usr/share/postgresql/9.1/contrib/postgis_comments.sql > /dev/null
+psql -d $template -f /usr/share/postgresql/{{ pillar.tm_postgresversion }}/contrib/postgis-1.5/postgis.sql > /dev/null
+psql -d $template -f /usr/share/postgresql/{{ pillar.tm_postgresversion }}/contrib/postgis-1.5/spatial_ref_sys.sql > /dev/null
+psql -d $template -f /usr/share/postgresql/{{ pillar.tm_postgresversion }}/contrib/postgis_comments.sql > /dev/null
 psql -d $template -c "GRANT SELECT ON spatial_ref_sys TO PUBLIC;"
 psql -d $template -c "GRANT ALL ON geometry_columns TO $tm_dbusername;"
 psql -d $template -c "CREATE EXTENSION hstore;"
