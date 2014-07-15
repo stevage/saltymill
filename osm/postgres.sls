@@ -9,7 +9,7 @@ kernel.shmall:
 
 install_postgres_pkgs:
   pkg.installed:
-    - names: [ policykit-1, postgresql-9.1, libpq-dev ]
+    - names: [ policykit-1, postgresql-{{ pillar.tm_postgresversion }}, libpq-dev ]
 
 postgresinstall_logdone:
   cmd.wait_script:
@@ -35,7 +35,7 @@ move_postgres:
 
 postgres_conf:
   file.append:
-    - name: /etc/postgresql/9.1/main/postgresql.conf
+    - name: /etc/postgresql/{{ pillar.tm_postgresversion }}/main/postgresql.conf
     - template: jinja
     - text: |
         # Settings tuned for TileMill
@@ -50,7 +50,7 @@ postgres_conf:
 
 postgres_pg_hba_conf:
   file.append:
-    - name: /etc/postgresql/9.1/main/pg_hba.conf 
+    - name: /etc/postgresql/{{ pillar.tm_postgresversion }}/main/pg_hba.conf 
     - template: jinja
     - text: |
         # Allow local user to connect with password
@@ -65,4 +65,4 @@ postgres_logdone:
   cmd.wait_script:
     - source: salt://log.sh
     - args: '"Postgres installed and configured."'
-    - watch: [ file: /etc/postgresql/9.1/main/postgresql.conf ]
+    - watch: [ file: /etc/postgresql/{{ pillar.tm_postgresversion }}/main/postgresql.conf ]

@@ -1,7 +1,7 @@
 include: [ osm.postgres ]
 install_postgis_pkgs:
   pkg.installed:
-    - names: [ policykit-1, postgresql-9.1, libpq-dev, postgis ]
+    - names: [ policykit-1, postgresql-{{ pillar.tm_postgresversion }}, libpq-dev, postgis ]
 
 config_postgis:
   cmd.script:
