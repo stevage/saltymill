@@ -2,7 +2,7 @@
 # Usage: turbo.sh [noedit]
 
 echo Turbo installer for SaltyMill
-sudo apt-get install -y curl at
+sudo apt-get install -y curl
 which salt-call || curl -Ls http://bootstrap.saltstack.org | sudo sh
 echo fqdn: `curl -s http://ifconfig.me` | sudo tee /etc/salt/grains > /dev/null
 sudo service salt-minion restart
