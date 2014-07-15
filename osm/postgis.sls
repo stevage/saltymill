@@ -7,6 +7,7 @@ config_postgis:
   cmd.script:
     - source: salt://osm/config-postgis.sh
     - cwd: {{pillar.tm_dir}}
+    - template: jinja
     - watch: [ pkg: install_postgis_pkgs ]
     - require: [ service: postgresql ]
     # If we can already connect to a gis database, we don't need to do this.

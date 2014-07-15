@@ -5,7 +5,7 @@ include: [ .get_data, .postgis ]
 
 install_at:
   pkg.installed:
-    - names: [ at ]
+    - name: at
 
 
 do_import:
@@ -16,7 +16,7 @@ do_import:
     - user: ubuntu
     - group: ubuntu
     - watch: [ cmd: update_data ] # Only import if we have fresh .pbf
-    - require: [ pkg.install_at, sls: osm.postgis ]
+    - require: [ pkg: install_at, sls: osm.postgis ]
 
 osmimport_logdone:
   cmd.wait_script:
