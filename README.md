@@ -1,7 +1,7 @@
 SaltyMill
 ---------
 
-SaltyMill uses Salt to deploy a tilemill stack on a clean Ubuntu Quantal VM. The major components are:
+SaltyMill uses Salt to deploy a tilemill stack on a clean Ubuntu Trusty VM. The major components are:
 
 - TileMill: cartographic IDE for turning map data into web or static maps
   - Additional fonts
@@ -20,7 +20,7 @@ Building a machine with the three main components takes a few minutes. Adding OS
 half an hour or more, possibly much more, depending on machine configuration and extract size.
 
 # Turbo one-VM one-line installer
-On a clean Ubuntu Quantal VM, run this command:
+On a clean Ubuntu Trusty VM, run this command:
 
 ```
 curl -Ls https://raw.github.com/stevage/saltymill/master/turbo.sh > turbo.sh && bash ./turbo.sh
@@ -37,7 +37,7 @@ curl -Ls https://raw.github.com/stevage/saltymill/master/turbo.sh > turbo.sh && 
 This is the easier way to run Salt: "masterless minion". The Salt "minion" is installed, then it drives itself to
 carry out the installation.
 
-### On a clean Ubuntu Quantal VM
+### On a clean Ubuntu Trusty VM
 ```
 curl -Ls http://bootstrap.saltstack.org | sudo sh
 # Nginx needs to know the server's actual IP.
@@ -68,7 +68,7 @@ You can watch the progress of your server being built. Go to `http://<serverip>/
 # Set up several "minion" VMs
 In this set up, multiple Salt "minions" can be set up by a single Salt Master. You will need one VM each. This is the way to go if you need to build a bunch of servers for a workshop or something. Later, you can roll out any configuration choanges: modify /srv/pillar/tm.sls on the Master, then run `salt state.highstate`.
 
-### On each minion (clean Ubuntu Quantal VM):
+### On each minion (clean Ubuntu Trusty VM):
 ```
 m=INSERT.YOUR.SALTMASTER.HOSTNAME.HERE
 
