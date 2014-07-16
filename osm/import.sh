@@ -29,7 +29,7 @@ EOF
 echo Cutting over to new database - all connections will be terminated.
 sudo -u postgres psql -d postgres <<EOF
 DROP DATABASE gis_old;
-select pg_terminate_backend(procpid) from pg_stat_activity where datname='gis';
+select pg_terminate_backend(pid) from pg_stat_activity where datname='gis';
 ALTER DATABASE gis RENAME TO gis_old;
 ALTER DATABASE $newdb RENAME TO gis;
 EOF

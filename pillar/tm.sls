@@ -31,6 +31,7 @@ tm_postgresdir: /mnt/var/lib          # Directory to move Postgres to (ie, big, 
                                       # OSM extract source.
 
 tm_postgresversion: 9.3               # Version of Postgres to use, controls package and directory settings.
+tm_postgisversion: 2.1
 
   # OpenStreetMap extract to load. OSRM also processes this downloaded extract directly.
   # For a quick test build, try 
