@@ -13,11 +13,15 @@ SaltyMill uses Salt to deploy a tilemill stack on a clean Ubuntu Trusty VM. The 
 - OSRM (optional): Open Source Routing Machine, a high speed routing engine indexed from the downloaded OSM extract
   - OSRMWeb: A trip routing web interface to your data that uses the OSRM backend.
 - TileStream (optional): A high performance tile streaming interface for exported MBTiles files.
+- log.io: A web interface for viewing the salt log.
 
 It's a conversion of http://github.com/stevage/tilemill-server
 
 Building a machine with the three main components takes a few minutes. Adding OSM and OSRM can take
 half an hour or more, possibly much more, depending on machine configuration and extract size.
+
+Note that log.io opens a security hole, in that the full salt minion logs are publicly visible, possbily containing
+database passwords and such. Consider editing `logging/web_server.conf` for greater security.
 
 # Turbo one-VM one-line installer
 On a clean Ubuntu Trusty VM, run this command:

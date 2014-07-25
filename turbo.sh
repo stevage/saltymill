@@ -6,7 +6,7 @@ echo "127.0.0.1 salt # Required to shut salt up (see https://github.com/saltstac
 sudo apt-get install -y curl
 which salt-call || curl -Ls http://bootstrap.saltstack.org | sudo sh
 echo fqdn: `curl -s http://ifconfig.me` | sudo tee /etc/salt/grains > /dev/null
-sudo service salt-minion restart
+sudo service salt-minion  stop # No need for minion to be running?
 
 sudo apt-get install -qqy git-core && 
 sudo -E git clone --quiet --branch ${branch:-stable} --depth 1 https://github.com/stevage/saltymill /srv/salt
