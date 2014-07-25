@@ -9,3 +9,4 @@ base:
   '*':
     - tm
     # - workshops
+    - logging
