@@ -6,8 +6,7 @@ install_logio:
   cmd.run:
     - cwd: /home/ubuntu 
     - name: |
-        apt-get install -y npm
-        npm install log.io --user "ubuntu"
+        npm install -y log.io
     - require:
       - pkg: logio_deps
 
