@@ -1,4 +1,6 @@
-  # Copy top.sls and tm.sls to /srv/pillar, then change the settings below.
+# Copy top.sls and tm.sls to /srv/pillar, then change the settings below.
+
+# Indentation matters! This must be a syntactically correct YAML file.
 
 tm_username: tm                       # Username/password for basic htpasswd authentication
 tm_password: pumpkin                  
@@ -17,7 +19,9 @@ tm_fonts:       # List of urls that provide zip downloads
   - http://www.fontsquirrel.com/fonts/download/roboto
 
   # (Optional)
-tm_waterpolygonsource: http://gis.researchmaps.net/water-polygons-split-3857.zip
+tm_extrafiles: 
+  - http://gis.researchmaps.net/water-polygons-split-3857.zip
+  - http://gis.researchmaps.net/land-polygons-split-3857.zip
 
   # (Optional)
 tm_projects: # Sample projects to unzip in /usr/share/mapbox/project.

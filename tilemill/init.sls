@@ -4,8 +4,8 @@ include:
   - .fonts
     {% endif %}
   - .tilemillinstall
-    {% if pillar.tm_waterpolygonsource is defined %}
-  - .waterpolygons
+    {% if pillar.tm_tilemillextras is defined %}
+  - .tilemillextras
     {% endif %}
     {% if pillar.tm_projects is defined %}
   - .projects
