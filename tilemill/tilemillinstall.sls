@@ -27,7 +27,7 @@ rm /etc/apt/sources.list.d/*chris-lea*
 
 dev-basic-deps:
   pkg.installed:
-    - names: [ build-essential libwebkit-dev ]
+    - names: [ build-essential, libwebkit-dev ]
 
 mapbox:
   group:
@@ -51,9 +51,9 @@ dev-ppas:
 
 dev-deps:
   pkg.installed: 
-    - names: [ nodejs-legacy, git, build-essential, libgtk2.0-dev, libwebkitgtk-dev, 
-               protobuf-compiler, libprotobuf-lite7, libprotobuf-dev, libgdal1-dev, npm]
-    
+    - names: [ nodejs-legacy, git, build-essential, libgtk2.0-dev, libwebkitgtk-dev,
+               protobuf-compiler, libprotobuf-dev, libgdal1-dev, npm]
+
     # This version is for bleeding edge maybe? Which doesn't work for me...
     #- names: [ libmapnik, libmapnik-dev, mapnik-utils, nodejs, nodejs-dev, npm ]
   cmd.wait_script:
