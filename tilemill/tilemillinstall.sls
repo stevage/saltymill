@@ -26,7 +26,7 @@ rm /etc/apt/sources.list.d/*chris-lea*
 #}
 
 dev-basic-deps:
-  pkig.installed:
+  pkg.installed:
     - names: [ build-essential libwebkit-dev ]
 
 mapbox:
@@ -51,7 +51,7 @@ dev-ppas:
 
 dev-deps:
   pkg.installed: 
-    - names: [ nodejs, git, build-essential, libgtk2.0-dev, libwebkitgtk-dev, 
+    - names: [ nodejs-legacy, git, build-essential, libgtk2.0-dev, libwebkitgtk-dev, 
                protobuf-compiler, libprotobuf-lite7, libprotobuf-dev, libgdal1-dev, npm]
     
     # This version is for bleeding edge maybe? Which doesn't work for me...

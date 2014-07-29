@@ -1,5 +1,5 @@
-nodejs-legacy:  
-  pkg.installed  
+#nodejs-legacy:  
+#  pkg.installed  
   
 npm:  
   pkg.installed  
@@ -10,9 +10,12 @@ at:
 install_logio:  
   cmd.run:  
     - name: |  
+        apt-get install -y nodejs
+        rm /usr/bin/node
+        ln -s /usr/bin/nodejs node # TileMill still wants 'node', not 'nodejs', I think.
         npm install -g log.io  
     - require:  
-      - pkg: nodejs-legacy  
+      #- pkg: nodejs-legacy  
       - pkg: npm  
   
 /home/ubuntu/.log.io/harvester.conf:  
