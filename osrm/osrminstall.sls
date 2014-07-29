@@ -1,9 +1,13 @@
 osrm_deps:
   pkg.installed:
-    - names: [ build-essential, git, cmake, pkg-config, libprotoc-dev, libprotobuf7,
+    {# For precise: #}- names: [ build-essential, git, cmake, pkg-config, libprotoc-dev, libprotobuf7,
                protobuf-compiler, libprotobuf-dev, libosmpbf-dev, libpng12-dev,
                libbz2-dev, libstxxl-dev, libstxxl-doc, libstxxl1, libxml2-dev,
                libzip-dev, libboost-all-dev, lua5.1, liblua5.1-0-dev, libluabind-dev, libluajit-5.1-dev]
+    - names: [ build-essential, git, cmake, pkg-config, libprotoc-dev, libprotobuf8,
+               protobuf-compiler, libprotobuf-dev, libosmpbf-dev, libpng12-dev,
+               libbz2-dev, libstxxl-dev, libstxxl-doc, libstxxl1, libxml2-dev,
+               libzip-dev, libboost-all-dev, lua5.1, liblua5.1-0-dev, libluabind-dev, libluajit-5.1-dev, libtbb-dev ]
     #- order: 1
     ### Oh, I think the problem is we can't build on Precise.
 
