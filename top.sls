@@ -1,6 +1,6 @@
 base:
   '*':
-    - logging
+    # - logging # Doesn't work well, and causes node issues.
     - initlog
     - nginx                   # Adds authentication and port sharing (only 80 exposed to the outside world)
     - tilemill                # Installs TileMill itself
