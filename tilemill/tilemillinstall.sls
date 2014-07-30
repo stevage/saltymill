@@ -52,7 +52,7 @@ dev-ppas:
 dev-deps:
   pkg.installed: 
     - names: [ nodejs-legacy, git, build-essential, libgtk2.0-dev, libwebkitgtk-dev,
-               protobuf-compiler, libprotobuf-dev, libgdal1-dev, npm]
+               protobuf-compiler, libprotobuf-dev, libgdal1-dev, npm] # libprotobuf-lite7 removed
 
     # This version is for bleeding edge maybe? Which doesn't work for me...
     #- names: [ libmapnik, libmapnik-dev, mapnik-utils, nodejs, nodejs-dev, npm ]
@@ -88,7 +88,7 @@ tilemill-dev:
         #git clone --single-branch --branch={{ pillar.tm_devbranch|default('c2ab8b081822fb') }} --depth=1 https://github.com/mapbox/tilemill tilemill
         git clone --single-branch --branch=master https://github.com/mapbox/tilemill tilemill
         cd tilemill
-        git checkout {{ pillar.tm_devbranch|default('c2ab8b081822fb') }}
+        # git checkout {{ pillar.tm_devbranch|default('c2ab8b081822fb') }}
         {{ pillar.tm_dir }}/log.sh "Tilemill source downloaded. Building now."
         
         npm install # Weird, surely this needs sudo.
