@@ -1,9 +1,5 @@
 osrm_deps:
   pkg.installed:
-    {# For precise: #}- names: [ build-essential, git, cmake, pkg-config, libprotoc-dev, libprotobuf7,
-               protobuf-compiler, libprotobuf-dev, libosmpbf-dev, libpng12-dev,
-               libbz2-dev, libstxxl-dev, libstxxl-doc, libstxxl1, libxml2-dev,
-               libzip-dev, libboost-all-dev, lua5.1, liblua5.1-0-dev, libluabind-dev, libluajit-5.1-dev]
     - names: [ build-essential, git, cmake, pkg-config, libprotoc-dev, libprotobuf8,
                protobuf-compiler, libprotobuf-dev, libosmpbf-dev, libpng12-dev,
                libbz2-dev, libstxxl-dev, libstxxl-doc, libstxxl1, libxml2-dev,
