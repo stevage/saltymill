@@ -8,6 +8,12 @@
 
 # TODO
 #}
+/usr/share/nginx/www:
+  file.directory:
+    - user: ubuntu
+    - group: ubuntu
+    - mode: 755
+
 /usr/share/nginx/www/osrm:
   file.directory:
     - user: ubuntu
