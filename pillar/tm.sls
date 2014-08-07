@@ -84,4 +84,7 @@ tm_srtm_x1: 65 # Tile numbers from 1-71 and 1-24 as per http://srtm.csi.cgiar.or
 tm_srtm_x2: 66
 tm_srtm_y1: 20
 tm_srtm_y2: 20
-tm_vicdem_source: http://gis.researchmaps.net/dem/vic/
+
+
+# Extra high resolution (and large file size) DEMs for Victoria.
+# tm_vicdem_source: http://gis.researchmaps.net/dem/vic/
