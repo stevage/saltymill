@@ -22,7 +22,7 @@ tm_fonts:       # List of urls that provide zip downloads
   - http://www.fontsquirrel.com/fonts/download/roboto
 
   # (Optional)
-tm_extrafiles: 
+tm_tilemillextras: 
   - http://gis.researchmaps.net/water-polygons-split-3857.zip
   - http://gis.researchmaps.net/land-polygons-split-3857.zip
 
