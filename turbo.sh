@@ -13,9 +13,9 @@ sudo service salt-minion  stop # No need for minion to be running?
 sudo apt-get install -qq git-core &&
   sudo -E git clone --quiet --branch "${branch:-stable}" --depth 1 https://github.com/stevage/saltymill /srv/salt
 
-# FIXME: Why not just use /srv/salt/pillar rather than 'cd'?
+# FIXME: Why not just use /srv/ salt/pillar rather than 'cd'?
 cd /srv/salt || exit 1
-sudo cp -R pillar /srv/
+sudo ln -s /srv/salt/pillar /srv/pillar
 
 if [[ $1 != noedit ]]; then
   echo You should edit /srv/pillar/tm.sls now. Comments are in the file.
