@@ -12,7 +12,7 @@ extrafiles:
     - require:
         - pkg: unzip
     - name: |
-        {% for f in pillar.tm_tileillextras %}
+        {% for f in pillar.tm_tilemillextras %}
         wget -nv {{ f }}
         {% endfor %}
         sleep 5
