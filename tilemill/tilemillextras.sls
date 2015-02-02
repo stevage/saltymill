@@ -13,11 +13,13 @@ extrafiles:
         - pkg: unzip
     - name: |
         {% for f in pillar.tm_tilemillextras %}
-        wget -nv {{ f }}
+        wget -N -nv {{ f }}
         {% endfor %}
         sleep 5
-        yes no | unzip '*.zip' # Don't overwrite any existing files
-        unzip -f '*.zip' # Freshen existing files if needed
+        for f in *.zip; do
+          unzip -n  "$f" # Don't overwrite any existing files
+          unzip -of "$f" # Freshen existing files if needed
+        done
     # - unless: test -d /usr/share/mapbox/water-polygons-split-3857 # should we bother trying to not repeat?
 
 extrafiles_logdone:
