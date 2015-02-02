@@ -3,6 +3,8 @@
 
 echo Turbo installer for SaltyMill
 echo "127.0.0.1 salt # Required to shut salt up (see https://github.com/saltstack/salt/issues/10466)" | sudo tee -a /etc/hosts
+echo Updating packages, then installing curl.
+sudo apt-get update -qq
 sudo apt-get install -qq curl
 which salt-call || curl -Ls http://bootstrap.saltstack.org | sudo sh
 echo "fqdn: $(curl -s http://ifconfig.me)" | sudo tee /etc/salt/grains > /dev/null
