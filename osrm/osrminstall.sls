@@ -54,7 +54,7 @@ osrm_instance_{{ instance.profile }}:
 
 {{pillar.tm_osrmdir}}/{{instance.profile}}/update-osrm.sh:
   file.managed:
-    - source: salt://osrm/start-osrm.sh
+    - source: salt://osrm/update-osrm.sh
     - template: jinja
     - permissions: 774
     - context:
