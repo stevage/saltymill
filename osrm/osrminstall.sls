@@ -47,14 +47,14 @@ osrm_instance_{{ instance.profile }}:
 {{pillar.tm_osrmdir}}/{{instance.profile}}/start-osrm.sh:
   file.managed:
     - source: salt://osrm/start-osrm.sh
-    - template: jinja2
+    - template: jinja
     - context:
         port: {{instance.port}}
 
 {{pillar.tm_osrmdir}}/{{instance.profile}}/update-osrm.sh:
   file.managed:
     - source: salt://osrm/start-osrm.sh
-    - template: jinja2
+    - template: jinja
     - context:
         port: {{instance.port}}
 
