@@ -11,4 +11,4 @@ tm_password: resbaz
 # Prevent a few things being installed that we don't need.
 tm_osrminstances: [] # If no instances, OSRM doesn't get installed.
 tm_demdir: ''
-tm_tilestreamport:''
+tm_tilestreamport: ''
