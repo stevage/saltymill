@@ -7,7 +7,7 @@ base:
     # Currently logic requires full PostGIS extract/build even if we just want the extract for OSRM.
     {% if pillar.tm_osmsourceurl is defined and pillar.tm_osmsourceurl  %} 
     - osm                     # PostGIS with an OpenStreetMap extract installed.
-    {% if pillar.tm_osrminstances is defined and tm_osrminstances %}
+    {% if pillar.tm_osrminstances is defined and pillar.tm_osrminstances %}
     - osrm                    # Installs Open Source Routing Machine
     {% endif %}
     {% endif %}

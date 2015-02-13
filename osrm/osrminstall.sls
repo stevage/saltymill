@@ -43,7 +43,24 @@ osrm_instance_{{ instance.profile }}:
         {% endif %}
     - watch: [ cmd: osrm_build ]
     - unless: test -d {{ pillar.tm_osrmdir }}/{{ instance.profile }}
+
+{{pillar.tm_osrmdir}}/{{instance.profile}}/start-osrm.sh:
+  file.managed:
+    - source: salt://osrm/start-osrm.sh
+    - template: jinja2
+    - context:
+        port: {{instance.port}}
+
+{{pillar.tm_osrmdir}}/{{instance.profile}}/update-osrm.sh:
+  file.managed:
+    - source: salt://osrm/start-osrm.sh
+    - template: jinja2
+    - context:
+        port: {{instance.port}}
+
 {% endfor %}
+
+
 
 osrm_logdone:
   cmd.wait_script:
