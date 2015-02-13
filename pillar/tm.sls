@@ -18,7 +18,7 @@ tm_dev: False                         # Install the development version of TileM
 #tm_nginxurlssource: http://...       # optional file consisting of Location { } URL redirects for nginx.
 
 tm_fonts:       # List of urls that provide zip downloads
-  - http://www.freefontspro.com/d/12524/cartogothic_std.zip
+  - http://gis.researchmaps.net/fonts/fonts-carto-gothic-std.zip
   - http://www.fontsquirrel.com/fonts/download/roboto
 
   # (Optional)
