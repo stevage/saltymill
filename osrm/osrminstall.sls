@@ -48,6 +48,7 @@ osrm_instance_{{ instance.profile }}:
   file.managed:
     - source: salt://osrm/start-osrm.sh
     - template: jinja
+    - permissions: 774
     - context:
         port: {{instance.port}}
 
@@ -55,6 +56,7 @@ osrm_instance_{{ instance.profile }}:
   file.managed:
     - source: salt://osrm/start-osrm.sh
     - template: jinja
+    - permissions: 774
     - context:
         port: {{instance.port}}
 
