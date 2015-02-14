@@ -26,6 +26,13 @@ nginx:
     - user: root
     - mode: 644
 
+# Newer versions of nginx make this directory .../html so we have to make sure.
+/usr/share/nginx/www:
+  file.directory:
+    - user: root
+    - group: www-data
+    - mode: 644
+
 {% if pillar['tm_nginxurlssource'] is defined %}
 nginxurls:
   cmd.run:
