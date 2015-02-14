@@ -20,6 +20,14 @@
     - group: ubuntu
     - mode: 755
 
+# OSRM-Web uses Windows line endings. Bleh.
+setcrlf:
+  git.config:
+    - name: core.autocrlf
+    - value: input
+    - user: ubuntu
+    - is_global: true
+
 osrmweb_repo:
   git.latest:
     - name: {{ pillar.tm_osrmwebgit|default('https://github.com/DennisSchiefer/Project-OSRM-Web.git') }}
