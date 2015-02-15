@@ -75,6 +75,13 @@ osrm_memlock:
         - ubuntu           hard    memlock         unlimited
         - ubuntu           soft    memlock         68719476736
 
+# Apparently we need to do this too. https://github.com/Project-OSRM/osrm-backend/wiki/Configuring-and-using-Shared-Memory
+# Not sure what to do about "(and /etc/pam.d/common-session)" because that file doesn't have this text, on 14.04.
+osrm_pam:
+  file.uncomment:
+    - name: /etc/pam.d/su
+    - regex: "session    required   pam_limits.so"
+
 osrm_logdone:
   cmd.wait_script:
     - source: salt://log.sh
