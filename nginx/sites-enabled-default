@@ -25,7 +25,16 @@ server {
       #try_files $uri $uri/main.html;
       alias   /usr/share/nginx/www/osrm/WebContent/;
     }
+    # Provide a port 80 endpoint for restricted networks.
+    {% for instance in pillar['tm_osrminstances'] %}
+    location /osrm-routing/{{ instance.port }} {
+      rewrite ^/osrm-routing/{{ instance.port }}/(.*)$ /$1 break;
+      proxy_pass http://127.0.0.1:{{ instance.port }};
+    }
+    {% endfor %}
+
     {% endif %}
+
    location /tilemill {
        rewrite     ^(.*)$ http://{{grains['fqdn']}}:5002 permanent;
    }
