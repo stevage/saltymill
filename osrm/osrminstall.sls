@@ -67,7 +67,13 @@ osrm_instance_{{ instance.profile }}:
 
 {% endfor %}
 
-
+# Allow osrm to lock lots of memory.
+osrm_memlock:
+  file.append:
+    - name: /etc/security/limits.conf
+    - text:
+        - ubuntu           hard    memlock         unlimited
+        - ubuntu           soft    memlock         68719476736
 
 osrm_logdone:
   cmd.wait_script:
@@ -77,12 +83,8 @@ osrm_logdone:
     - watch: [ { cmd: osrm_build } ]
 
 # Todo: Add this to /etc/sysctl.conf  (careful, the postgres install also plays with these settings...)
-
-# Todo: Add this to /etc/security/limits.conf (and also change all the above to install as ubuntu, not root).
-
-
-#ubuntu           hard    memlock         unlimited
-#ubuntu           soft    memlock         68719476736
+#kernel.shmall = 1152921504606846720
+#kernel.shmmax = 18446744073709551615
 
 # Todo: add this script to startup:
 # ./osrm-datastore extract.osrm
