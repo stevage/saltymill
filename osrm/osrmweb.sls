@@ -20,7 +20,7 @@
     - group: ubuntu
     - mode: 755
 
-# OSRM-Web uses Windows line endings. Bleh.
+# OSRM-Web uses Windows line endings. Bleh. This doesn't even work. 
 setcrlf:
   git.config:
     - name: core.autocrlf

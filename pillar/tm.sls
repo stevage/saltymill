@@ -54,8 +54,8 @@ tm_osrminstances:                     # If no instances, OSRM doesn't get instal
   # - { name: Walking, port: 5011, profile: foot }
   # name: Text displayed in the OSRM web interface
   # port: The port OSRM listens on for this instances
-  # profile: The included .lua file (one of car, foot, bicycle )
-  # profilesource (optional, untested): URL to download a different .lua file from http://...
+  # profile: The included .lua file (one of car, foot, bicycle ) and directory name.
+  # profilesource (optional): URL to download a different .lua file from http://...
 tm_osrmdir: /mnt/saltymill/osrm
 
   # This block of text will be substituted directly into OSRM.config.js. It's Javascript interpreted by OSRM.

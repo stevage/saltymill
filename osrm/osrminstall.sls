@@ -10,12 +10,14 @@ osrm_deps:
 osrm_repo:
   git.latest:
     - name: https://github.com/DennisOSRM/Project-OSRM.git
+    - user: ubuntu
     - rev: master
     - target: {{pillar['tm_osrmdir']}}
 
 osrm_build:
   cmd.run:
     - cwd: {{pillar['tm_osrmdir']}}
+    - user: ubuntu
     - name: |
         mkdir -p build
         cd build
@@ -37,10 +39,11 @@ osrm_instance_{{ instance.profile }}:
         cp {{ pillar.tm_osrmdir }}/build/osrm-* .
         cp -R ../profiles .
         {% if instance.profilesource is defined %}
-        wget -nv {{ instance.profilesource }} -O profile.lua ## need to actually test this
+        wget -nv {{ instance.profilesource }} -O profile.lua
         {% else %}
         cp profiles/{{ instance.profile }}.lua profile.lua
         {% endif %}
+    - user: ubuntu
     - watch: [ cmd: osrm_build ]
     - unless: test -d {{ pillar.tm_osrmdir }}/{{ instance.profile }}
 
@@ -49,6 +52,7 @@ osrm_instance_{{ instance.profile }}:
     - source: salt://osrm/start-osrm.sh
     - template: jinja
     - permissions: 774
+    - user: ubuntu
     - context:
         port: {{instance.port}}
 
@@ -57,6 +61,7 @@ osrm_instance_{{ instance.profile }}:
     - source: salt://osrm/update-osrm.sh
     - template: jinja
     - permissions: 774
+    - user: ubuntu
     - context:
         port: {{instance.port}}
 
@@ -71,3 +76,16 @@ osrm_logdone:
     - args: "'OSRM installed and built.'"
     - watch: [ { cmd: osrm_build } ]
 
+# Todo: Add this to /etc/sysctl.conf  (careful, the postgres install also plays with these settings...)
+
+# Todo: Add this to /etc/security/limits.conf (and also change all the above to install as ubuntu, not root).
+
+
+#ubuntu           hard    memlock         unlimited
+#ubuntu           soft    memlock         68719476736
+
+# Todo: add this script to startup:
+# ./osrm-datastore extract.osrm
+
+# Then change the startup line to:
+# ./osrm-routed -p 5010 -t 8 --sharedmemory=yes
