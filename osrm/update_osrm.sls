@@ -1,5 +1,8 @@
 include: [ osm.get_data ]
 
+#TODO: Replace all this with a simpler call to update-osrm.sh. Tricky thing is to make that happen in the background while
+# the rest of the install continues. Or even better, delayed by a few minutes.
+
 {% for instance in pillar.tm_osrminstances %}
 osrm_update_{{instance.profile}}:
   file.symlink:
