@@ -40,8 +40,7 @@ postgres_conf:
     - text: |
         # Settings tuned for TileMill
         # Problem that for small servers, not enough memory left for OSRM to do its thing.
-        #shared_buffers = {{grains['mem_total'] // 4}}MB
-        shared_buffers = {{grains['mem_total'] // 4 - 500}}MB
+        shared_buffers = {{grains['mem_total'] // 4 - 500 if grains['mem_total'] > 2500 else 50}}MB
         autovacuum = on
         effective_cache_size = {{grains['mem_total'] // 4}}MB
         work_mem = 128MB
