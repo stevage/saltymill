@@ -4,8 +4,10 @@ update_data:
     - name: |
         rm -f extract.osm.pbf
         echo --- Downloading data.
-        wget -nv {{ pillar['tm_osmsourceurl'] }} -O extract.osm.pbf
+        url={{ pillar['tm_osmsourceurl'] }}
+        wget -N -nv $url
         # Hmm, no way to know if download failed.
+        mv ${url##*/} extract.osm.pbf
         touch extract.osm.pbf    # we want to know the date we received the file, not the age of its content. 
         # fetch data only if there is none newer than 6 hours old around.
     - unless:  test "`find {{ pillar['tm_dir']}} -maxdepth 0 -iname extract.osm.pbf -mmin -360`"

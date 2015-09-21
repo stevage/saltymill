@@ -6,7 +6,7 @@ echo "127.0.0.1 salt # Required to shut salt up (see https://github.com/saltstac
 echo Updating packages, then installing curl.
 sudo apt-get update -qq
 sudo apt-get install -qq curl
-which salt-call || curl -Ls http://bootstrap.saltstack.org | sudo sh
+which salt-call || curl -Ls http://bootstrap.saltstack.org -o install_salt.sh && sudo sh install_salt.sh -P
 echo "fqdn: $(curl -s http://ifconfig.me)" | sudo tee /etc/salt/grains > /dev/null
 sudo service salt-minion  stop # No need for minion to be running?
 
