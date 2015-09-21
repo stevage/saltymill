@@ -8,8 +8,9 @@
 
 # TODO
 #}
-/usr/share/nginx/www:
+nginxwww:
   file.directory:
+    - name: /usr/share/nginx/www
     - user: ubuntu
     - group: ubuntu
     - mode: 755
