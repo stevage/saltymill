@@ -13,7 +13,9 @@ get_{{ project.name }}:
     - user: mapbox
     - name: |
         dest={{project.name}}
-        wget -nv {{ project.source }} -O $dest.zip
+        url={{project.source}}
+        wget -N -nv $url
+        mv ${url##*/} $dest.zip
         mkdir $dest
         unzip -o $dest.zip -d $dest
         # If the unzipped archive contains exactly one directory, move it up a layer:
