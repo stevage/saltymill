@@ -82,7 +82,7 @@ osrm_memlock:
 osrm_pam:
   file.uncomment:
     - name: /etc/pam.d/su
-    - regex: "session    required   pam_limits.so"
+    - regex: " session    required   pam_limits.so"
 
 osrm_logdone:
   cmd.wait_script:
