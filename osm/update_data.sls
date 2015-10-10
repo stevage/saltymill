@@ -13,8 +13,8 @@ do_import:
     # All of this mess is about preventing the import holding up the whole deployment.
     - name: echo './import.sh > import.log && ./process.sh >> import.log' | at now +1 minute
     - cwd: {{pillar['tm_dir']}}
-    - user: ubuntu
-    - group: ubuntu
+    - user: root
+    - group: root
     - watch: [ cmd: update_data ] # Only import if we have fresh .pbf
     - require: [ pkg: install_at, sls: osm.postgis ]
 
