@@ -11,7 +11,7 @@ config_postgis:
     - watch: [ pkg: install_postgis_pkgs ]
     - require: [ service: postgresql ]
     # If we can already connect to a gis database, we don't need to do this.
-    - unless: sudo -u postgres psql -d gis -c '' 2>/dev/null
+    #- unless: sudo -u postgres psql -d gis -c '' 2>/dev/null
 
 postgis_logdone:
   cmd.wait_script:
